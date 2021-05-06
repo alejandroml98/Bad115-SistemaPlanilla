@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  app:
+    build: 
+      context: .
+    container_name: planillaBad115
+    ports: 
+      -8080:8080
+    volumes: 
+      - .:/home
+    networks: 
+      default:
+        external: 
+          name: bridge   
+
+  db:
+    image: store/oracle/database-enterprise:12.2.0.1-slim
+    container_name: oracle-slim
+    #restart: always
+    #environment:
+     # POSTGRES_PASSWORD: crypto_money
+     # POSTGRES_DB: crypto
+     # POSTGRES_USER: postgres
+    ports:
+      - 1521:1521
+    volumes:
+      - ./oracleDBData:/ORCL 
+    networks: 
+      default:
+        external: 
+          name: bridge
