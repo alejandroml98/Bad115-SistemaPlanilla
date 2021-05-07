@@ -1,4 +1,4 @@
-from oraclelinux:7
+FROM oraclelinux:7
 
 RUN yum install -y oracle-php-release-el7
 
