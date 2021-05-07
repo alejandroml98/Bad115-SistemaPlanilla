@@ -4,8 +4,7 @@ return [
     'oracle' => [
         'driver'            => 'oracle',
         'host'              => env('DB_HOST', ''),
-        'port'              => env('DB_PORT', '1521'),
-        'port'              => '1521',
+        'port'              => env('DB_PORT', '1521'),        
         'database'          => env('DB_DATABASE', ''),
         'service_name'	=> 'ORCLPDB1.localdomain',
         'username'          => env('DB_USERNAME', ''),
