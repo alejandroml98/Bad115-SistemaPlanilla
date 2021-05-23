@@ -17,4 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::resource('genero', 'GeneroController');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
