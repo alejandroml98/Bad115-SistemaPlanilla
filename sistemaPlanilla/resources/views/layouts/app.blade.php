@@ -10,13 +10,6 @@
 
     <title>{{ config('app.name', 'Across') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -48,6 +41,7 @@
 
     <!-- Head Libs -->
     <script src="{{ asset('assets/vendor/modernizr/modernizr.js') }}"></script>
+    <link rel="icon" href="assets/images/logo.png">
 </head>
 
 <body>
@@ -56,8 +50,8 @@
         <!-- start: header -->
         <header class="header">
             <div class="logo-container">
-                <a href="{{ url('/') }}" class="logo">
-                    <img src="assets/images/logo.png" height="75" width="100" alt="JSOFT Admin" />  {{ config('app.name', 'Across') }}                    
+                <a href="{{ url('/') }}" class="logo" style="vertical-align: middle; text-decoration: none;">
+                    <img src="assets/images/logo.png" height="40" width="40" alt="JSOFT Admin" /> <span style="font-size: 18px; color:#3c4f60; vertical-align: middle;">&nbsp;{{ config('app.name', 'Across') }} </span>
                 </a>
                 <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
                     <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -66,7 +60,7 @@
 
             <!-- start: search & user box -->
             <div class="header-right">
-
+                @auth
                 <form action="pages-search-results.html" class="search nav-form">
                     <div class="input-group input-search">
                         <input type="text" class="form-control" name="q" id="q" placeholder="Search...">
@@ -78,64 +72,57 @@
 
                 <span class="separator"></span>
 
-                <!-- Right Side Of Navbar -->
-                <ul class="notifications">
-                    <!-- Authentication Links -->
-                    @guest
-                    <li class="sidebar-title">
-                        <a href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-
-                    @if (Route::has('register'))
-                    <li class="sidebar-title">
-                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                    </li>
-                    @endif
-                    @else
-                    <div id="userbox" class="userbox">
-                        <a href="#" data-toggle="dropdown">
-                            <figure class="profile-picture">
-                                <img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
-                            </figure>
-                            <div class="profile-info" data-lock-name="{{ Auth::user()->name }}" data-lock-email="johndoe@JSOFT.com">
-                                <span class="name">{{ Auth::user()->name }}</span>
-                                <span class="role">administrator</span>
-                            </div>
-
-                            <i class="fa custom-caret"></i>
-                        </a>
-
-                        <div class="dropdown-menu">
-                            <ul class="list-unstyled">
-                                <li class="divider"></li>
-                                <li>
-                                    <a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fa fa-user"></i> Perfil</a>
-                                </li>
-                                <li>
-                                    <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Bloquear Pantalla</a>
-                                </li>
-                                <li>
-                                    <a class="menuitem" href="{{ route('logout') }}" onclick="document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-power-off"></i>
-                                        {{ __('Cerrar Sesión') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </li>
-                            </ul>
+                <div id="userbox" class="userbox">
+                    <a href="#" data-toggle="dropdown">
+                        <figure class="profile-picture">
+                            <img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+                        </figure>
+                        <div class="profile-info" data-lock-name="{{ Auth::user()->name }}" data-lock-email="{{ Auth::user()->email }}">
+                            <span class="name">{{ Auth::user()->name }}</span>
+                            <span class="role">administrator</span>
                         </div>
-                    </div>
-                    @endguest
-                </ul>
 
+                        <i class="fa custom-caret"></i>
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <ul class="list-unstyled">
+                            <li class="divider"></li>
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i> Perfil</a>
+                            </li>
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Bloquear pantalla</a>
+                            </li>
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Cerrar Sesión</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <!-- end: search & user box -->
+            @endauth
+            <!-- Right Side Of Navbar -->
+            <ul class="notifications">
+                @guest
+                <li>
+                    <a class="register-links" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
+                </li>
+
+                <li>
+                    <a class="register-links" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
+                </li>
+                @endguest
+            </ul>
+            </div>
         </header>
         <!-- end: header -->
-
         <div class="inner-wrapper">
             <!-- start: sidebar -->
+            @auth
             <aside id="sidebar-left" class="sidebar-left">
 
                 <div class="sidebar-header">
@@ -334,6 +321,7 @@
                     </div>
                 </div>
             </aside>
+            @endauth
             <!-- end: sidebar -->
 
             <section role="main" class="content-body">
@@ -351,10 +339,9 @@
                         </ol>
                     </div>
                 </header>
-                <div class="col-md-12">
+                <main class="py-4">
                     @yield('content')
-                </div>
-
+                </main>
             </section>
         </div>
     </section>

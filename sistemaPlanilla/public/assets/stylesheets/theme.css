@@ -919,11 +919,7 @@ a:active {
 BOOTSTRAP EXTEND
 ------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Add New Grid Tier FOR NON BOXED LAYOUT */
-html.scroll,
-html.fixed {
-	/* UNDO original bootrap LG helper classes*/
-	/* Helper classes for XL */;
-}
+
 
 @media (min-width: 1600px) {
 	html.scroll .container,
@@ -1536,6 +1532,18 @@ html.header-dark .header .input-search .input-group-btn .btn-default {
 	padding: 15px;
 	font-size: 15px;
 	font-size: 1.5rem;
+}
+
+.register-links {
+	color: #7a7a7a;
+	font-size: 18px;
+	font-size: 1.6rem;
+	margin-right: 10px;
+	text-decoration: none;
+}
+.register-links:hover {
+	color: #005f9b;
+	text-decoration: none;
 }
 
 .sidebar-left .sidebar-header .sidebar-toggle {
@@ -2463,7 +2471,7 @@ ul.nav-main li .nav-children .nav-children .nav-children li a {
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
-	display: inline-block;
+	display: block;
 	float: left;
 	height: 50px;
 	font-size: 20px;
@@ -3856,12 +3864,12 @@ input.input-rounded {
 
 .input-group-rounded .input-group-addon:first-child,
 .input-search .input-group-addon:first-child {
-	border-radius: 500px 0 0 500px;
+	border-radius: 500px
 }
 
 .input-group-rounded .input-group-addon:last-child,
 .input-search .input-group-addon:last-child {
-	border-radius: 0 500px 500px 0;
+	border-radius: 500px
 }
 
 /* Form - Custom Checkbox */
@@ -4474,11 +4482,6 @@ html.dark .inner-toolbar > ul > li {
 	position: relative;
 }
 
-body {
-	/* Button Basic */
-	/* Buttons - Social */
-	/* Buttons - States */;
-}
 
 body .btn:focus,
 body .btn:active:focus,
@@ -4755,14 +4758,12 @@ html.dark .open > .dropdown-toggle.btn-default {
 .notifications {
 	display: inline-block;
 	list-style: none;
-	margin: 4px -10px 0 0;
-	padding: 0;
 	vertical-align: middle;
 }
 
 .notifications > li {
 	float: left;
-	margin: 0 10px 0 0;
+	margin: 10% 10px 0 0;
 	position: relative;
 }
 
@@ -4802,9 +4803,6 @@ html.dark .open > .dropdown-toggle.btn-default {
 .notifications > li > a {
 	border: none;
 	display: inline-block;
-	color: #2a617a;
-	font-size: 16px;
-	padding: 0px 20px 0px 20px;
 }
 
 .notifications .notification-menu {
@@ -4970,7 +4968,7 @@ html.header-dark .notifications > li .notification-icon i {
 @media only screen and (max-width: 767px) {
 	.notifications {
 		float: right;
-		margin: 16px 8px 0 0;
+		margin: 0px 8px 0 0;
 	}
 
 	.notifications > li {
@@ -5443,7 +5441,6 @@ html.header-dark .userbox .dropdown-menu a {
 	display: block;
 	color: white;
 	font-weight: 600;
-	vertical-align: top;
 	line-height: 1.3em;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -8029,7 +8026,7 @@ html.dark .panel-group .panel-accordion .form-control {
 }
 
 .small-chart-wrapper .small-chart {
-	display: inline-block;
+	display: block;
 	float: left;
 	margin-bottom: 8px;
 	min-width: 80px;
@@ -8895,6 +8892,7 @@ html.dark .modal-footer {
 /* Zoom */
 .mfp-with-zoom .mfp-container, .mfp-with-zoom.mfp-bg {
 	opacity: 0.001;
+	backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	-webkit-transition: all 0.3s ease-out;
 	-moz-transition: all 0.3s ease-out;
@@ -11168,7 +11166,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .thumb-info .thumb-info-type {
 	background-color: #cccccc;
 	border-radius: 2px;
-	display: inline-block;
+	display: block;
 	float: left;
 	font-size: 12px;
 	font-weight: 400;
@@ -12222,16 +12220,6 @@ ul.widget-todo-list li:last-child {
 	}
 }
 
-html.dark {
-	/* Widget Summary */
-	/* Panel Footer - Button Group */
-	/* To-do List */
-	/* Simple Post List */
-	/* Simple User List */
-	/* Simple Bullet List */
-	/* Simple Compose Box */;
-}
-
 html.dark .widget-summary .summary .title,
 html.dark .widget-summary .summary .amount {
 	color: #EEE;
@@ -12903,7 +12891,7 @@ html.dark .pricing-table .plan {
 }
 
 .fileupload .uneditable-input .fileupload-preview {
-	display: inline-block;
+	display: block;
 	float: left;
 	overflow: hidden;
 	padding: 0 0 0 17px;
@@ -13706,6 +13694,7 @@ html.dark .wizard-progress .wizard-steps {
 	width: 100%;
 	font-size: 0;
 	text-align: justify;
+	text-justify: distribute-all-lines;
 	-ms-text-justify: distribute-all-lines;
 	/* IE8+ */;
 }

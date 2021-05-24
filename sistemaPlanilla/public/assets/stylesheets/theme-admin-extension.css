@@ -2,11 +2,6 @@
 BOOTSTRAP EXTEND
 ------------------------------------------------------------------------------------------------------------------------------------------ */
 /* Add New Grid Tier FOR NON BOXED LAYOUT */
-html.scroll,
-html.fixed {
-	/* UNDO original bootrap LG helper classes*/
-	/* Helper classes for XL */;
-}
 
 @media (min-width: 1600px) {
 	html.scroll .container,
