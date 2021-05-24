@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUnidadsTable extends Migration
+class CreateDireccionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateUnidadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('unidads', function (Blueprint $table) {
-            $table->string('codigoUnidad', 7)->primary();
-            $table->string('nombreUnidad');
-            $table->integer('idTipoUnidad')->unsigned();
-            $table->foreign('idTipoUnidad')->references('idTipoUnidad')->on('tipo_unidads');
+        Schema::create('direccions', function (Blueprint $table) {
+            $table->id('idDireccion');
+            $table->integer('idPais')->unsigned();
+            $table->foreign('idPais')->references('idPais')->on('pais');
+            $table->string('detalleDireccion');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateUnidadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unidads');
+        Schema::dropIfExists('direccions');
     }
 }

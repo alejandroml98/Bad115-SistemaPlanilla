@@ -14,9 +14,7 @@ class CreateTipoIngresosTable extends Migration
     public function up()
     {
         Schema::create('tipo_ingresos', function (Blueprint $table) {
-            $table->id('a');
-            $table->integer('idTipoIngresoEmpleado')->unsigned();
-            $table->foreign('idTipoIngresoEmpleado')->references('idTipoIngresoEmpleado')->on('tipo_ingresos__empleados');
+            $table->id('idTipoIngresos');
             $table->string('nombreTipoIngresos');
             $table->timestamps();
         });

@@ -14,7 +14,7 @@ class CreatePuestosTable extends Migration
     public function up()
     {
         Schema::create('puestos', function (Blueprint $table) {
-            $table->string('codigoPuesto')->primary();
+            $table->string('codigoPuesto', 7)->primary();
             $table->string('nombrePuesto');
             $table->boolean('esAdministrativo');
             $table->timestamps();
