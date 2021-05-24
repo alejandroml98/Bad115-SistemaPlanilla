@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoIngresos_Empleado extends Model
 {
-    protected $primaryKey = "idTipoIngresoEmpleado";
+    protected $primaryKey = "idtipoingresoempleado";
 }
