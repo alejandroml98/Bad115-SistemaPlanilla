@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsuariosTable extends Migration
+class AddCodigoEmpleadoToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,9 @@ class CreateUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios', function (Blueprint $table) {
-            $table->id('idUsuario');
-            $table->string('userName');
-            $table->string('contrasena');
-            $table->boolean('activo');
+        Schema::table('users', function (Blueprint $table) {
             $table->string('codigoEmpleado')->unsigned();
             $table->foreign('codigoEmpleado')->references('codigoEmpleado')->on('empleados');
-            $table->integer('idRol')->unsigned();
-            $table->foreign('idRol')->references('idRol')->on('rols');
-            $table->timestamps();
         });
     }
 
@@ -33,6 +26,8 @@ class CreateUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('codigoEmpleado');
+        });
     }
 }
