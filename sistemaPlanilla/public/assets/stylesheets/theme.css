@@ -1454,7 +1454,6 @@ html.fixed .visible-xl-inline-block {
 .center-sign a {
 	text-decoration: none;
 }
-
 /* Header Mobile */
 @media only screen and (max-width: 767px) {
 	.header .logo-container {

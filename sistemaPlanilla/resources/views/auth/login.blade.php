@@ -59,19 +59,12 @@
                                 <input name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} type="checkbox" />
                                 <label for="RememberMe">{{ __('Recordarme') }}</label>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <div class="form-group py-5">
-                            <button type="submit" class="btn hidden-xs btn-block" style="background-color: #34495E; color: white;">{{ __('Iniciar Sesión') }}</button>
-                            <button type="submit" class="btn btn-block btn-lg visible-xs mt-lg" style="background-color: #34495E; color: white;">{{ __('Iniciar Sesión') }}</button>
-                        </div>
-                    <span class="mb-lg line-thru text-center text-uppercase">
-                        <span>o</span>
-                    </span>
-                    @if (Route::has('password.request'))
-                    <p class="text-center">¿No tienes una cuenta? <a href="{{ route('register') }}">{{ __('Registrarse') }}</a>
-                    @endif
-
+                        <button type="submit" class="btn hidden-xs btn-block" style="background-color: #34495E; color: white;">{{ __('Iniciar Sesión') }}</button>
+                        <button type="submit" class="btn btn-block btn-lg visible-xs mt-lg" style="background-color: #34495E; color: white;">{{ __('Iniciar Sesión') }}</button>
+                    </div>
                 </form>
             </div>
         </div>
