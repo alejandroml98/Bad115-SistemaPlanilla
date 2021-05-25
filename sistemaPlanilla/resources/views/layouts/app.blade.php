@@ -326,6 +326,7 @@
 
             <section role="main" class="content-body">
                 <header class="page-header">
+                    @auth
                     <h2>{{ Route::currentRouteName() }}</h2>
 
                     <div class="right-wrapper pull-right">
@@ -338,8 +339,9 @@
                             <li><span>{{ Route::currentRouteName() }}</span></li>
                         </ol>
                     </div>
+                    @endauth
                 </header>
-                <main class="py-4">
+                <main class="col-12">
                     @yield('content')
                 </main>
             </section>

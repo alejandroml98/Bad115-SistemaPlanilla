@@ -86,19 +86,19 @@ a:active,
 }
 /* Sign Screens - Wrappers */
 .body-sign .panel-sign .panel-title-sign .title {
-	background-color: #0088cc;
+	background-color: #34495E;
 }
 
 .body-sign .panel-sign .panel-body {
-	border-top-color: #0088cc;
+	border-top-color: #34495E;
 }
 /* Lock Screen */
 .body-locked .current-user .user-image {
-	border-color: #0088cc;
+	border-color: #34495E;
 }
 /* Blockquote */
 blockquote.primary {
-	border-color: #0088cc;
+	border-color: #34495E;
 }
 /* Nav Pills */
 .nav-pills-primary > li a:hover,

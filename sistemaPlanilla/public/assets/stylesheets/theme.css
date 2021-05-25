@@ -14,7 +14,7 @@ body {
 	font-family: "Open Sans", Arial, sans-serif;
 	line-height: 22px;
 	margin: 0;
-	font-size: 13px;
+	font-size: 15px;
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
@@ -1449,6 +1449,10 @@ html.fixed .visible-xl-inline-block {
 .header-right {
 	float: right;
 	height: 56px;
+}
+
+.center-sign a {
+	text-decoration: none;
 }
 
 /* Header Mobile */
@@ -3709,8 +3713,8 @@ html.dark .form-bordered .form-group {
 
 .input-group-icon input.form-control,
 .input-search input.form-control {
-	font-size: 12px;
-	font-size: 1.2rem;
+	font-size: 15px;
+	font-size: 1.5rem;
 	padding-right: 36px;
 }
 
@@ -15298,16 +15302,21 @@ html.dark .invoice table.table > tbody tr > td {
 /* Sign Screens - Wrappers */
 .body-sign {
 	display: table;
-	height: 100vh;
 	margin: 0 auto;
 	max-width: 500px;
 	padding: 0 15px;
 	width: 100%;
 }
 .body-sign .center-sign {
-	display: table-cell;
 	padding-top: 20px;
 	vertical-align: middle;
+}
+.company-name, .company-name:hover, .company-name:visited, .company-name:link, .company-name:active {
+	color: #666666;
+    font-size: 25px;
+    padding: 10px;
+    vertical-align: middle;
+    text-decoration: none;
 }
 .body-sign .panel-sign {
 	background: transparent;
