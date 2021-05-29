@@ -22,7 +22,9 @@
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/magnific-popup/magnific-popup.css') }}" />    
+    <link rel="stylesheet" href="{{ asset('assets/vendor/magnific-popup/magnific-popup.css') }}" />
+
+    @stack('vendorcss')
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('assets/stylesheets/theme.css') }}" />
@@ -34,7 +36,7 @@
     <link rel="stylesheet" href="{{ asset('assets/stylesheets/theme-custom.css') }}">
 
     <!-- Head Libs -->
-    <script src="{{ asset('assets/vendor/modernizr/modernizr.js') }}"></script>
+    <script src="assets/vendor/modernizr/modernizr.js"></script>
     <link rel="icon" href="assets/images/logo.png">
 </head>
 
@@ -352,13 +354,16 @@
     <!-- Specific Page Vendor -->
     <script src="assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
 
+    @stack('vendorjs')
+
     <!-- Theme Base, Components and Settings -->
     <script src="assets/javascripts/theme.js"></script>
 
     <!-- Theme Custom -->
     <script src="assets/javascripts/theme.custom.js"></script>
 
-    
+    <!-- Theme Initialization Files -->
+    <script src="assets/javascripts/theme.init.js"></script>
 </body>
 
 </html>
