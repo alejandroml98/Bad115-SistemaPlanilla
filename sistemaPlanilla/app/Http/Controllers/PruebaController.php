@@ -88,8 +88,14 @@ class PruebaController extends Controller
     public function Confirmacion()
     {
         // example:
-        //return('Eliminado');
+        //return('Eliminado');       
+        
+        
+        //Tooast de exito        
         toast('Your Post has been deleted!','success');
+
+        //Toast de error
+        //toast('Your Post could not be deleted!','error');
         
         //alert()->question('Are you sure?','You won\'t be able to revert this!')->showCancelButton()->showConfirmButton()->focusConfirm(true);
         return redirect('casita');
