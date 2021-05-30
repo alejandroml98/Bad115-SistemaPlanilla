@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Genero;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class GeneroController extends Controller
@@ -36,6 +37,13 @@ class GeneroController extends Controller
      */
     public function store(Request $request)
     {
+        $campos = [
+            'nombreGenero' => 'required|string|max:100'
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido'
+        ];
+        $this->validate($request, $campos, $mensaje);
         $genero = request()->except('_token');
         Genero::insert($genero);
         return redirect('genero')->with('mensaje', 'Genero Creado');
@@ -72,6 +80,13 @@ class GeneroController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $campos = [
+            'nombreGenero' => 'required|string|max:100'
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido'
+        ];
+        $this->validate($request, $campos, $mensaje);
         $genero = request()->except(['_token', '_method']);
         Genero::where('idgenero', '=', $id)->update($genero);
         return redirect('genero')->with('mensaje', 'Genero Modificado');
