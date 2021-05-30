@@ -88,7 +88,10 @@ class PruebaController extends Controller
     public function Confirmacion()
     {
         // example:
-alert()->question('Are you sure?','You won\'t be able to revert this!')->showCancelButton()->showConfirmButton()->focusConfirm(true);
-return redirect('casita');
+        //return('Eliminado');
+        toast('Your Post has been deleted!','success');
+        
+        //alert()->question('Are you sure?','You won\'t be able to revert this!')->showCancelButton()->showConfirmButton()->focusConfirm(true);
+        return redirect('casita');
     }
 }
