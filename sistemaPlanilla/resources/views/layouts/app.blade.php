@@ -23,9 +23,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/magnific-popup/magnific-popup.css') }}" />
-
-    <!-- sweetAlert library -->
-    @include('sweetalert::alert')
+   
     @stack('vendorcss')
 
     <!-- Theme CSS -->
@@ -366,6 +364,9 @@
 
     <!-- Theme Initialization Files -->
     <script src="assets/javascripts/theme.init.js"></script>
+
+    <!-- sweetAlert library -->
+    @include('sweetalert::alert')
 
 </body>
 
