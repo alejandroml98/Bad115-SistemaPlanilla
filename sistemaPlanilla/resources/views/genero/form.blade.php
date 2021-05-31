@@ -11,6 +11,6 @@
 @endif
 <h2>{{ $mode == 'create' ? 'Agregar Género'  : 'Modificar Género' }}</h2>
 <label for="nombreGenero">{{ 'Nombre' }}</label>
-<input type="text" name="nombreGenero" id="nombreGenero" value="{{ isset($genero -> nombregenero) ? $genero -> nombregenero : old('nombregenero') }}">
+<input type="text" name="nombreGenero" id="nombreGenero" value="{{ isset($genero -> nombregenero) ? $genero -> nombregenero : old('nombreGenero') }}">
 <input type="submit" value="{{ $mode == 'create' ? 'Agregar' : 'Modificar' }}">
 <a href="{{ url('/genero/') }}">REGRESAR</a>
