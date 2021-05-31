@@ -38,7 +38,7 @@ class GeneroController extends Controller
     public function store(Request $request)
     {
         $campos = [
-            'nombreGenero' => ['required','string', 'max:100', 'regex:/^[a-zA-Z ]*$/', 'unique:generos']
+            'nombreGenero' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:generos']
         ];
         $mensaje = [
             "required" => 'El :attribute es requerido',

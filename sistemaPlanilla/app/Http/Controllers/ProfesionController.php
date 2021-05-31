@@ -14,7 +14,8 @@ class ProfesionController extends Controller
      */
     public function index()
     {
-        //
+        $datosGenero['profesiones'] = Profesion::paginate(5);
+        return view('profesion.index', $datosGenero);
     }
 
     /**
@@ -24,7 +25,7 @@ class ProfesionController extends Controller
      */
     public function create()
     {
-        //
+        return view('profesion.create');
     }
 
     /**
@@ -35,7 +36,18 @@ class ProfesionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'nombreProfesion' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:profesions']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $profesion = request()->except('_token');
+        Profesion::insert($profesion);
+        return redirect('profesion')->with('mensaje', 'Profesión Creada');
     }
 
     /**
@@ -55,9 +67,10 @@ class ProfesionController extends Controller
      * @param  \App\Profesion  $profesion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profesion $profesion)
+    public function edit($id)
     {
-        //
+        $profesion = Profesion::findOrFail($id);
+        return view('profesion.edit', compact('profesion'));
     }
 
     /**
@@ -67,9 +80,20 @@ class ProfesionController extends Controller
      * @param  \App\Profesion  $profesion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profesion $profesion)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'nombreProfesion' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:profesions']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $profesion = request()->except(['_token', '_method']);
+        Profesion::where('idprofesion', '=', $id)->update($profesion);
+        return redirect('profesion')->with('mensaje', 'Profesión Modificada');
     }
 
     /**
@@ -78,8 +102,9 @@ class ProfesionController extends Controller
      * @param  \App\Profesion  $profesion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profesion $profesion)
+    public function destroy($id)
     {
-        //
+        Profesion::destroy($id);
+        return redirect('profesion')->with('mensaje', 'Profesión Eliminada');
     }
 }
