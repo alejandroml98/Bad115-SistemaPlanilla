@@ -21,6 +21,8 @@ class CreateEmpleadosTable extends Migration
             $table->string('apellidoMaterno')->nullable();
             $table->string('apellidoCasado')->nullable();
             $table->date('fechaNacimiento');
+            $table->integer('idUser')->unsigned();
+            $table->foreign('idUser')->references('id')->on('users');
             $table->integer('idGenero')->unsigned();
             $table->foreign('idGenero')->references('idGenero')->on('generos');
             $table->integer('idDireccion')->unsigned();

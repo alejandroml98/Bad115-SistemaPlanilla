@@ -14,7 +14,8 @@ class TipoDocumentoController extends Controller
      */
     public function index()
     {
-        //
+        $datosTiposDocumento['tiposDocumentos'] = TipoDocumento::paginate(5);
+        return view('tipodocumento.index', $datosTiposDocumento);
     }
 
     /**
@@ -24,7 +25,7 @@ class TipoDocumentoController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipodocumento.create');
     }
 
     /**
@@ -35,7 +36,19 @@ class TipoDocumentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'nombreTipoDocumento' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú@ ]*$/', 'unique:tipo_documentos'],
+            'cadenaRegex' => ['required','string', 'max:100']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $tipoDocumento = request()->except('_token');
+        TipoDocumento::insert($tipoDocumento);
+        return redirect('tipodocumento')->with('mensaje', 'Tipo Documento Creado');
     }
 
     /**
@@ -55,9 +68,10 @@ class TipoDocumentoController extends Controller
      * @param  \App\TipoDocumento  $tipoDocumento
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoDocumento $tipoDocumento)
+    public function edit($id)
     {
-        //
+        $tipoDocumento = TipoDocumento::findOrFail($id);
+        return view('tipodocumento.edit', compact('tipoDocumento'));
     }
 
     /**
@@ -67,9 +81,20 @@ class TipoDocumentoController extends Controller
      * @param  \App\TipoDocumento  $tipoDocumento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipoDocumento $tipoDocumento)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'nombreTipoDocumento' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú@ ]*$/'],
+            'cadenaRegex' => ['required','string', 'max:100']
+        ];
+        $mensaje = [
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $tipoDocumento = request()->except(['_token', '_method']);
+        TipoDocumento::where('idtipodocumento', '=', $id)->update($tipoDocumento);
+        return redirect('tipodocumento')->with('mensaje', 'Tipo Documento Modificado');
     }
 
     /**
@@ -78,8 +103,9 @@ class TipoDocumentoController extends Controller
      * @param  \App\TipoDocumento  $tipoDocumento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoDocumento $tipoDocumento)
+    public function destroy($id)
     {
-        //
+        TipoDocumento::destroy($id);
+        return redirect('tipodocumento')->with('mensaje', 'Tipo Documento Eliminado');
     }
 }

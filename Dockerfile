@@ -10,6 +10,8 @@ RUN yum -y install oracle-release-el7
 
 RUN yum -y install oracle-instantclient19.5-basic
 
+RUN yum -y install oracle-instantclient19.5-sqlplus
+
 RUN curl -sS https://getcomposer.org/installer | php
 
 RUN mv composer.phar /usr/local/bin/composer
