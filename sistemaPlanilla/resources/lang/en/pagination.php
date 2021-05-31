@@ -13,7 +13,11 @@ return [
     |
     */
 
+    /*
     'previous' => '&laquo; Previous',
-    'next' => 'Next &raquo;',
+    'next' => 'Next &raquo;', */
+    //Validación en español
+    'previous' => '&laquo; Anterioor',
+    'next' => 'Siguiente &raquo;',
 
 ];
