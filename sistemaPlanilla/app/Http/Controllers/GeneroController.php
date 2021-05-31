@@ -38,10 +38,12 @@ class GeneroController extends Controller
     public function store(Request $request)
     {
         $campos = [
-            'nombreGenero' => 'required|string|max:100'
+            'nombreGenero' => ['required','string', 'max:100', 'regex:/^[a-zA-Z ]*$/', 'unique:generos']
         ];
         $mensaje = [
-            "required" => 'El :attribute es requerido'
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
         ];
         $this->validate($request, $campos, $mensaje);
         $genero = request()->except('_token');
@@ -81,10 +83,12 @@ class GeneroController extends Controller
     public function update(Request $request, $id)
     {
         $campos = [
-            'nombreGenero' => 'required|string|max:100'
+            'nombreGenero' => ['required','string', 'max:100', 'regex:/^[a-zA-Z ]*$/', 'unique:generos']
         ];
         $mensaje = [
-            "required" => 'El :attribute es requerido'
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
         ];
         $this->validate($request, $campos, $mensaje);
         $genero = request()->except(['_token', '_method']);
