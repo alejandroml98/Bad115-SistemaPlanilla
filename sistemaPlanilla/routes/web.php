@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/profesion', function () {
+    return view('/profesion/index');
+});
+
 Route::resource('genero', 'GeneroController');
 
 
