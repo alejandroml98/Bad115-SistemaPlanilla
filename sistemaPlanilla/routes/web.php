@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::resource('genero', 'GeneroController');
 Route::resource('profesion', 'ProfesionController');
+Route::resource('estadocivil', 'EstadoCivilController');
 
 
 Auth::routes();

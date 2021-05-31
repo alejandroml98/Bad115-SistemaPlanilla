@@ -14,7 +14,8 @@ class EstadoCivilController extends Controller
      */
     public function index()
     {
-        //
+        $datosEstadoCivil['estadosCiviles'] = EstadoCivil::paginate(5);
+        return view('estadocivil.index', $datosEstadoCivil);
     }
 
     /**
@@ -24,7 +25,7 @@ class EstadoCivilController extends Controller
      */
     public function create()
     {
-        //
+        return view('estadocivil.create');
     }
 
     /**
@@ -35,7 +36,18 @@ class EstadoCivilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'nombreEstadoCivil' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú@ ]*$/', 'unique:estado_civils']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $estadoCivil = request()->except('_token');
+        EstadoCivil::insert($estadoCivil);
+        return redirect('estadocivil')->with('mensaje', 'Estado Civil Creado');
     }
 
     /**
@@ -55,9 +67,10 @@ class EstadoCivilController extends Controller
      * @param  \App\EstadoCivil  $estadoCivil
      * @return \Illuminate\Http\Response
      */
-    public function edit(EstadoCivil $estadoCivil)
+    public function edit($id)
     {
-        //
+        $estadoCivil = EstadoCivil::findOrFail($id);
+        return view('estadocivil.edit', compact('estadoCivil'));
     }
 
     /**
@@ -67,9 +80,20 @@ class EstadoCivilController extends Controller
      * @param  \App\EstadoCivil  $estadoCivil
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EstadoCivil $estadoCivil)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'nombreEstadoCivil' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú@ ]*$/', 'unique:estado_civils']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $estadoCivil = request()->except(['_token', '_method']);
+        EstadoCivil::where('idestadocivil', '=', $id)->update($estadoCivil);
+        return redirect('estadocivil')->with('mensaje', 'Estado Civil Modificado');
     }
 
     /**
@@ -78,8 +102,9 @@ class EstadoCivilController extends Controller
      * @param  \App\EstadoCivil  $estadoCivil
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EstadoCivil $estadoCivil)
+    public function destroy($id)
     {
-        //
+        EstadoCivil::where('idestadocivil', '=', $id)->delete();
+        return redirect('estadocivil')->with('mensaje', 'Estado Civil Eliminado');
     }
 }

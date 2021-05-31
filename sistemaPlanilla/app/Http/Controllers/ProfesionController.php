@@ -14,8 +14,8 @@ class ProfesionController extends Controller
      */
     public function index()
     {
-        $datosGenero['profesiones'] = Profesion::paginate(5);
-        return view('profesion.index', $datosGenero);
+        $datosProfesion['profesiones'] = Profesion::paginate(5);
+        return view('profesion.index', $datosProfesion);
     }
 
     /**
