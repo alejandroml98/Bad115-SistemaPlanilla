@@ -1,35 +1,47 @@
 @extends('layouts.app')
+@if (Session::has('mensaje')){{
+    Session::get('mensaje')
+}}
+@endif
 @push('vendorcss')
 <link rel="stylesheet" href="assets/vendor/select2/select2.css" />
 <link rel="stylesheet" href="assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
 @endpush
 @section('content')
+<a class = "btn btn-secondary mb-3" href="{{ url('/profesion/create') }}">Agregar Profesión</a>
 <section class="panel">
     <header class="panel-heading">
-        <div class="panel-actions">
-            <a href="#" class="fa fa-caret-down"></a>
-            <a href="#" class="fa fa-times"></a>
-        </div>
-
-        <h2 class="panel-title">Basic</h2>
+        <h2 class="panel-title">Profesiones Registradas</h2>
     </header>
     <div class="panel-body" lang="es">
         <table class="table table-bordered table-striped mb-none" id="datatable-default">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Profesión</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($profesiones as $profesion)
                 <tr class="gradeX">
-                    <td>1</td>
-                    <td>Administrador de empresas</td>
-                    <td class="d-flex justify-content-center">
-                        <a class="btn btn-primary ml-4"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
-                        <a class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <td>{{ $profesion -> idprofesion }}</td>
+                    <td>{{ $profesion -> nombreprofesion }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ url('/profesion/'.$profesion -> idprofesion.'/edit') }}">
+                            <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                        </a>
+                        <form method="post" action="{{ url('/profesion/'.$profesion -> idprofesion) }}">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('¿Borrar de verdad el registro?')">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </form>
                     </td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 </section>
@@ -43,33 +55,3 @@
 <script src="assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
 <script src="assets/javascripts/tables/examples.datatables.default.js"></script>
 @endpush
-@if (Session::has('mensaje')){{
-    Session::get('mensaje')
-}}    
-@endif
-<a href="{{ url('/profesion/create') }}">Agregar Profesión</a>
-<table class="table table-light table-bordered">
-    <thead class="thead-dark">
-        <tr>
-            <th>ID</th>
-            <th>Nombre Profesión</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($profesiones as $profesion)
-            <tr>
-                <td>{{ $profesion -> idprofesion }}</td>
-                <td>{{ $profesion -> nombreprofesion }}</td>
-                <td>
-                    <a href="{{ url('/profesion/'.$profesion -> idprofesion.'/edit') }}" class="btn btn-warning">Editar</a>
-                    <form  method="post" action="{{ url('/profesion/'.$profesion -> idprofesion) }}">                
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                        <button type="submit" onclick="return confirm('¿Borrar de verdad el registro?')">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
