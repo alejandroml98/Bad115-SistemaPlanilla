@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//Solicita verificar correo despues del registro
+Auth::routes(['verify' => true]);
 
 Route::get('/profesion', function () {
     return view('/profesion/index');
@@ -27,13 +29,10 @@ Route::resource('profesion', 'ProfesionController');
 Route::resource('estadocivil', 'EstadoCivilController');
 Route::resource('tipodocumento', 'TipoDocumentoController');
 
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 /**           Rutas de pruebas de formulario y sweet alert                            */
-Route::get('/casita','PruebaController@index');
+Route::get('/casita','PruebaController@index')->middleware('auth');;
 //Route::get('/Prueba/Confirmacion','PruebaController@Confirmacion');
 Route::delete('/Prueba/eliminar','PruebaController@Confirmacion')->name('confirmacion-prueba');
 
