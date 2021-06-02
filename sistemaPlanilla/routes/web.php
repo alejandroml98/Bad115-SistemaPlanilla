@@ -20,10 +20,6 @@ Route::get('/', function () {
 //Solicita verificar correo despues del registro
 Auth::routes(['verify' => true]);
 
-Route::get('/profesion', function () {
-    return view('/profesion/index');
-});
-
 Route::resource('genero', 'GeneroController');
 Route::resource('profesion', 'ProfesionController');
 Route::resource('estadocivil', 'EstadoCivilController');
