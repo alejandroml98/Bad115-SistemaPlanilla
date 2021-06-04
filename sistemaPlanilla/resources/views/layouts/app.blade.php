@@ -76,7 +76,7 @@
                         </figure>
                         <div class="profile-info" data-lock-name="{{ Auth::user()->name }}" data-lock-email="{{ Auth::user()->email }}">
                             <span class="name">{{ Auth::user()->name }}</span>
-                            <span class="role">administrator</span>
+                            <span class="role">Poner unidad Organizacional</span>
                         </div>
 
                         <i class="fa custom-caret"></i>
@@ -150,17 +150,17 @@
                                 <li class="nav-parent">
                                     <a>
                                         <i class="fa fa-user" aria-hidden="true"></i>
-                                        @role('writers')
+                                        @role('writer')
                                             <span>Empleados</span>
                                         @else
                                             <span>No Empleados</span>
-                                        @endrole
+                                        @endrole                                        
                                     </a>
                                     <ul class="nav nav-children">
                                         <li>
-                                            <a href="pages-signup.html">
-                                                Enlace 1
-                                            </a>
+                                            @can('edit articles')
+                                            <a href="pages-signup.html">Enlace edit articles</a>
+                                            @endcan                                            
                                         </li>
                                         <li>
                                             <a href="pages-signin.html">
