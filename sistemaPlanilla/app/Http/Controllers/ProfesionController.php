@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Profesion;
 use Illuminate\Http\Request;
+use SebastianBergmann\Environment\Console;
+use Illuminate\Support\Facades\Log;
 
 class ProfesionController extends Controller
 {
@@ -89,11 +91,13 @@ class ProfesionController extends Controller
             "required" => 'El :attribute es requerido',
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
-        ];
+        ];        
         $this->validate($request, $campos, $mensaje);
         $profesion = request()->except(['_token', '_method']);
+        $requestMethod = $this->method();
         Profesion::where('idprofesion', '=', $id)->update($profesion);
-        return redirect('profesion')->with('mensaje', 'Profesión Modificada');
+        $mensaje = 'Profesión Modificada';
+        return redirect('profesion')->with(compact('mensaje', 'requestMethod'));
     }
 
     /**

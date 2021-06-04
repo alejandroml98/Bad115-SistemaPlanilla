@@ -37,6 +37,7 @@
 
     <!-- Head Libs -->
     <script src="assets/vendor/modernizr/modernizr.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" href="assets/images/logo.png">
 </head>
 
@@ -265,23 +266,11 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-parent">
-                                    <a>
+                                <li>
+                                    <a href="{{ route('profesion.index') }}">
                                         <i class="fa fa-briefcase" aria-hidden="true"></i>
                                         <span>Puestos</span>
                                     </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a href="layouts-default.html">
-                                                Enlace 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="layouts-boxed.html">
-                                                Enlace 1
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="nav-parent">
                                     <a>
