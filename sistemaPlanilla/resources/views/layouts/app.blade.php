@@ -36,9 +36,9 @@
     <link rel="stylesheet" href="{{ asset('assets/stylesheets/theme-custom.css') }}">
 
     <!-- Head Libs -->
-    <script src="assets/vendor/modernizr/modernizr.js"></script>
+    <script src="{{ asset('assets/vendor/modernizr/modernizr.js')}}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="icon" href="assets/images/logo.png">
+    <link rel="icon" href="{{ asset('assets/images/logo.png') }}">
 </head>
 
 <body>
@@ -48,7 +48,7 @@
         <header class="header">
             <div class="logo-container">
                 <a href="{{ url('/') }}" class="logo" style="vertical-align: middle; text-decoration: none;">
-                    <img src="assets/images/logo.png" height="40" width="40" alt="JSOFT Admin" /> <span style="font-size: 18px; color:#3c4f60; vertical-align: middle;">&nbsp;{{ config('app.name', 'Across') }} </span>
+                    <img src="{{ asset('assets/images/logo.png') }}" height="40" width="40" alt="JSOFT Admin" /> <span style="font-size: 18px; color:#3c4f60; vertical-align: middle;">&nbsp;{{ config('app.name', 'Across') }} </span>
                 </a>
                 <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
                     <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -76,7 +76,7 @@
                         </figure>
                         <div class="profile-info" data-lock-name="{{ Auth::user()->name }}" data-lock-email="{{ Auth::user()->email }}">
                             <span class="name">{{ Auth::user()->name }}</span>
-                            <span class="role">administrator</span>
+                            <span class="role">Poner unidad Organizacional</span>
                         </div>
 
                         <i class="fa custom-caret"></i>
@@ -150,13 +150,17 @@
                                 <li class="nav-parent">
                                     <a>
                                         <i class="fa fa-user" aria-hidden="true"></i>
-                                        <span>Empleados</span>
+                                        @role('writer')
+                                            <span>Empleados</span>
+                                        @else
+                                            <span>No Empleados</span>
+                                        @endrole                                        
                                     </a>
                                     <ul class="nav nav-children">
                                         <li>
-                                            <a href="pages-signup.html">
-                                                Enlace 1
-                                            </a>
+                                            @can('edit articles')
+                                            <a href="pages-signup.html">Enlace edit articles</a>
+                                            @endcan                                            
                                         </li>
                                         <li>
                                             <a href="pages-signin.html">
@@ -334,25 +338,25 @@
     </section>
 
     <!-- Vendor -->
-    <script src="assets/vendor/jquery/jquery.js"></script>
-    <script src="assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.js"></script>
-    <script src="assets/vendor/nanoscroller/nanoscroller.js"></script>
-    <script src="assets/vendor/magnific-popup/magnific-popup.js"></script>
+    <script src="{{ asset('assets/vendor/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/vendor/nanoscroller/nanoscroller.js') }}"></script>
+    <script src="{{ asset('assets/vendor/magnific-popup/magnific-popup.js') }}"></script>
 
     <!-- Specific Page Vendor -->
-    <script src="assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="{{ asset('assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js') }}"></script>
 
     @stack('vendorjs')
 
     <!-- Theme Base, Components and Settings -->
-    <script src="assets/javascripts/theme.js"></script>
+    <script src="{{ asset('assets/javascripts/theme.js') }}"></script>
 
     <!-- Theme Custom -->
-    <script src="assets/javascripts/theme.custom.js"></script>
+    <script src="{{ asset('assets/javascripts/theme.custom.js') }}"></script>
 
     <!-- Theme Initialization Files -->
-    <script src="assets/javascripts/theme.init.js"></script>
+    <script src="{{ asset('assets/javascripts/theme.init.js') }}"></script>
 
     <!-- sweetAlert library -->
     @include('sweetalert::alert')

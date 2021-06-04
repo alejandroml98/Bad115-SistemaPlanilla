@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Prueba;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 
 
 class PruebaController extends Controller
@@ -17,8 +18,14 @@ class PruebaController extends Controller
     public function index()
     {
         //
-        
+        $user= Auth::user();
+        $user->assignRole('writer');
         return view ('prueba/form');
+    }
+    public function index2()
+    {
+        //
+        return view ('layouts.app');
     }
     /**
      * Show the form for creating a new resource.
