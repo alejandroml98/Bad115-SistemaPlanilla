@@ -8,13 +8,13 @@
     <label class="col-sm-3 control-label pb-5">{{ 'Nombre' }}</label>
     <div class="col-sm-9 pb-5">
         @if ($mode == 'create')
-        <input type="text" class="form-control" name="nombreProfesionCrear" value="{{ old('nombreProfesionCrear') }}" required />
+        <input type="text" class="form-control" name="nombreProfesion" value="{{ old('nombreProfesionCrear') }}" required />
         @else
         <input type="text" class="form-control" name="nombreProfesion" id="nombreProfesion" value="{{ isset($profesion -> nombreprofesion) ? $profesion -> nombreprofesion : old('nombreProfesion') }}" required />
         @endif
     </div>
     @if (count($errors) > 0)
-    <h3>
+    <div class="alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
             <li>
@@ -22,7 +22,7 @@
             </li>
             @endforeach
         </ul>
-    </h3>
+    </div>
     @endif
 </div>
 <div class="modal-footer">

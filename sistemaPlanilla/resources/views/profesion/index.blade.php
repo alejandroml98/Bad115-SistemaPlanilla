@@ -1,7 +1,17 @@
 @extends('layouts.app')
-@if (Session::has('mensaje')){{
-    Session::get('mensaje')
-}}
+@if (Session::has('mensaje'))
+@push('vendorjs')
+<script type="text/javascript">
+    $(function() {
+        Swal.fire({
+            title: 'Operación exitosa',
+            text: '{{ Session::get("mensaje") }}',
+            icon: 'success',
+            confirmButtonText: 'Entendido'
+        })
+    });
+</script>
+@endpush
 @endif
 @push('vendorcss')
 <link rel="stylesheet" href="assets/vendor/select2/select2.css" />
@@ -28,18 +38,20 @@
                 @foreach ($profesiones as $profesion)
                 <tr class="gradeX">
                     <td>{{ $loop -> iteration }}</td>
-                    <td>{{ $profesion -> nombreprofesion }}</td>
-                    <td>
-                        <a class="modal-with-form btn btn-primary editar" href="#modalEditarProfesion" data-id="{{$profesion -> idprofesion}}">
-                            <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                        </a>
-                        <form method="post" action="{{ url('/profesion/'.$profesion -> idprofesion) }}">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <button class="btn btn-danger" type="submit" onclick="return confirm('¿Borrar de verdad el registro?')">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            </button>
-                        </form>
+                    <td class="w-80">{{ $profesion -> nombreprofesion }}</td>
+                    <td class="text-nowrap">
+                        <div class="btn-group">
+                            <a class="modal-with-form btn btn-primary editar" href="#modalEditarProfesion" data-id="{{$profesion -> idprofesion}}">
+                                Editar <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                            </a>
+                            <form id="{{ 'formulario-prueba'.$profesion -> idprofesion }}" class="btn btn-danger p-0" method="post" action="{{ url('/profesion/'.$profesion -> idprofesion) }}">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $profesion -> idprofesion}}')">
+                                    Eliminar <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach
@@ -85,11 +97,12 @@
 <script src="assets/javascripts/tables/examples.datatables.default.js"></script>
 <script src="assets/vendor/pnotify/pnotify.custom.js"></script>
 <script src="assets/javascripts/ui-elements/examples.modals.js"></script>
-@if (Session::has('requestMethod'))
+<script src="js/profesion.js"></script>
+@if (Session::has('peticion') && count($errors) > 0)
 <script>
     document.getElementById('btnCrear').click();
 </script>
-@endif 
+@endif
 <script type="text/javascript">
     $(document).ready(function() {
         var table = $('#datatable-default').DataTable();
