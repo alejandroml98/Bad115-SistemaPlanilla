@@ -22,6 +22,11 @@ class PruebaController extends Controller
         $user->assignRole('writer');
         return view ('prueba/form');
     }
+    public function index2()
+    {
+        //
+        return view ('layouts.app');
+    }
     /**
      * Show the form for creating a new resource.
      *
