@@ -149,7 +149,11 @@
                                 <li class="nav-parent">
                                     <a>
                                         <i class="fa fa-user" aria-hidden="true"></i>
-                                        <span>Empleados</span>
+                                        @role('writers')
+                                            <span>Empleados</span>
+                                        @else
+                                            <span>No Empleados</span>
+                                        @endrole
                                     </a>
                                     <ul class="nav nav-children">
                                         <li>
