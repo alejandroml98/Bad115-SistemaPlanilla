@@ -33,7 +33,8 @@ Route::resource('subregion', 'SubRegionController');
 Route::get('/home', 'HomeController@index')->name('home');
 
 /**           Rutas de pruebas de formulario y sweet alert                            */
-Route::get('/casita','PruebaController@index')->middleware('auth');;
+Route::get('/casita','PruebaController@index')->middleware('auth');
+Route::get('/casita2','PruebaController@index2');
 //Route::get('/Prueba/Confirmacion','PruebaController@Confirmacion');
 Route::delete('/Prueba/eliminar','PruebaController@Confirmacion')->name('confirmacion-prueba');
 

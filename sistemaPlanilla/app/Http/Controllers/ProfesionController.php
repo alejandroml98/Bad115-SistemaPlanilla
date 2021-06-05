@@ -16,7 +16,7 @@ class ProfesionController extends Controller
      */
     public function index()
     {
-        $datosProfesion['profesiones'] = Profesion::paginate(5);
+        $datosProfesion['profesiones'] = Profesion::all();
         return view('profesion.index', $datosProfesion);
     }
 
@@ -49,6 +49,8 @@ class ProfesionController extends Controller
         $this->validate($request, $campos, $mensaje);
         $profesion = request()->except('_token');
         Profesion::insert($profesion);
+        $crear = 'crear';
+        session(['peticion'=>$crear]);
         return redirect('profesion')->with('mensaje', 'Profesión Creada');
     }
 
@@ -94,10 +96,11 @@ class ProfesionController extends Controller
         ];        
         $this->validate($request, $campos, $mensaje);
         $profesion = request()->except(['_token', '_method']);
-        $requestMethod = $this->method();
+        $editar = 'editar';
+        session(['peticion'=>$editar]);
         Profesion::where('idprofesion', '=', $id)->update($profesion);
         $mensaje = 'Profesión Modificada';
-        return redirect('profesion')->with(compact('mensaje', 'requestMethod'));
+        return redirect('profesion')->with(compact('mensaje'));
     }
 
     /**
@@ -109,6 +112,7 @@ class ProfesionController extends Controller
     public function destroy($id)
     {
         Profesion::destroy($id);
-        return redirect('profesion')->with('mensaje', 'Profesión Eliminada');
+        toast('<span style="font-size:20px">La profesión ha sido eliminada con éxito</span>','success');
+        return redirect('profesion');
     }
 }
