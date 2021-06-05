@@ -26,6 +26,15 @@ Route::resource('estadocivil', 'EstadoCivilController');
 Route::resource('tipodescuento', 'TipoDescuentoController');
 Route::resource('tipoingresos', 'TipoIngresoController');
 Route::resource('tipodocumento', 'TipoDocumentoController');
+Route::resource('subregion', 'SubRegionController');
+Route::resource('tiporegion', 'TipoRegionController');
+Route::resource('pais', 'PaisController');
+Route::resource('region', 'RegionController');
+Route::resource('subregion', 'SubRegionController');
+//Rutas de direccion
+Route::resource('direccion', 'DireccionController');
+Route::get('pais/{pais}/region', 'PaisController@obtenerRegiones');
+Route::get('region/{region}/subregion', 'RegionController@obtenerSubRegiones');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

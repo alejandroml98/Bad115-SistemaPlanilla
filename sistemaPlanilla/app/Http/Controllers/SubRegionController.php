@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Pais;
+use App\Region;
 use App\SubRegion;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class SubRegionController extends Controller
@@ -14,7 +17,10 @@ class SubRegionController extends Controller
      */
     public function index()
     {
-        //
+        $subRegiones = SubRegion::all();
+        $regiones = Region::all();
+        $paises = Pais::all();
+        return view('subregion.index', compact('paises', 'regiones', 'subRegiones'));
     }
 
     /**
@@ -24,7 +30,9 @@ class SubRegionController extends Controller
      */
     public function create()
     {
-        //
+        $regiones = Region::all();
+        $paises = Pais::all();
+        return view('subregion.create', compact('regiones', 'paises'));
     }
 
     /**
@@ -35,7 +43,27 @@ class SubRegionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'nombreSubRegion' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:sub_regions'],
+            'idRegion' => ['required', 'int']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $data = request()->except('_token');
+        try
+        {
+            Region::findOrFail($data['idRegion']);
+            SubRegion::insert($data);
+            return redirect('subregion')->with('mensaje', 'Sub Región Creada');         
+        }    
+        catch(ModelNotFoundException $e)
+        {
+            return redirect('subregion')->with('mensaje', 'Región no Encontrada');
+        } 
     }
 
     /**
@@ -55,9 +83,12 @@ class SubRegionController extends Controller
      * @param  \App\SubRegion  $subRegion
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubRegion $subRegion)
+    public function edit($id)
     {
-        //
+        $regiones = Region::all();
+        $paises = Pais::all();
+        $subRegion = SubRegion::findOrFail($id);
+        return view('subregion.edit', compact('regiones', 'paises', 'subRegion'));
     }
 
     /**
@@ -67,9 +98,30 @@ class SubRegionController extends Controller
      * @param  \App\SubRegion  $subRegion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubRegion $subRegion)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'nombreSubRegion' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/'],
+            'idRegion' => ['required', 'int']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $data = request()->except('_token');
+        try
+        {
+            Region::findOrFail($data['idRegion']);
+            $subRegion = request()->except(['_token', '_method']);
+            SubRegion::where('idsubregion', '=', $id)->update($subRegion);
+            return redirect('subregion')->with('mensaje', 'Sub Región Modificada');         
+        }    
+        catch(ModelNotFoundException $e)
+        {
+            return redirect('subregion')->with('mensaje', 'Región no encontrada');
+        }
     }
 
     /**
@@ -78,8 +130,9 @@ class SubRegionController extends Controller
      * @param  \App\SubRegion  $subRegion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubRegion $subRegion)
+    public function destroy($id)
     {
-        //
+        SubRegion::where('idsubregion', '=', $id)->delete();
+        return redirect('subregion')->with('mensaje', 'Sub Región Eliminada');
     }
 }

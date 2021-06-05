@@ -17,7 +17,7 @@ class CreatePaisTable extends Migration
             $table->id('idPais');
             $table->integer('idTipoRegion')->unsigned();
             $table->foreign('idTipoRegion')->references('idTipoRegion')->on('tipo_regions');
-            $table->string('nombrePais');
+            $table->string('nombrePais')->unique();
             $table->timestamps();
         });
     }
