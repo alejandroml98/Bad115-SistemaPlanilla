@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\TipoDocumento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TipoDocumentoController extends Controller
 {
@@ -45,10 +46,18 @@ class TipoDocumentoController extends Controller
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
         ];
-        $this->validate($request, $campos, $mensaje);
-        $tipoDocumento = request()->except('_token');
-        TipoDocumento::insert($tipoDocumento);
-        return redirect('tipodocumento')->with('mensaje', 'Tipo Documento Creado');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', 'crear');
+        }
+        else{
+            $tipoDocumento = request()->except('_token');
+            TipoDocumento::insert($tipoDocumento);
+            return redirect('tipodocumento')->with('mensaje', 'Tipo Documento Creado');
+        }        
     }
 
     /**
@@ -91,10 +100,18 @@ class TipoDocumentoController extends Controller
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
         ];
-        $this->validate($request, $campos, $mensaje);
-        $tipoDocumento = request()->except(['_token', '_method']);
-        TipoDocumento::where('idtipodocumento', '=', $id)->update($tipoDocumento);
-        return redirect('tipodocumento')->with('mensaje', 'Tipo Documento Modificado');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', ('editar'.$id));
+        }
+        else {
+            $tipoDocumento = request()->except(['_token', '_method']);
+            TipoDocumento::where('idtipodocumento', '=', $id)->update($tipoDocumento);
+            return redirect('tipodocumento')->with('mensaje', 'Tipo Documento Modificado');
+        }        
     }
 
     /**

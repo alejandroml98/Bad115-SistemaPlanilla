@@ -288,7 +288,7 @@
                                                     <a href="{{ route('estadocivil.index') }}">Estado Civil</a>
                                                 </li>
                                                 <li>
-                                                    <a>Second Level Link #1</a>
+                                                <a href="{{ route('tipodocumento.index') }}">Tipos de documentos</a>
                                                 </li>
                                                 <li>
                                                     <a>Second Level Link #2</a>
