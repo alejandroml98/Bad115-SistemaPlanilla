@@ -23,6 +23,8 @@ Auth::routes(['verify' => true]);
 Route::resource('genero', 'GeneroController');
 Route::resource('profesion', 'ProfesionController');
 Route::resource('estadocivil', 'EstadoCivilController');
+Route::resource('tipodescuento', 'TipoDescuentoController');
+Route::resource('tipoingresos', 'TipoIngresoController');
 Route::resource('tipodocumento', 'TipoDocumentoController');
 Route::resource('subregion', 'SubRegionController');
 Route::resource('tiporegion', 'TipoRegionController');
