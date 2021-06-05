@@ -15,7 +15,7 @@ class CreateTipoRegionsTable extends Migration
     {
         Schema::create('tipo_regions', function (Blueprint $table) {
             $table->id('idTipoRegion');
-            $table->string('nombreTipoRegion');
+            $table->string('nombreTipoRegion')->unique();
             $table->string('nombreTipoSubRegion');
             $table->timestamps();
         });
