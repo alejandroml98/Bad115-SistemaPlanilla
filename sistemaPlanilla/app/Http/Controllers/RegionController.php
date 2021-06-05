@@ -6,7 +6,7 @@ use App\Pais;
 use App\Region;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Illuminate\Support\Facades\DB;
 
 class RegionController extends Controller
 {
@@ -131,5 +131,10 @@ class RegionController extends Controller
     {
         Region::where('idregion', '=', $id)->delete();
         return redirect('region')->with('mensaje', 'Región Eliminada');
+    }
+
+    public function obtenerSubRegiones(Region $region)
+    {
+        return DB::table('sub_regions')->where('idregion', $region -> idregion)->get();
     }
 }

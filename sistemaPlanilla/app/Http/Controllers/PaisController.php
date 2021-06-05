@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Pais;
+use App\Region;
 use App\TipoRegion;
 use Illuminate\Http\Request;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 
 class PaisController extends Controller
 {
@@ -131,5 +133,10 @@ class PaisController extends Controller
     {
         Pais::where('idpais', '=', $id)->delete();
         return redirect('pais')->with('mensaje', 'País Eliminado');
+    }
+
+    public function obtenerRegiones(Pais $pais)
+    {
+        return DB::table('regions')->where('idpais', $pais -> idpais)->get();
     }
 }
