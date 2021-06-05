@@ -15,7 +15,7 @@ class EstadoCivilController extends Controller
      */
     public function index()
     {
-        $datosEstadoCivil['estadosCiviles'] = EstadoCivil::paginate(5);
+        $datosEstadoCivil['estadosCiviles'] = EstadoCivil::all();
         return view('estadocivil.index', $datosEstadoCivil);
     }
 

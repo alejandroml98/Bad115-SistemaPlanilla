@@ -15,7 +15,7 @@ class TipoDocumentoController extends Controller
      */
     public function index()
     {
-        $datosTiposDocumento['tiposDocumentos'] = TipoDocumento::paginate(5);
+        $datosTiposDocumento['tiposDocumentos'] = TipoDocumento::all();
         return view('tipodocumento.index', $datosTiposDocumento);
     }
 

@@ -278,9 +278,6 @@
                                         <span>Configuraciones</span>
                                     </a>
                                     <ul class="nav nav-children">
-                                        <li>
-                                            <a>First Level</a>
-                                        </li>
                                         <li class="nav-parent">
                                             <a>Generales</a>
                                             <ul class="nav nav-children">
@@ -288,10 +285,10 @@
                                                     <a href="{{ route('estadocivil.index') }}">Estado Civil</a>
                                                 </li>
                                                 <li>
-                                                <a href="{{ route('tipodocumento.index') }}">Tipos de documentos</a>
+                                                <a href="{{ route('tipodocumento.index') }}">Tipos de documento</a>
                                                 </li>
                                                 <li>
-                                                    <a>Second Level Link #2</a>
+                                                <a href="{{ route('tipodescuento.index') }}">Tipos de descuento</a>
                                                 </li>
                                             </ul>
                                         </li>
