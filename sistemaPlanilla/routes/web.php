@@ -24,6 +24,11 @@ Route::resource('genero', 'GeneroController');
 Route::resource('profesion', 'ProfesionController');
 Route::resource('estadocivil', 'EstadoCivilController');
 Route::resource('tipodocumento', 'TipoDocumentoController');
+Route::resource('subregion', 'SubRegionController');
+Route::resource('tiporegion', 'TipoRegionController');
+Route::resource('pais', 'PaisController');
+Route::resource('region', 'RegionController');
+Route::resource('subregion', 'SubRegionController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
