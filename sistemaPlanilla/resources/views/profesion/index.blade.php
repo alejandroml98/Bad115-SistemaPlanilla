@@ -32,7 +32,7 @@
                         <form id="{{ 'formulario-prueba'.$profesion -> idprofesion }}" class="btn btn-danger p-0" method="post" action="{{ url('/profesion/'.$profesion -> idprofesion) }}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $profesion -> idprofesion}}', '{{ $profesion -> nombreprofesion }}')">
+                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $profesion -> idprofesion}}', '{{ $profesion -> nombreprofesion }}','la profesion')">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </form>

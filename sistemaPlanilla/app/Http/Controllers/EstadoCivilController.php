@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\EstadoCivil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class EstadoCivilController extends Controller
 {
@@ -44,10 +45,18 @@ class EstadoCivilController extends Controller
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
         ];
-        $this->validate($request, $campos, $mensaje);
-        $estadoCivil = request()->except('_token');
-        EstadoCivil::insert($estadoCivil);
-        return redirect('estadocivil')->with('mensaje', 'Estado Civil Creado');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', 'crear');
+        }
+        else{
+            $estadoCivil = request()->except('_token');
+            EstadoCivil::insert($estadoCivil);
+            return redirect('estadocivil')->with('mensaje', 'Estado Civil Creado');
+        }        
     }
 
     /**
@@ -90,10 +99,18 @@ class EstadoCivilController extends Controller
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
         ];
-        $this->validate($request, $campos, $mensaje);
-        $estadoCivil = request()->except(['_token', '_method']);
-        EstadoCivil::where('idestadocivil', '=', $id)->update($estadoCivil);
-        return redirect('estadocivil')->with('mensaje', 'Estado Civil Modificado');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', ('editar'.$id));
+        }
+        else {
+            $estadoCivil = request()->except(['_token', '_method']);
+            EstadoCivil::where('idestadocivil', '=', $id)->update($estadoCivil);
+            return redirect('estadocivil')->with('mensaje', 'Estado Civil Modificado');
+        }        
     }
 
     /**

@@ -275,25 +275,17 @@
                                 <li class="nav-parent">
                                     <a>
                                         <i class="fa fa-align-left" aria-hidden="true"></i>
-                                        <span>Menu Levels</span>
+                                        <span>Configuraciones</span>
                                     </a>
                                     <ul class="nav nav-children">
                                         <li>
                                             <a>First Level</a>
                                         </li>
                                         <li class="nav-parent">
-                                            <a>Second Level</a>
+                                            <a>Generales</a>
                                             <ul class="nav nav-children">
-                                                <li class="nav-parent">
-                                                    <a>Third Level</a>
-                                                    <ul class="nav nav-children">
-                                                        <li>
-                                                            <a>Third Level Link #1</a>
-                                                        </li>
-                                                        <li>
-                                                            <a>Third Level Link #2</a>
-                                                        </li>
-                                                    </ul>
+                                                <li>
+                                                    <a href="{{ route('estadocivil.index') }}">Estado Civil</a>
                                                 </li>
                                                 <li>
                                                     <a>Second Level Link #1</a>

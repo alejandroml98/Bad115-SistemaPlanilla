@@ -1,7 +1,7 @@
-function presionar(id, profesion) { 
+function presionar(id, profesion, tipo) { 
     event.preventDefault();
     Swal.fire({        
-        title: '¿Está seguro de eliminar la profesión: "'+profesion+'" ?',
+        title: '¿Está seguro de eliminar '+tipo+' "'+profesion+'" ?',
         text: "Esta accion es permanente",
         icon: 'warning',
         showCancelButton: true,
