@@ -14,7 +14,7 @@ class TipoDescuentoController extends Controller
      */
     public function index()
     {
-        $datosTipoDescuento['tipoDescuentos'] = TipoDescuento::paginate(5);
+        $datosTipoDescuento['tipoDescuentos'] = TipoDescuento::all();
         return view('tipodescuento.index', $datosTipoDescuento);
     }
 
@@ -70,8 +70,8 @@ class TipoDescuentoController extends Controller
      */
     public function edit($id)
     {
-        $descuento = TipoDescuento::findOrFail($id);
-        return view('tipodescuento.edit', compact('descuento'));
+        $tipoDescuento = TipoDescuento::findOrFail($id);
+        return view('tipodescuento.edit', compact('tipoDescuento'));
     }
 
     /**

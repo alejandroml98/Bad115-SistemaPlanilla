@@ -20,6 +20,7 @@ Route::get('/', function () {
 //Solicita verificar correo despues del registro
 Auth::routes(['verify' => true]);
 
+Route::resource('catalogocomision', 'CatalogoComisionController');
 Route::resource('genero', 'GeneroController');
 Route::resource('profesion', 'ProfesionController');
 Route::resource('estadocivil', 'EstadoCivilController');
