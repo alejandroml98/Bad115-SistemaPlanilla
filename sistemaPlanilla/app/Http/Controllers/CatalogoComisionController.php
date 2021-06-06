@@ -14,7 +14,8 @@ class CatalogoComisionController extends Controller
      */
     public function index()
     {
-        //
+        $datosCatalogoComision['catalogoComisions'] = CatalogoComision::all();
+        return view('catalogocomision.index', $datosCatalogoComision);  
     }
 
     /**
@@ -24,7 +25,7 @@ class CatalogoComisionController extends Controller
      */
     public function create()
     {
-        //
+        return view('catalogocomision.create');
     }
 
     /**
@@ -35,7 +36,7 @@ class CatalogoComisionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
