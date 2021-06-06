@@ -1,4 +1,4 @@
-<!-- @if (count($errors) > 0)
+  <!-- @if (count($errors) > 0)
     <h3>
         <ul>
             @foreach ($errors->all() as $error)
@@ -13,10 +13,11 @@
 <label for="nombreTipoIngresos">{{ 'Nombre' }}</label>
 <input type="text" name="nombreTipoIngresos" id="nombreTipoIngresos" value="{{ isset($tipoIngreso -> nombretipoingresos) ? $tipoIngreso -> nombretipoingresos : old('nombreTipoIngresos') }}">
 <input type="submit" value="{{ $mode == 'create' ? 'Agregar' : 'Modificar' }}">
-<a href="{{ url('/tipoingresos/') }}">REGRESAR</a> -->
+<a href="{{ url('/tipoingresos/') }}">REGRESAR</a>   -->
 
+<!--funciona-->
 <div class="modal-header bg-primary">
-    <h4 class="modal-title" id="modalCrearProfesionTitle">{{ $mode == 'create' ? 'Agregar Tipo Ingreso'  : 'Modificar Tipo Ingreso' }}</h5>
+    <h4 class="modal-title" id="modalCrearProfesionTitle">{{ $mode == 'create' ? 'Agregar Tipo Ingresos'  : 'Modificar Tipo Ingresos' }}</h5>
         <button type="button" class="close modal-dismiss" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -26,7 +27,7 @@
     <div class="col-sm-9 pb-2">
         @if ($mode == 'create')        
             @if (count($errors) > 0 && Session::get('peticion') == 'crear')
-            <input type="text" class="form-control" name="nombreTipoIngresos" id="nombreProfesionCreate" value="{{ old('nombreTipoIngresos') }}" required />
+            <input type="text" class="form-control" name="nombreTipoIngresos" id="nombreTipoIngresoCreate" value="{{ old('nombretipoingresos') }}" required />
             <div class="alert alert-danger mt-2">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -37,7 +38,7 @@
                 </ul>
             </div>
             @else
-            <input type="text" class="form-control" name="nombreTipoIngresos" id="nombreProfesionCreate" required />
+            <input type="text" class="form-control" name="nombreTipoIngresos" id="nombreTipoIngresosCreate" required />
             @endif
         @else
         <input type="text" class="form-control" name="nombreTipoIngresos" id="nombreTipoIngresos" value="{{ old('nombreTipoIngresos') }}" required />

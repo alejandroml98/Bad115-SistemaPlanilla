@@ -1,4 +1,4 @@
-@if (Session::has('mensaje')){{
+<!-- @if (Session::has('mensaje')){{
     Session::get('mensaje')
 }}    
 @endif
@@ -27,8 +27,9 @@
             </tr>
         @endforeach
     </tbody>
-</table>
+</table> -->
 
+<!--Nuevo-->
 @extends('layouts.app')
 @push('vendorcss')
 <link rel="stylesheet" href="assets/vendor/select2/select2.css" />
@@ -37,33 +38,33 @@
 @endpush
 @section('content')
 <a class="modal-with-form btn btn-primary mb-3" href="#modalCrearProfesion" id="btnCrear">
-    Agregar Tipo Ingreso <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+    Agregar Tipo Ingresos <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 <section class="panel">
     <header class="panel-heading">
-        <h2 class="panel-title">Tipos de ingresos</h2>
+        <h2 class="panel-title">Tipos Registrados</h2>
     </header>
     <div class="panel-body" lang="es">
         <table class="table table-bordered table-striped mb-none" id="datatable-default">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th class="w-75">Tipos de Ingresos</th>
+                    <th class="w-75">Tipo</th>
                     <th style="width: 1%;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($tiposIngresos as $tipoIngreso)
+            @foreach ($tiposIngresos as $tipoIngreso)
                 <tr class="gradeX">
-                    <td>{{ $loop -> iteration }}</td>
-                    <td>{{ $tipoIngreso -> nombretipoingresos}}</td>
+                <td>{{$loop -> iteration }}</td>
+                <td>{{ $tipoIngreso -> nombretipoingresos }}</td>
                     <td class="text-center">
                         <a class="modal-with-form btn btn-primary editar" id="{{'editar'.$tipoIngreso -> idtipoingresos}}" href="#modalEditarProfesion" data-id="{{$tipoIngreso -> idtipoingresos}}">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                        <form id="{{ 'formulario-prueba'.$tipoIngreso -> idtipoingresos}}" class="btn btn-danger p-0" method="post" action="{{ url('/tipoingresos/'.$tipoIngreso -> idtipoingresos) }}">
+                        <form id="{{ 'formulario-prueba'.$tipoIngreso -> idtipoingresos }}" class="btn btn-danger p-0" method="post" action="{{ url('/tipoingresos/'.$tipoIngreso -> idtipoingresos) }}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $tipoIngreso -> idtipoingresos}}', '{{ $tipoIngreso -> nombretipoingresos }}','el tipo')">
+                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $tipoIngreso -> idtipoingresos}}', '{{ $tipoIngreso-> nombretipoingresos }}','el tipo de ingreso')">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </form>
@@ -138,7 +139,7 @@
                 $tr = $tr.prev('parent');
             }
             var data = table.row($tr).data();
-            $('#nombreProfesion').val(data[1]);
+            $('#nombreTipoIngresos').val(data[1]);
 
             $('#editar-form').attr('action', '/tipoingresos/' + id);
             if (('editar'.$id) == "{{Session::get('peticion')}}") {

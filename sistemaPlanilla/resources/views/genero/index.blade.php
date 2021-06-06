@@ -138,7 +138,7 @@
                 $tr = $tr.prev('parent');
             }
             var data = table.row($tr).data();
-            $('#nombreProfesion').val(data[1]);
+            $('#nombreGenero').val(data[1]);
 
             $('#editar-form').attr('action', '/genero/' + id);
             if (('editar'.$id) == "{{Session::get('peticion')}}") {
