@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddOneToOneRelationshipRangosalarialPuesto extends Migration
+class AddIdRangoSalarialToPuesto extends Migration
 {
     /**
      * Run the migrations.
@@ -17,10 +17,6 @@ class AddOneToOneRelationshipRangosalarialPuesto extends Migration
             $table->integer('idRangoSalarial')->unsigned();
             $table->foreign('idRangoSalarial')->references('idRangoSalarial')->on('rango_salarials');
         });
-        Schema::table('rango_salarials', function (Blueprint $table) {
-            $table->string('codigoPuesto')->unsigned();
-            $table->foreign('codigoPuesto')->references('codigoPuesto')->on('puestos');
-        });
     }
 
     /**
@@ -30,11 +26,8 @@ class AddOneToOneRelationshipRangosalarialPuesto extends Migration
      */
     public function down()
     {
-        Schema::table('puestos', function (Blueprint $table) {
-            $table->dropColumn('idRangoSalarial');
-        });
-        Schema::table('rango_salarials', function (Blueprint $table) {
-            $table->dropColumn('codigoPuesto');
+        Schema::table('puesto', function (Blueprint $table) {
+            //
         });
     }
 }

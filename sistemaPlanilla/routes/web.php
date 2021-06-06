@@ -32,6 +32,8 @@ Route::resource('tiporegion', 'TipoRegionController');
 Route::resource('pais', 'PaisController');
 Route::resource('region', 'RegionController');
 Route::resource('subregion', 'SubRegionController');
+Route::resource('rangosalarial', 'RangoSalarialController');
+Route::resource('puesto', 'PuestoController');
 //Rutas de direccion
 Route::resource('direccion', 'DireccionController');
 Route::get('pais/{pais}/region', 'PaisController@obtenerRegiones');
