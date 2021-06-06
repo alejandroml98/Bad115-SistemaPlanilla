@@ -1,18 +1,4 @@
 @extends('layouts.app')
-@if (Session::has('mensaje'))
-@push('vendorjs')
-<script type="text/javascript">
-    $(function() {
-        Swal.fire({
-            title: 'Operación exitosa',
-            text: '{{ Session::get("mensaje") }}',
-            icon: 'success',
-            confirmButtonText: 'Entendido'
-        })
-    });
-</script>
-@endpush
-@endif
 @push('vendorcss')
 <link rel="stylesheet" href="assets/vendor/select2/select2.css" />
 <link rel="stylesheet" href="assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
@@ -30,28 +16,26 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Profesión</th>
-                    <th>Acciones</th>
+                    <th class="w-75">Profesión</th>
+                    <th style="width: 1%;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($profesiones as $profesion)
                 <tr class="gradeX">
                     <td>{{ $loop -> iteration }}</td>
-                    <td class="w-80">{{ $profesion -> nombreprofesion }}</td>
-                    <td class="text-nowrap">
-                        <div class="btn-group">
-                            <a class="modal-with-form btn btn-primary editar" href="#modalEditarProfesion" data-id="{{$profesion -> idprofesion}}">
-                                Editar <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                            </a>
-                            <form id="{{ 'formulario-prueba'.$profesion -> idprofesion }}" class="btn btn-danger p-0" method="post" action="{{ url('/profesion/'.$profesion -> idprofesion) }}">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $profesion -> idprofesion}}')">
-                                    Eliminar <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                </button>
-                            </form>
-                        </div>
+                    <td>{{ $profesion -> nombreprofesion }}</td>
+                    <td class="text-center">
+                        <a class="modal-with-form btn btn-primary editar" id="{{'editar'.$profesion -> idprofesion}}" href="#modalEditarProfesion" data-id="{{$profesion -> idprofesion}}">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                        <form id="{{ 'formulario-prueba'.$profesion -> idprofesion }}" class="btn btn-danger p-0" method="post" action="{{ url('/profesion/'.$profesion -> idprofesion) }}">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $profesion -> idprofesion}}', '{{ $profesion -> nombreprofesion }}','la profesion')">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
@@ -98,9 +82,18 @@
 <script src="assets/vendor/pnotify/pnotify.custom.js"></script>
 <script src="assets/javascripts/ui-elements/examples.modals.js"></script>
 <script src="js/profesion.js"></script>
-@if (Session::has('peticion') && count($errors) > 0)
+@if (Session::has('mensaje'))
+<script type="text/javascript">
+    mostrarMensaje('{{ Session::get("mensaje") }}');
+</script>
+@endif
+@if (count($errors) > 0 && Session::get('peticion') == 'crear')
 <script>
     document.getElementById('btnCrear').click();
+</script>
+@elseif (count($errors) > 0 && Session::get('peticion') != 'crear')
+<script>
+    document.getElementById("{{Session::get('peticion')}}").click();
 </script>
 @endif
 <script type="text/javascript">
@@ -117,6 +110,11 @@
             $('#nombreProfesion').val(data[1]);
 
             $('#editar-form').attr('action', '/profesion/' + id);
+            if (('editar'.$id) == "{{Session::get('peticion')}}") {
+                document.getElementById("{{'error'.Session::get('peticion')}}").style.display = 'block';
+            } else {
+                document.getElementById("{{'error'.Session::get('peticion')}}").style.display = 'none';
+            }
         });
     });
 </script>
