@@ -78,8 +78,8 @@ class TipoDescuentoController extends Controller
      */
     public function edit($id)
     {
-        $descuento = TipoDescuento::findOrFail($id);
-        return view('tipodescuento.edit', compact('descuento'));
+        $tipoDescuento = TipoDescuento::findOrFail($id);
+        return view('tipodescuento.edit', compact('tipoDescuento'));
     }
 
     /**

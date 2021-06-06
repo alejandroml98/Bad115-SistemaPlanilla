@@ -14,7 +14,7 @@ class TipoIngresoController extends Controller
      */
     public function index()
     {
-        $datosTiposIngreso['tiposIngresos'] = TipoIngreso::paginate(5);
+        $datosTiposIngreso['tiposIngresos'] = TipoIngreso::all();
         return view('tipoingresos.index', $datosTiposIngreso);
     }
 
@@ -105,7 +105,7 @@ class TipoIngresoController extends Controller
      */
     public function destroy($id)
     {
-        TipoIngreso::destroy($id);
+        TipoIngreso::where('idtipoingresos', '=', $id)->delete();
         return redirect('tipoingresos')->with('mensaje', 'Ingreso Eliminado');
     }
 }
