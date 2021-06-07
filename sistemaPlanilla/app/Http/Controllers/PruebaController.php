@@ -22,10 +22,21 @@ class PruebaController extends Controller
         $user->assignRole('writer');
         return view ('prueba/form');
     }
+
     public function index2()
     {
         //
         return view ('layouts.app');
+    }
+
+    public function indexProfile()
+    {
+        //
+        if(Auth::user()->activo==1){
+            dd(Auth::user()->activo);
+        }
+        dd(1);
+        return view ('auth.profile');
     }
     /**
      * Show the form for creating a new resource.
