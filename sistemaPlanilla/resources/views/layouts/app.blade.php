@@ -72,7 +72,7 @@
                 <div id="userbox" class="userbox">
                     <a href="#" data-toggle="dropdown">
                         <figure class="profile-picture">
-                            <img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+                            <img src="{{ asset('assets/images/!logged-user.jpg') }}" alt="Joseph Doe" class="img-circle" data-lock-picture="{{ asset('assets/images/!logged-user.jpg')}}" />
                         </figure>
                         <div class="profile-info" data-lock-name="{{ Auth::user()->name }}" data-lock-email="{{ Auth::user()->email }}">
                             <span class="name">{{ Auth::user()->name }}</span>
@@ -179,6 +179,12 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li>
+                                    <a href="{{ route('puesto.index') }}">
+                                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                                        <span>Puestos de la Empresa</span>
+                                    </a>
+                                </li>
                                 <li class="nav-parent">
                                     <a>
                                         <i class="fa fa-sitemap" aria-hidden="true"></i>
@@ -269,7 +275,7 @@
                                 <li>
                                     <a href="{{ route('profesion.index') }}">
                                         <i class="fa fa-briefcase" aria-hidden="true"></i>
-                                        <span>Puestos</span>
+                                        <span>Catalogo de profesiones</span>
                                     </a>
                                 </li>
                                 <li class="nav-parent">
@@ -289,6 +295,9 @@
                                                 </li>
                                                 <li>
                                                 <a href="{{ route('tipodescuento.index') }}">Tipos de descuento</a>
+                                                </li>
+                                                <li>
+                                                <a href="{{ route('rangosalarial.index') }}">Rango Salarial</a>
                                                 </li>
                                             </ul>
                                         </li>
