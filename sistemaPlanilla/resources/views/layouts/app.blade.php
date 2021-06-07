@@ -316,7 +316,7 @@
             <section role="main" class="content-body">
                 <header class="page-header">
                     @auth
-                    <h2>{{ Route::currentRouteName() }}</h2>
+                    <!--<h2>{{ Route::currentRouteName() }}</h2>-->
 
                     <div class="right-wrapper pull-right">
                         <ol class="breadcrumbs">

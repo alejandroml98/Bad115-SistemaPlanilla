@@ -20,6 +20,11 @@ Route::get('/', function () {
 //Solicita verificar correo despues del registro
 Auth::routes(['verify' => true]);
 
+//Grupo de rutas: El usuario tiene que estar verificado para acceder a ellas
+Route::middleware(['verified','active'])->group(function () {
+    Route::get('/casita3','PruebaController@indexProfile');
+});
+
 Route::resource('genero', 'GeneroController');
 Route::resource('profesion', 'ProfesionController');
 Route::resource('estadocivil', 'EstadoCivilController');
