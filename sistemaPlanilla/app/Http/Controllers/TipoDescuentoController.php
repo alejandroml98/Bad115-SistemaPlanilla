@@ -92,7 +92,7 @@ class TipoDescuentoController extends Controller
     public function update(Request $request, $id)
     {
         $campos = [
-            'nombreTipoDescuento' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú@ ]*$/', 'unique:tipo_descuentos']
+            'nombreTipoDescuento' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú@ ]*$/']
         ];
         $mensaje = [
             "required" => 'El :attribute es requerido',
