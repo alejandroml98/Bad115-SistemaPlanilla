@@ -14,7 +14,7 @@ class TipoIngresoController extends Controller
      */
     public function index()
     {
-        $datosTiposIngreso['tiposIngresos'] = TipoIngreso::all();
+        $datosTiposIngreso['tiposIngresos'] = TipoIngreso::paginate(5);
         return view('tipoingresos.index', $datosTiposIngreso);
     }
 
@@ -80,7 +80,7 @@ class TipoIngresoController extends Controller
      * @param  \App\TipoIngreso  $tipoIngreso
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
         $campos = [
             'nombreTipoIngresos' => ['required','string', 'max:100', 'regex:/^[a-zA-Z ]*$/', 'unique:tipo_ingresos']
