@@ -41,6 +41,10 @@ Route::resource('subregion', 'SubRegionController');
 Route::resource('rangosalarial', 'RangoSalarialController');
 Route::resource('puesto', 'PuestoController');
 Route::resource('empresa', 'EmpresaController');
+
+//Activar y desactivar cuentas de usuarios
+Route::get('/usuario/activar/{user}', 'EmpleadoController@activar')->name('empleado.activar');
+Route::get('/usuario/desactivar/{user}', 'EmpleadoController@desactivar')->name('empleado.desactivar');;
 //Rutas de direccion
 Route::resource('direccion', 'DireccionController');
 Route::get('pais/{pais}/region', 'PaisController@obtenerRegiones');

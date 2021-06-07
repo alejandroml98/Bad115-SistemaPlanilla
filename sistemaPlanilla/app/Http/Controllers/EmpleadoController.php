@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Empleado;
+use App\User;
 use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
@@ -82,4 +83,31 @@ class EmpleadoController extends Controller
     {
         //
     }
+
+    public function activar(User $user)
+    {
+        $user->activo=true;
+        $user->save();
+        dd($user);
+    }
+
+    public function desactivar(User $user)
+    {
+        $user->activo=false;
+        $user->save();
+        dd($user->name);
+    }
+
+    public function pedirActivacion(Request $request)
+    {
+        $user= Auth::User();
+        //Solicitar proceso de activacion por correo
+        $data = array('name'=>$user->name, 'explicacion'=>$explicacion);
+        //Para enviar correo de confirmacion de nuevo
+        Mail::send('Mail.evaluacionFase1', $data, function ($message) use ($data){
+            $message->to("admin@gmail.com", "Admin");
+            $message->subject('Proceso de reactivación de cuenta');            
+        });
+        dd($user);
+    }    
 }
