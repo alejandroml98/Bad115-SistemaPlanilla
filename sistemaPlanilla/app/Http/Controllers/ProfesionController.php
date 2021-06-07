@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Profesion;
 use Illuminate\Http\Request;
-use SebastianBergmann\Environment\Console;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class ProfesionController extends Controller
 {
@@ -16,7 +15,7 @@ class ProfesionController extends Controller
      */
     public function index()
     {
-        $datosProfesion['profesiones'] = Profesion::paginate(5);
+        $datosProfesion['profesiones'] = Profesion::all();
         return view('profesion.index', $datosProfesion);
     }
 
@@ -46,10 +45,19 @@ class ProfesionController extends Controller
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
         ];
-        $this->validate($request, $campos, $mensaje);
-        $profesion = request()->except('_token');
-        Profesion::insert($profesion);
-        return redirect('profesion')->with('mensaje', 'Profesión Creada');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', 'crear');
+        }
+        else{
+            $profesion = request()->except('_token');        
+            Profesion::insert($profesion);
+            return redirect('profesion')->with('mensaje', 'Profesión Creada');
+        } 
+        
     }
 
     /**
@@ -91,13 +99,19 @@ class ProfesionController extends Controller
             "required" => 'El :attribute es requerido',
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
-        ];        
-        $this->validate($request, $campos, $mensaje);
-        $profesion = request()->except(['_token', '_method']);
-        $requestMethod = $this->method();
-        Profesion::where('idprofesion', '=', $id)->update($profesion);
-        $mensaje = 'Profesión Modificada';
-        return redirect('profesion')->with(compact('mensaje', 'requestMethod'));
+        ];
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', ('editar'.$id));
+        }
+        else {
+            $profesion = request()->except(['_token', '_method']);
+            Profesion::where('idprofesion', '=', $id)->update($profesion);
+            return redirect('profesion')->with('mensaje','Profesión Modificada');
+        }        
     }
 
     /**
@@ -109,6 +123,7 @@ class ProfesionController extends Controller
     public function destroy($id)
     {
         Profesion::destroy($id);
-        return redirect('profesion')->with('mensaje', 'Profesión Eliminada');
+        toast('<span style="font-size:16px">La profesión ha sido eliminada con éxito</span>','success');
+        return redirect('profesion');
     }
 }

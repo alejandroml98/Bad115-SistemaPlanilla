@@ -14,7 +14,8 @@ class CatalogoComisionController extends Controller
      */
     public function index()
     {
-        //
+        $datosCatalogoComision['catalogoComisions'] = CatalogoComision::all();
+        return view('catalogocomision.index', $datosCatalogoComision);  
     }
 
     /**
@@ -24,7 +25,7 @@ class CatalogoComisionController extends Controller
      */
     public function create()
     {
-        //
+        return view('catalogocomision.create');
     }
 
     /**
@@ -35,7 +36,23 @@ class CatalogoComisionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'nombreComision' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:catalogo_comisions'],
+            'porcentaje' => ['required','regex:/^[0-9]+([,][0-9]+)?$/', 'min:0'],
+            'valMinComision' => ['required','between:0,999999.99', 'min:0'],
+            'valMaxComision' => ['required','between:0,999999.99', 'min:0']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe',
+            "min" => 'El :attribute debe ser mayor a 0'
+
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $comision = request()->except('_token');
+        CatalogoComision::insert($comision);
+        return redirect('catalogocomision')->with('mensaje', 'Comision Creado');
     }
 
     /**
@@ -55,9 +72,10 @@ class CatalogoComisionController extends Controller
      * @param  \App\CatalogoComision  $catalogoComision
      * @return \Illuminate\Http\Response
      */
-    public function edit(CatalogoComision $catalogoComision)
+    public function edit($id)
     {
-        //
+        $catalogoComision = CatalogoComision::findOrFail($id);
+        return view('catalogocomision.edit', compact('catalogoComision'));
     }
 
     /**
@@ -67,9 +85,27 @@ class CatalogoComisionController extends Controller
      * @param  \App\CatalogoComision  $catalogoComision
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CatalogoComision $catalogoComision)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'nombreComision' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/'],
+            'porcentaje' => ['required','between:0,100.00', 'min:0', 'max:100'],
+            'valMinComision' => ['required','between:0,999999', 'min:0', 'lt:valMaxComision'],
+            'valMaxComision' => ['required','between:0,999999', 'min:0', 'gt:valMinComision']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe',
+            "min" => 'El :attribute debe ser mayor a 0',
+            "gt" => 'El :attribute debe ser menor que Comision Mínimo',
+            "lt" => 'El :attribute debe ser mayor que Comision Máximo'   
+
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $comision = request()->except(['_token', '_method']);
+            CatalogoComision::where('idcatalogocomision', '=', $id)->update($comision);
+            return redirect('catalogocomision')->with('mensaje', 'Comision Modificada');
     }
 
     /**
@@ -78,8 +114,9 @@ class CatalogoComisionController extends Controller
      * @param  \App\CatalogoComision  $catalogoComision
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CatalogoComision $catalogoComision)
+    public function destroy($id)
     {
-        //
+        CatalogoComision::where('idcatalogocomision', '=', $id)->delete();
+        return redirect('catalogocomision')->with('mensaje', 'Comision Eliminada');
     }
 }

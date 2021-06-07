@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Pais;
 use App\Region;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 
 class RegionController extends Controller
 {
@@ -14,7 +17,9 @@ class RegionController extends Controller
      */
     public function index()
     {
-        //
+        $paises = Pais::all();
+        $regiones = Region::all();
+        return view('region.index', compact('paises', 'regiones'));
     }
 
     /**
@@ -24,7 +29,8 @@ class RegionController extends Controller
      */
     public function create()
     {
-        //
+        $paises = Pais::all();
+        return view('region.create', compact('paises'));
     }
 
     /**
@@ -35,7 +41,27 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'nombreRegion' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:regions'],
+            'idPais' => ['required', 'int']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $data = request()->except('_token');
+        try
+        {
+            Pais::findOrFail($data['idPais']);
+            Region::insert($data);
+            return redirect('region')->with('mensaje', 'Región Creada');         
+        }    
+        catch(ModelNotFoundException $e)
+        {
+            return redirect('region')->with('mensaje', 'País No Encontrado');
+        } 
     }
 
     /**
@@ -55,9 +81,11 @@ class RegionController extends Controller
      * @param  \App\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function edit(Region $region)
+    public function edit($id)
     {
-        //
+        $paises = Pais::all();
+        $region = Region::findOrFail($id);    
+        return view('region.edit', compact('region', 'paises'));
     }
 
     /**
@@ -67,9 +95,30 @@ class RegionController extends Controller
      * @param  \App\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Region $region)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'nombreRegion' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:regions'],
+            'idPais' => ['required', 'int']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $data = request()->except('_token');
+        try
+        {
+            Pais::findOrFail($data['idPais']);
+            $region = request()->except(['_token', '_method']);
+            Region::where('idregion', '=', $id)->update($region);
+            return redirect('region')->with('mensaje', 'Región Modificada');         
+        }    
+        catch(ModelNotFoundException $e)
+        {
+            return redirect('region')->with('mensaje', 'País no encontrado');
+        } 
     }
 
     /**
@@ -78,8 +127,14 @@ class RegionController extends Controller
      * @param  \App\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Region $region)
+    public function destroy($id)
     {
-        //
+        Region::where('idregion', '=', $id)->delete();
+        return redirect('region')->with('mensaje', 'Región Eliminada');
+    }
+
+    public function obtenerSubRegiones(Region $region)
+    {
+        return DB::table('sub_regions')->where('idregion', $region -> idregion)->get();
     }
 }

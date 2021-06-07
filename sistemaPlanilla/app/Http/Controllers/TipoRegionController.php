@@ -14,7 +14,8 @@ class TipoRegionController extends Controller
      */
     public function index()
     {
-        //
+        $datosTiposRegion['tiposRegion'] = TipoRegion::all();
+        return view('tiporegion.index', $datosTiposRegion);
     }
 
     /**
@@ -24,7 +25,7 @@ class TipoRegionController extends Controller
      */
     public function create()
     {
-        //
+        return view('tiporegion.create');
     }
 
     /**
@@ -35,7 +36,19 @@ class TipoRegionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'nombreTipoRegion' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/'],
+            'nombreTipoSubRegion' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $tipoRegion = request()->except('_token');
+        TipoRegion::insert($tipoRegion);
+        return redirect('tiporegion')->with('mensaje', 'Tipo Región Creado');
     }
 
     /**
@@ -55,9 +68,10 @@ class TipoRegionController extends Controller
      * @param  \App\TipoRegion  $tipoRegion
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoRegion $tipoRegion)
+    public function edit($id)
     {
-        //
+        $tipoRegion = TipoRegion::findOrFail($id);
+        return view('tiporegion.edit', compact('tipoRegion'));
     }
 
     /**
@@ -67,9 +81,21 @@ class TipoRegionController extends Controller
      * @param  \App\TipoRegion  $tipoRegion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipoRegion $tipoRegion)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'nombreTipoRegion' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/'],
+            'nombreTipoSubRegion' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $tipoRegion = request()->except(['_token', '_method']);
+        TipoRegion::where('idtiporegion', '=', $id)->update($tipoRegion);
+        return redirect('tiporegion')->with('mensaje', 'Tipo Región Modificado');
     }
 
     /**
@@ -78,8 +104,9 @@ class TipoRegionController extends Controller
      * @param  \App\TipoRegion  $tipoRegion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoRegion $tipoRegion)
+    public function destroy($id)
     {
-        //
+        TipoRegion::where('idtiporegion', '=', $id)->delete();
+        return redirect('tiporegion')->with('mensaje', 'Tipo Región Eliminado');
     }
 }

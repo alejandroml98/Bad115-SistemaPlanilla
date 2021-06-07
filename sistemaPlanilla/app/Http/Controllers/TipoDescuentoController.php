@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\TipoDescuento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TipoDescuentoController extends Controller
 {
@@ -14,7 +15,8 @@ class TipoDescuentoController extends Controller
      */
     public function index()
     {
-        //
+        $datosTipoDescuento['tipoDescuentos'] = TipoDescuento::all();
+        return view('tipodescuento.index', $datosTipoDescuento);
     }
 
     /**
@@ -24,7 +26,7 @@ class TipoDescuentoController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipodescuento.create');
     }
 
     /**
@@ -35,7 +37,26 @@ class TipoDescuentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'nombreTipoDescuento' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú@ ]*$/', 'unique:tipo_descuentos']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', 'crear');
+        }
+        else{
+            $descuento = request()->except('_token');
+            TipoDescuento::insert($descuento);
+            return redirect('tipodescuento')->with('mensaje', 'Descuento Creado');
+        }       
     }
 
     /**
@@ -55,9 +76,10 @@ class TipoDescuentoController extends Controller
      * @param  \App\TipoDescuento  $tipoDescuento
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoDescuento $tipoDescuento)
+    public function edit($id)
     {
-        //
+        $tipoDescuento = TipoDescuento::findOrFail($id);
+        return view('tipodescuento.edit', compact('tipoDescuento'));
     }
 
     /**
@@ -67,9 +89,28 @@ class TipoDescuentoController extends Controller
      * @param  \App\TipoDescuento  $tipoDescuento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipoDescuento $tipoDescuento)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'nombreTipoDescuento' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú@ ]*$/']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', ('editar'.$id));
+        }
+        else {
+            $descuento = request()->except(['_token', '_method']);
+            TipoDescuento::where('idtipodescuento', '=', $id)->update($descuento);
+            return redirect('tipodescuento')->with('mensaje', 'Descuento Modificado');
+        }        
     }
 
     /**
@@ -78,8 +119,9 @@ class TipoDescuentoController extends Controller
      * @param  \App\TipoDescuento  $tipoDescuento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoDescuento $tipoDescuento)
+    public function destroy($id)
     {
-        //
+        TipoDescuento::where('idtipodescuento', '=', $id)->delete();
+        return redirect('tipodescuento')->with('mensaje', 'Descuento Eliminado');
     }
 }

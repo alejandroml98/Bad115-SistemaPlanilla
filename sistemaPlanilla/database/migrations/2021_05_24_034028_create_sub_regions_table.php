@@ -17,7 +17,7 @@ class CreateSubRegionsTable extends Migration
             $table->id('idSubRegion');
             $table->integer('idRegion')->unsigned();
             $table->foreign('idRegion')->references('idRegion')->on('regions');
-            $table->string('nombreSubRegion');
+            $table->string('nombreSubRegion')->unique();
             $table->timestamps();
         });
     }

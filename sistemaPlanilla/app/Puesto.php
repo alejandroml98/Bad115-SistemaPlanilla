@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Puesto extends Model
 {
     protected $primaryKey = "codigopuesto";
+    public $incrementing = false;
 }

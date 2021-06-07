@@ -17,7 +17,7 @@ class CreateRegionsTable extends Migration
             $table->id('idRegion');
             $table->integer('idPais')->unsigned();
             $table->foreign('idPais')->references('idPais')->on('pais');
-            $table->string('nombreRegion');
+            $table->string('nombreRegion')->unique();
             $table->timestamps();
         });
     }

@@ -14,7 +14,8 @@ class TipoIngresoController extends Controller
      */
     public function index()
     {
-        //
+        $datosTiposIngreso['tiposIngresos'] = TipoIngreso::paginate(5);
+        return view('tipoingresos.index', $datosTiposIngreso);
     }
 
     /**
@@ -24,7 +25,7 @@ class TipoIngresoController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipoingresos.create');
     }
 
     /**
@@ -35,7 +36,18 @@ class TipoIngresoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'nombreTipoIngresos' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:tipo_ingresos']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $tipoingreso = request()->except('_token');
+        TipoIngreso::insert($tipoingreso);
+        return redirect('tipoingresos')->with('mensaje', 'Ingreso Creado');
     }
 
     /**
@@ -55,9 +67,10 @@ class TipoIngresoController extends Controller
      * @param  \App\TipoIngreso  $tipoIngreso
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoIngreso $tipoIngreso)
+    public function edit($id)
     {
-        //
+        $tipoIngreso = TipoIngreso::findOrFail($id);
+        return view('tipoingresos.edit', compact('tipoIngreso'));
     }
 
     /**
@@ -67,9 +80,21 @@ class TipoIngresoController extends Controller
      * @param  \App\TipoIngreso  $tipoIngreso
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipoIngreso $tipoIngreso)
+    public function update(Request $request,$id)
     {
-        //
+        $campos = [
+            'nombreTipoIngresos' => ['required','string', 'max:100', 'regex:/^[a-zA-Z ]*$/']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $tipoingreso = request()->except(['_token', '_method']);
+        TipoIngreso::where('idtipoingresos', '=', $id)->update($tipoingreso);
+        return redirect('tipoingresos')->with('mensaje', 'Ingreso Modificado');
+ 
     }
 
     /**
@@ -78,8 +103,9 @@ class TipoIngresoController extends Controller
      * @param  \App\TipoIngreso  $tipoIngreso
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoIngreso $tipoIngreso)
+    public function destroy($id)
     {
-        //
+        TipoIngreso::where('idtipoingresos', '=', $id)->delete();
+        return redirect('tipoingresos')->with('mensaje', 'Ingreso Eliminado');
     }
 }

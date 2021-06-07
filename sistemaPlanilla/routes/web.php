@@ -20,15 +20,31 @@ Route::get('/', function () {
 //Solicita verificar correo despues del registro
 Auth::routes(['verify' => true]);
 
+
 //Grupo de rutas: El usuario tiene que estar verificado para acceder a ellas
 Route::middleware(['verified','active'])->group(function () {
     Route::get('/casita3','PruebaController@indexProfile');
 });
 
+Route::resource('catalogocomision', 'CatalogoComisionController');
 Route::resource('genero', 'GeneroController');
 Route::resource('profesion', 'ProfesionController');
 Route::resource('estadocivil', 'EstadoCivilController');
+Route::resource('tipodescuento', 'TipoDescuentoController');
+Route::resource('tipoingresos', 'TipoIngresoController');
 Route::resource('tipodocumento', 'TipoDocumentoController');
+Route::resource('subregion', 'SubRegionController');
+Route::resource('tiporegion', 'TipoRegionController');
+Route::resource('pais', 'PaisController');
+Route::resource('region', 'RegionController');
+Route::resource('subregion', 'SubRegionController');
+Route::resource('rangosalarial', 'RangoSalarialController');
+Route::resource('puesto', 'PuestoController');
+Route::resource('empresa', 'EmpresaController');
+//Rutas de direccion
+Route::resource('direccion', 'DireccionController');
+Route::get('pais/{pais}/region', 'PaisController@obtenerRegiones');
+Route::get('region/{region}/subregion', 'RegionController@obtenerSubRegiones');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
