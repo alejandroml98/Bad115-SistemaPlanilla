@@ -25,8 +25,9 @@ Auth::routes(['verify' => true]);
 Route::middleware(['verified','active'])->group(function () {
     Route::get('/casita3','PruebaController@indexProfile');    
 });
-
+Route::resource('banco', 'BancoController');
 Route::resource('catalogocomision', 'CatalogoComisionController');
+Route::resource('centrocostos', 'CentroCostosController');
 Route::resource('genero', 'GeneroController');
 Route::resource('profesion', 'ProfesionController');
 Route::resource('estadocivil', 'EstadoCivilController');
@@ -37,16 +38,20 @@ Route::resource('subregion', 'SubRegionController');
 Route::resource('tiporegion', 'TipoRegionController');
 Route::resource('pais', 'PaisController');
 Route::resource('region', 'RegionController');
+Route::resource('renta', 'RentaController');
 Route::resource('subregion', 'SubRegionController');
 Route::resource('rangosalarial', 'RangoSalarialController');
 Route::resource('puesto', 'PuestoController');
 Route::resource('empresa', 'EmpresaController');
-
+Route::resource('tipounidad', 'TipoUnidadController');
+Route::resource('unidad', 'UnidadController');
+Route::resource('empleado', 'EmpleadoController');
 //Activar y desactivar cuentas de usuarios
 Route::put('/usuario/activar/{user}', 'EmpleadoController@activar')->name('empleado.activar');
 Route::put('/usuario/desactivar/{user}', 'EmpleadoController@desactivar')->name('empleado.desactivar');
 Route::get('/usuario/proceso', 'EmpleadoController@dpedirActivacion')->name('empleado.desactivar');
 Route::get('inactivo', 'EmpleadoController@inactivo');
+
 //Rutas de direccion
 Route::resource('direccion', 'DireccionController');
 Route::get('pais/{pais}/region', 'PaisController@obtenerRegiones');

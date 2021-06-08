@@ -20,7 +20,7 @@
     </div>
     <div class="form-group">
         <label for="idRangoSalarial">Rango Salarial</label>
-        <select class="form-control mt-1" name="idRangoSalarial" id="idRangoSalarialCreate">
+        <select data-plugin-selectTwo class="form-control mt-1" name="idRangoSalarial" id="idRangoSalarialCreate">
             <option value="" disabled selected>Salario Mínimo - Salario Máximo</option>
             @foreach ($rangosSalariales as $rangoSalarial)
             <option value="{{ $rangoSalarial -> idrangosalarial }}">${{ $rangoSalarial -> salariominimo }} - ${{ $rangoSalarial -> salariomaximo }}</option>
@@ -50,7 +50,7 @@
     </div>
     <div class="form-group">
         <label for="idRangoSalarial">Rango Salarial</label>
-        <select class="form-control mt-1" name="idRangoSalarial" id="idRangoSalarial">
+        <select data-plugin-selectTwo class="form-control mt-1" name="idRangoSalarial" id="idRangoSalarial">
             @foreach ($rangosSalariales as $rangoSalarial)
             @if ($puesto -> idrangosalarial == $rangoSalarial -> idrangosalarial)
             <option value="{{ $rangoSalarial -> idrangosalarial }}" selected>${{ $rangoSalarial -> salariominimo }} - ${{ $rangoSalarial -> salariomaximo }}</option>

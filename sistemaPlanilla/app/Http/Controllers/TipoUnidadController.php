@@ -14,7 +14,8 @@ class TipoUnidadController extends Controller
      */
     public function index()
     {
-        //
+        $tiposUnidades = TipoUnidad::all();
+        return view('tipounidad.index', compact('tiposUnidades'));
     }
 
     /**
@@ -24,7 +25,8 @@ class TipoUnidadController extends Controller
      */
     public function create()
     {
-        //
+        $tiposUnidades = TipoUnidad::all();
+        return view('tipounidad.create', compact('tiposUnidades'));
     }
 
     /**
@@ -35,7 +37,18 @@ class TipoUnidadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'nombreTipoUnidad' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:tipo_unidads'],            
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $tipoUnidad = request()->except('_token');
+        TipoUnidad::insert($tipoUnidad);
+        return redirect('tipounidad')->with('mensaje', 'Tipo Creada');
     }
 
     /**
@@ -55,9 +68,11 @@ class TipoUnidadController extends Controller
      * @param  \App\TipoUnidad  $tipoUnidad
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoUnidad $tipoUnidad)
+    public function edit($id)
     {
-        //
+        $tipoUnidadSeleccionada = TipoUnidad::findOrFail($id);
+        $tiposUnidades = TipoUnidad::all();
+        return view('tipounidad.edit', compact('tiposUnidades', 'tipoUnidadSeleccionada'));
     }
 
     /**
@@ -67,9 +82,20 @@ class TipoUnidadController extends Controller
      * @param  \App\TipoUnidad  $tipoUnidad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipoUnidad $tipoUnidad)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'nombreTipoUnidad' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/'],            
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $tipoUnidad = request()->except(['_token', '_method']);
+        TipoUnidad::where('idtipounidad', '=', $id)->update($tipoUnidad);
+        return redirect('tipounidad')->with('mensaje', 'Tipo Unidad Modificada');
     }
 
     /**
@@ -78,8 +104,9 @@ class TipoUnidadController extends Controller
      * @param  \App\TipoUnidad  $tipoUnidad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoUnidad $tipoUnidad)
+    public function destroy($id)
     {
-        //
+        TipoUnidad::where('idtipounidad', '=', $id)->delete();
+        return redirect('tipounidad')->with('mensaje', 'Tipo Unidad Eliminada');
     }
 }

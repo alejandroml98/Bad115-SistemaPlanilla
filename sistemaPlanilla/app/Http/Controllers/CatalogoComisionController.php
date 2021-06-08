@@ -38,15 +38,17 @@ class CatalogoComisionController extends Controller
     {
         $campos = [
             'nombreComision' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:catalogo_comisions'],
-            'porcentaje' => ['required','regex:/^[0-9]+([,][0-9]+)?$/', 'min:0'],
-            'valMinComision' => ['required','between:0,999999.99', 'min:0'],
-            'valMaxComision' => ['required','between:0,999999.99', 'min:0']
+            'porcentaje' => ['required','between:0,100.00', 'min:0'],
+            'valMinComision' => ['required','between:0,999999', 'min:0', 'lt:valMaxComision'],
+            'valMaxComision' => ['required','between:0,999999', 'min:0', 'gt:valMinComision']
         ];
         $mensaje = [
             "required" => 'El :attribute es requerido',
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe',
-            "min" => 'El :attribute debe ser mayor a 0'
+            "min" => 'El :attribute debe ser mayor a 0',
+            "gt" => 'El :attribute debe ser menor que Comision Mínimo',
+            "lt" => 'El :attribute debe ser mayor que Comision Máximo' 
 
         ];
         $this->validate($request, $campos, $mensaje);

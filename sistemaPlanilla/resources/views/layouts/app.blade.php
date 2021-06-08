@@ -211,33 +211,11 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-parent">
-                                    <a>
+                                <li>
+                                    <a href="{{ route('empresa.index') }}">
                                         <i class="fa fa-building" aria-hidden="true"></i>
                                         <span>Empresa</span>
                                     </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a href="forms-basic.html">
-                                                Enlace 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="forms-advanced.html">
-                                                Enlace 2
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="forms-validation.html">
-                                                Enlace 3
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="forms-layouts.html">
-                                                Enlace 4
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="nav-parent">
                                     <a>

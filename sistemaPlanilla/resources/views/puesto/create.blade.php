@@ -18,6 +18,7 @@
                 </form>
             </section>
         </div>
+    </div>
 </section>
 @endsection
 @push('vendorjs')
