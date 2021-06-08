@@ -14,7 +14,8 @@ class BancoController extends Controller
      */
     public function index()
     {
-        //
+        $datosBanco['bancos'] = Banco::all();
+        return view('banco.index', $datosBanco);
     }
 
     /**
@@ -24,7 +25,7 @@ class BancoController extends Controller
      */
     public function create()
     {
-        //
+        return view('banco.create');
     }
 
     /**
@@ -35,7 +36,19 @@ class BancoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'nombreBanco' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:bancos']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $banco = request()->except('_token');
+        Banco::insert($banco);
+        return redirect('banco')->with('mensaje', 'Banco Creado');
+
     }
 
     /**
@@ -55,9 +68,11 @@ class BancoController extends Controller
      * @param  \App\Banco  $banco
      * @return \Illuminate\Http\Response
      */
-    public function edit(Banco $banco)
+    public function edit($id)
     {
-        //
+        $banco = Banco::findOrFail($id);
+        return view('banco.edit', compact('banco'));
+
     }
 
     /**
@@ -67,9 +82,21 @@ class BancoController extends Controller
      * @param  \App\Banco  $banco
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Banco $banco)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'nombreBanco' => ['required','string', 'max:100', 'regex:/^[a-zA-Z ]*$/']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $banco = request()->except(['_token', '_method']);
+        Banco::where('idbanco', '=', $id)->update($banco);
+        return redirect('banco')->with('mensaje', 'Banco Modificado');
+ 
     }
 
     /**
@@ -78,8 +105,10 @@ class BancoController extends Controller
      * @param  \App\Banco  $banco
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Banco $banco)
+    public function destroy($id)
     {
-        //
+        Banco::where('idbanco', '=', $id)->delete();
+        return redirect('banco')->with('mensaje', 'Banco Eliminado');
+
     }
 }

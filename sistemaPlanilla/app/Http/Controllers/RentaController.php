@@ -41,7 +41,7 @@ class RentaController extends Controller
             'valMax' => ['required','between:0,999999', 'min:0', 'gt:valMin'],
             'valorFijo' => ['required','between:0,999999', 'min:0'],
             'exceso' => ['required','between:0,999999', 'min:0'],
-            'periodo' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/']
+            'periodo' => ['required','string', 'max:1', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/']
 
         ];
         $mensaje = [
@@ -111,7 +111,7 @@ class RentaController extends Controller
         $this->validate($request, $campos, $mensaje);
         $renta = request()->except(['_token', '_method']);
             Renta::where('idrenta', '=', $id)->update($renta);
-            return redirect('renta')->with('mensaje', 'Renta Modificada');
+            return redirect('renta')->with('mensaje', 'Tipo de Renta Modificada');
 
     }
 

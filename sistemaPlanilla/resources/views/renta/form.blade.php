@@ -16,7 +16,7 @@
 <label for="valMax">{{ 'Valor Maximo' }}</label>
 <input type="number"  step=".01" min="0" name="valMax" id="valMax" value="{{ isset($renta -> valmax) ? $renta -> valmax : old('valMax') }}">
 <label for="valorFijo">{{ 'Valor Fijo' }}</label>
-<input type="number" step=".01" min="0" name="valorFijo" id="valorFijo" value="{{ isset($renta -> valmincomision) ? $renta -> valmincomision : old('valorFijo') }}">
+<input type="number" step=".01" min="0" name="valorFijo" id="valorFijo" value="{{ isset($renta -> valorfijo) ? $renta -> valorfijo : old('valorFijo') }}">
 <label for="exceso">{{ 'Exceso' }}</label>
 <input type="number" step=".01" min="0" name="exceso" id="exceso" value="{{ isset($renta -> exceso) ? $renta -> exceso : old('exceso') }}">
 <label for="periodo">{{ 'Periodo' }}</label>
@@ -27,11 +27,11 @@
 <label for="valMax">{{ 'Valor Maximo' }}</label>
 <input type="number" step=".01" min="0" name="valMax" id="valMax" value="{{ isset($renta -> valmax) ? $renta -> valmax : old('valMax') }}">
 <label for="valorFijo">{{ 'Valor Fijo' }}</label>
-<input type="number" step=".01" min="0" name="valorFijo" id="valorFijo" value="{{ isset($renta -> valmincomision) ? $renta -> valmincomision : old('valorFijo') }}">
+<input type="number" step=".01" min="0" name="valorFijo" id="valorFijo" value="{{ isset($renta -> valorfijo) ? $renta -> valorfijo : old('valorFijo') }}">
 <label for="exceso">{{ 'Exceso' }}</label>
 <input type="number" step=".01" min="0" name="exceso" id="exceso" value="{{ isset($renta -> exceso) ? $renta -> exceso : old('exceso') }}">
 <label for="periodo">{{ 'Periodo' }}</label>
-<input type="text" name="periodo" id="periodo" value="{{ old('periodo') }}">
+<input type="text" name="periodo" id="periodo" value="{{ isset($renta -> periodo) ? $renta -> periodo : old('periodo') }}">
 
 @endif
 <input type="submit" value="{{ $mode == 'create' ? 'Agregar' : 'Modificar' }}">

@@ -25,7 +25,7 @@ Auth::routes(['verify' => true]);
 Route::middleware(['verified','active'])->group(function () {
     Route::get('/casita3','PruebaController@indexProfile');
 });
-
+Route::resource('banco', 'BancoController');
 Route::resource('catalogocomision', 'CatalogoComisionController');
 Route::resource('centrocostos', 'CentroCostosController');
 Route::resource('genero', 'GeneroController');
