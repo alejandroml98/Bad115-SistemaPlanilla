@@ -27,6 +27,7 @@ Route::middleware(['verified','active'])->group(function () {
 });
 
 Route::resource('catalogocomision', 'CatalogoComisionController');
+Route::resource('centrocostos', 'CentroCostosController');
 Route::resource('genero', 'GeneroController');
 Route::resource('profesion', 'ProfesionController');
 Route::resource('estadocivil', 'EstadoCivilController');
@@ -37,14 +38,16 @@ Route::resource('subregion', 'SubRegionController');
 Route::resource('tiporegion', 'TipoRegionController');
 Route::resource('pais', 'PaisController');
 Route::resource('region', 'RegionController');
+Route::resource('renta', 'RentaController');
 Route::resource('subregion', 'SubRegionController');
 Route::resource('rangosalarial', 'RangoSalarialController');
 Route::resource('puesto', 'PuestoController');
 Route::resource('empresa', 'EmpresaController');
-
+Route::resource('tipounidad', 'TipoUnidadController');
+Route::resource('unidad', 'UnidadController');
 //Activar y desactivar cuentas de usuarios
 Route::get('/usuario/activar/{user}', 'EmpleadoController@activar')->name('empleado.activar');
-Route::get('/usuario/desactivar/{user}', 'EmpleadoController@desactivar')->name('empleado.desactivar');;
+Route::get('/usuario/desactivar/{user}', 'EmpleadoController@desactivar')->name('empleado.desactivar');
 //Rutas de direccion
 Route::resource('direccion', 'DireccionController');
 Route::get('pais/{pais}/region', 'PaisController@obtenerRegiones');
