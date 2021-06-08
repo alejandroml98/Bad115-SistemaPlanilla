@@ -21,6 +21,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::resource('catalogocomision', 'CatalogoComisionController');
+Route::resource('centrocostos', 'CentroCostosController');
 Route::resource('genero', 'GeneroController');
 Route::resource('profesion', 'ProfesionController');
 Route::resource('estadocivil', 'EstadoCivilController');
@@ -31,6 +32,7 @@ Route::resource('subregion', 'SubRegionController');
 Route::resource('tiporegion', 'TipoRegionController');
 Route::resource('pais', 'PaisController');
 Route::resource('region', 'RegionController');
+Route::resource('renta', 'RentaController');
 Route::resource('subregion', 'SubRegionController');
 Route::resource('rangosalarial', 'RangoSalarialController');
 Route::resource('puesto', 'PuestoController');

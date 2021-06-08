@@ -14,7 +14,9 @@ class CentroCostosController extends Controller
      */
     public function index()
     {
-        //
+        $datosCentroCostos['centroCostos'] = CentroCostos::all();
+        return view('centrocostos.index', $datosCentroCostos);  
+
     }
 
     /**
@@ -24,7 +26,7 @@ class CentroCostosController extends Controller
      */
     public function create()
     {
-        //
+        return view('centrocostos.create');
     }
 
     /**
@@ -35,7 +37,20 @@ class CentroCostosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'presupuestoInicial' => ['required','between:0,999999', 'min:0'],
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe',
+            "min" => 'El :attribute debe ser mayor a 0',
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $centrocostos = request()->except('_token');
+        CentroCostos::insert($centrocostos);
+        return redirect('centrocostos')->with('mensaje', 'Presupuesto Inicial Asignado');
+
     }
 
     /**
@@ -55,9 +70,10 @@ class CentroCostosController extends Controller
      * @param  \App\CentroCostos  $centroCostos
      * @return \Illuminate\Http\Response
      */
-    public function edit(CentroCostos $centroCostos)
+    public function edit($id)
     {
-        //
+        $centroCostos = CentroCostos::findOrFail($id);
+        return view('centrocostos.edit', compact('centroCostos'));
     }
 
     /**
@@ -67,9 +83,22 @@ class CentroCostosController extends Controller
      * @param  \App\CentroCostos  $centroCostos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CentroCostos $centroCostos)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'presupuestoInicial' => ['required','between:0,999999', 'min:0'],
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe',
+            "min" => 'El :attribute debe ser mayor a 0',
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $centrocostos = request()->except(['_token', '_method']);
+        CentroCostos::where('idcentrocostos', '=', $id)->update( $centrocostos);
+            return redirect('centrocostos')->with('mensaje', 'Presupuesto Inicial Modificado');
+ 
     }
 
     /**
@@ -78,8 +107,9 @@ class CentroCostosController extends Controller
      * @param  \App\CentroCostos  $centroCostos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CentroCostos $centroCostos)
+    public function destroy($id)
     {
-        //
+        CentroCostos::where('idcentrocostos', '=', $id)->delete();
+        return redirect('centrocostos')->with('mensaje', 'Presupuesto Eliminado');
     }
 }
