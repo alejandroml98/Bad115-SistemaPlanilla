@@ -28,7 +28,7 @@ Route::middleware(['verified','active'])->group(function () {
 
 Route::resource('catalogocomision', 'CatalogoComisionController');
 Route::resource('genero', 'GeneroController');
-Route::resource('profesion', 'ProfesionController')->middleware('verified');
+Route::resource('profesion', 'ProfesionController');
 Route::resource('estadocivil', 'EstadoCivilController');
 Route::resource('tipodescuento', 'TipoDescuentoController');
 Route::resource('tipoingresos', 'TipoIngresoController');
