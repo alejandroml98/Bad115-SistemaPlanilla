@@ -58,6 +58,7 @@
             <!-- start: search & user box -->
             <div class="header-right">
                 @auth
+                @if (Auth::user()->activo==1)
                 <div id="MyClockDisplay" class="search nav-form text-right" onload="showTime()"></div>
                 
                 <span class="separator"></span>
