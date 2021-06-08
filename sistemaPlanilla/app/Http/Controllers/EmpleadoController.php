@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Banco;
+use App\CuentaBancaria;
 use App\Direccion;
 use App\Empleado;
 use App\Empresa;
@@ -14,6 +16,7 @@ use App\SubRegion;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmpleadoController extends Controller
 {
@@ -114,8 +117,12 @@ class EmpleadoController extends Controller
         $puestos = Puesto::all();
         $empresas = Empresa::all();
         $usuarios = User::all();
+        //Para Cuenta Bancaria
+        $cuentasBancarias = DB::table('cuenta_bancarias')->where('codigoempleado','=',$id)->get();
+        $bancos = Banco::all();
         return view('empleado.edit', compact('direcciones', 'paises', 'regiones', 
-        'subRegiones', 'generos', 'estadosCiviles', 'puestos', 'empresas', 'usuarios', 'empleado'));
+        'subRegiones', 'generos', 'estadosCiviles', 'puestos', 'empresas', 'usuarios', 'empleado',
+        'cuentasBancarias', 'bancos'));
     }
 
     /**

@@ -46,6 +46,8 @@ Route::resource('empresa', 'EmpresaController');
 Route::resource('tipounidad', 'TipoUnidadController');
 Route::resource('unidad', 'UnidadController');
 Route::resource('empleado', 'EmpleadoController');
+Route::resource('cuentabancaria', 'CuentaBancariaController');
+Route::get('/cuentabancaria/create/{empleado}', 'CuentaBancariaController@create')->name('cuentabancaria.agregar');
 //Activar y desactivar cuentas de usuarios
 Route::get('/usuario/activar/{user}', 'EmpleadoController@activar')->name('empleado.activar');
 Route::get('/usuario/desactivar/{user}', 'EmpleadoController@desactivar')->name('empleado.desactivar');
