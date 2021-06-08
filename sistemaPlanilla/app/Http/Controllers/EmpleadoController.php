@@ -13,6 +13,7 @@ use App\Pais;
 use App\Puesto;
 use App\Region;
 use App\SubRegion;
+use App\TipoDocumento;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -120,9 +121,12 @@ class EmpleadoController extends Controller
         //Para Cuenta Bancaria
         $cuentasBancarias = DB::table('cuenta_bancarias')->where('codigoempleado','=',$id)->get();
         $bancos = Banco::all();
+        //Para Documentos
+        $tiposDocumentosEmpleados = DB::table('tipodocumento_empleados')->where('codigoempleado','=',$id)->get();
+        $tiposDocumentos = TipoDocumento::all();
         return view('empleado.edit', compact('direcciones', 'paises', 'regiones', 
         'subRegiones', 'generos', 'estadosCiviles', 'puestos', 'empresas', 'usuarios', 'empleado',
-        'cuentasBancarias', 'bancos'));
+        'cuentasBancarias', 'bancos', 'tiposDocumentosEmpleados', 'tiposDocumentos'));
     }
 
     /**
