@@ -38,7 +38,7 @@ class CatalogoComisionController extends Controller
     {
         $campos = [
             'nombreComision' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:catalogo_comisions'],
-            'porcentaje' => ['required','between:0,999999', 'min:0'],
+            'porcentaje' => ['required','between:0,100.00', 'min:0'],
             'valMinComision' => ['required','between:0,999999', 'min:0', 'lt:valMaxComision'],
             'valMaxComision' => ['required','between:0,999999', 'min:0', 'gt:valMinComision']
         ];

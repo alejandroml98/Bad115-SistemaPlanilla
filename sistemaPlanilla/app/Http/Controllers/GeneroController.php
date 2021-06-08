@@ -104,7 +104,7 @@ class GeneroController extends Controller
      */
     public function destroy($id)
     {
-        Genero::destroy($id);
+        Genero::where('idgenero', '=', $id)->delete();
         return redirect('genero')->with('mensaje', 'Genero Eliminado');
     }
 }

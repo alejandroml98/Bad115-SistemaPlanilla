@@ -49,7 +49,7 @@ class CentroCostosController extends Controller
         $this->validate($request, $campos, $mensaje);
         $centrocostos = request()->except('_token');
         CentroCostos::insert($centrocostos);
-        return redirect('centrocostos')->with('mensaje', 'Presupuesto Inicial Asignado');
+        return redirect('centrocostos')->with('mensaje', 'Presupuesto Asignado');
 
     }
 
@@ -86,7 +86,7 @@ class CentroCostosController extends Controller
     public function update(Request $request, $id)
     {
         $campos = [
-            'presupuestoInicial' => ['required','between:0,999999', 'min:0'],
+            'presupuestoInicial' => ['required','between:0,9999999.99', 'min:0'],
         ];
         $mensaje = [
             "required" => 'El :attribute es requerido',
@@ -97,7 +97,7 @@ class CentroCostosController extends Controller
         $this->validate($request, $campos, $mensaje);
         $centrocostos = request()->except(['_token', '_method']);
         CentroCostos::where('idcentrocostos', '=', $id)->update( $centrocostos);
-            return redirect('centrocostos')->with('mensaje', 'Presupuesto Inicial Modificado');
+            return redirect('centrocostos')->with('mensaje', 'Presupuesto Modificado');
  
     }
 
