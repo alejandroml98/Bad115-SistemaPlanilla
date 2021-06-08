@@ -32,28 +32,6 @@
                         <!-- end: page -->
             </section>
         </div>
-        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
-        <script type="text/javascript">
-            function initialize() {
-                var options = {
-                    types: ['(regions)']
-                };
-                var sel = document.getElementById('searchTextField');
-
-                // create new option element
-                var opt = document.createElement('option');
-
-                // create text node to add to option element (opt)
-                opt.appendChild(document.createTextNode(options[0]));
-
-                // set value property of opt
-                opt.value = 'op';
-
-                // add opt to end of select box (sel)
-                sel.appendChild(opt);
-            }
-            google.maps.event.addDomListener(window, 'load', initialize);
-        </script>
 </section>
 @endsection
 @push('vendorjs')

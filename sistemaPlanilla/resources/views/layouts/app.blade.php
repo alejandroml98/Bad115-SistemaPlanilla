@@ -72,7 +72,7 @@
                 <div id="userbox" class="userbox">
                     <a href="#" data-toggle="dropdown">
                         <figure class="profile-picture">
-                            <img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+                            <img src="{{ asset('assets/images/!logged-user.jpg') }}" alt="Joseph Doe" class="img-circle" data-lock-picture="{{ asset('assets/images/!logged-user.jpg')}}" />
                         </figure>
                         <div class="profile-info" data-lock-name="{{ Auth::user()->name }}" data-lock-email="{{ Auth::user()->email }}">
                             <span class="name">{{ Auth::user()->name }}</span>
@@ -179,6 +179,12 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li>
+                                    <a href="{{ route('puesto.index') }}">
+                                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                                        <span>Puestos de la Empresa</span>
+                                    </a>
+                                </li>
                                 <li class="nav-parent">
                                     <a>
                                         <i class="fa fa-sitemap" aria-hidden="true"></i>
@@ -202,33 +208,11 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-parent">
-                                    <a>
+                                <li>
+                                    <a href="{{ route('empresa.index') }}">
                                         <i class="fa fa-building" aria-hidden="true"></i>
                                         <span>Empresa</span>
                                     </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a href="forms-basic.html">
-                                                Enlace 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="forms-advanced.html">
-                                                Enlace 2
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="forms-validation.html">
-                                                Enlace 3
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="forms-layouts.html">
-                                                Enlace 4
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="nav-parent">
                                     <a>
@@ -269,7 +253,7 @@
                                 <li>
                                     <a href="{{ route('profesion.index') }}">
                                         <i class="fa fa-briefcase" aria-hidden="true"></i>
-                                        <span>Puestos</span>
+                                        <span>Catalogo de profesiones</span>
                                     </a>
                                 </li>
                                 <li class="nav-parent">
@@ -290,6 +274,9 @@
                                                 <li>
                                                 <a href="{{ route('tipodescuento.index') }}">Tipos de descuento</a>
                                                 </li>
+                                                <li>
+                                                <a href="{{ route('rangosalarial.index') }}">Rango Salarial</a>
+                                                </li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -305,7 +292,7 @@
             <section role="main" class="content-body">
                 <header class="page-header">
                     @auth
-                    <h2>{{ Route::currentRouteName() }}</h2>
+                    <!--<h2>{{ Route::currentRouteName() }}</h2>-->
 
                     <div class="right-wrapper pull-right">
                         <ol class="breadcrumbs">
