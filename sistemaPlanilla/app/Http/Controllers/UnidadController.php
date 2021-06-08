@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\TipoUnidad;
 use App\Unidad;
+use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class UnidadController extends Controller
@@ -14,7 +17,9 @@ class UnidadController extends Controller
      */
     public function index()
     {
-        //
+        $unidades = Unidad::all();
+        $tiposUnidades = TipoUnidad::all();
+        return view('unidad.index', compact('unidades', 'tiposUnidades'));
     }
 
     /**
@@ -24,7 +29,9 @@ class UnidadController extends Controller
      */
     public function create()
     {
-        //
+        $unidades = Unidad::all();
+        $tiposUnidades = TipoUnidad::all();
+        return view('unidad.create', compact('unidades', 'tiposUnidades'));
     }
 
     /**
@@ -35,7 +42,20 @@ class UnidadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'nombreUnidad' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:unidads'],
+            'idTipoUnidad' => ['required'],
+            'codigoUnidad' => ['required','string', 'max:7', 'regex:/[a-zA-Z]{2}[0-9]{5}$/']      
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $unidad = request()->except('_token');
+        Unidad::insert($unidad);
+        return redirect('unidad')->with('mensaje', 'Unidad Creada');
     }
 
     /**
@@ -55,9 +75,12 @@ class UnidadController extends Controller
      * @param  \App\Unidad  $unidad
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unidad $unidad)
+    public function edit($id)
     {
-        //
+        $tiposUnidades = TipoUnidad::all();
+        $unidades = Unidad::all();
+        $unidadSeleccionada = Unidad::findOrFail($id);
+        return view('unidad.edit', compact('tiposUnidades', 'unidadSeleccionada', 'unidades'));
     }
 
     /**
@@ -69,7 +92,24 @@ class UnidadController extends Controller
      */
     public function update(Request $request, Unidad $unidad)
     {
-        //
+        $campos = [
+            'nombreUnidad' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/'],
+            'idTipoUnidad' => ['required'],
+            'codigoUnidad' => ['required','string', 'max:7', 'regex:/[a-zA-Z]{2}[0-9]{5}$/']      
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);                                                                  
+        try {
+            $unidad = request()->except('_token','_method', 'codigoUnidadAnterior');            
+            Unidad::where('codigounidad', '=', $request -> codigoUnidadAnterior)->update($unidad);        
+            return redirect('unidad')->with('mensaje', 'Unidad Modificada');
+        } catch(QueryException $e) {            
+            return redirect('unidad')->with('mensaje', 'Código Unidad ya existente');
+        }
     }
 
     /**
@@ -78,8 +118,9 @@ class UnidadController extends Controller
      * @param  \App\Unidad  $unidad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Unidad $unidad)
+    public function destroy($id)
     {
-        //
+        Unidad::where('codigounidad', '=', $id)->delete();
+        return redirect('unidad')->with('mensaje', 'Unidad Eliminada');
     }
 }
