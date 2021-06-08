@@ -59,6 +59,7 @@
             <div class="header-right">
                 @auth
                 <div id="MyClockDisplay" class="search nav-form text-right" onload="showTime()"></div>
+                
                 <span class="separator"></span>
 
                 <div id="userbox" class="userbox">
@@ -93,6 +94,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endauth
             <!-- Right Side Of Navbar -->
             <ul class="notifications">
@@ -112,6 +114,7 @@
         <div class="inner-wrapper">
             <!-- start: sidebar -->
             @auth
+            @if (Auth::user()->activo==1)
             <aside id="sidebar-left" class="sidebar-left">
 
                 <div class="sidebar-header">
@@ -278,6 +281,7 @@
                     </div>
                 </div>
             </aside>
+            @endif
             @endauth
             <!-- end: sidebar -->
 

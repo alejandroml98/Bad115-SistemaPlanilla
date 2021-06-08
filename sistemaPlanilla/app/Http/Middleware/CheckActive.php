@@ -18,7 +18,7 @@ class CheckActive
     {
         if(Auth::check()){
             if(!Auth::user()->activo==1){
-                return redirect('home');
+                return redirect('inactivo');
             }
         }                 
         return $next($request);
