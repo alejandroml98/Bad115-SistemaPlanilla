@@ -83,7 +83,7 @@ class TipoIngresoController extends Controller
     public function update(Request $request,$id)
     {
         $campos = [
-            'nombreTipoIngresos' => ['required','string', 'max:100', 'regex:/^[a-zA-Z ]*$/', 'unique:tipo_ingresos']
+            'nombreTipoIngresos' => ['required','string', 'max:100', 'regex:/^[a-zA-Z ]*$/']
         ];
         $mensaje = [
             "required" => 'El :attribute es requerido',

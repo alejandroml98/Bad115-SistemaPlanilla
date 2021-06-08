@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\RangoSalarial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RangoSalarialController extends Controller
 {
@@ -48,10 +49,19 @@ class RangoSalarialController extends Controller
             "gt" => 'El :attribute debe ser mayor que Salario Mínimo',
             "lt" => 'El :attribute debe ser menor que Salario Máximo'            
         ];
-        $this->validate($request, $campos, $mensaje);
-        $rangoSalarial = request()->except('_token');
-        RangoSalarial::insert($rangoSalarial);
-        return redirect('rangosalarial')->with('mensaje', 'Rango Salarial Creado');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', 'crear');
+        }
+        else{
+            $rangoSalarial = request()->except('_token');
+            RangoSalarial::insert($rangoSalarial);
+            return redirect('rangosalarial')->with('mensaje', 'Rango Salarial Creado');
+        }
+        
     }
 
     /**
@@ -98,10 +108,18 @@ class RangoSalarialController extends Controller
             "gt" => 'El :attribute debe ser mayor que Salario Mínimo',
             "lt" => 'El :attribute debe ser menor que Salario Máximo'            
         ];
-        $this->validate($request, $campos, $mensaje);
-        $rangoSalarial = request()->except('_token', '_method');
-        RangoSalarial::where('idrangosalarial', '=', $id)->update($rangoSalarial);
-        return redirect('rangosalarial')->with('mensaje', 'Rango Salarial Modificado');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', ('editar'.$id));
+        }
+        else {
+            $rangoSalarial = request()->except('_token', '_method');
+            RangoSalarial::where('idrangosalarial', '=', $id)->update($rangoSalarial);
+            return redirect('rangosalarial')->with('mensaje', 'Rango Salarial Modificado');
+        }        
     }
 
     /**
