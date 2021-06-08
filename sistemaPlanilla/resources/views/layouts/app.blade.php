@@ -58,6 +58,7 @@
             <!-- start: search & user box -->
             <div class="header-right">
                 @auth
+                @if (Auth::user()->activo==1)
                 <form action="pages-search-results.html" class="search nav-form">
                     <div class="input-group input-search">
                         <input type="text" class="form-control" name="q" id="q" placeholder="Search...">
@@ -101,6 +102,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endauth
             <!-- Right Side Of Navbar -->
             <ul class="notifications">
@@ -120,6 +122,7 @@
         <div class="inner-wrapper">
             <!-- start: sidebar -->
             @auth
+            @if (Auth::user()->activo==1)
             <aside id="sidebar-left" class="sidebar-left">
 
                 <div class="sidebar-header">
@@ -308,6 +311,7 @@
                     </div>
                 </div>
             </aside>
+            @endif
             @endauth
             <!-- end: sidebar -->
 

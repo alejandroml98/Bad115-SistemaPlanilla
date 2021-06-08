@@ -17,8 +17,8 @@ class CheckActive
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            if(!Auth::user()->activo==1){
-                return redirect('home');
+            if(!Auth::user()->activo==0){
+                return redirect('inactivo');
             }
         }                 
         return $next($request);
