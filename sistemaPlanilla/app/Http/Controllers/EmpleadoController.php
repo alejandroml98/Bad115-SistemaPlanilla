@@ -182,13 +182,24 @@ class EmpleadoController extends Controller
     {
         $user->activo=true;
         $user->save();
-        dd($user);
+        $data = array('name'=>$user->name);
+        //Para enviar correo de confirmacion de nuevo
+        Mail::send('Mail.activar', $data, function ($message) use ($data){
+            $message->to($user->email, $user->name);
+            $message->subject('Activación de su cuenta');            
+        });        
     }
 
     public function desactivar(User $user)
     {
         $user->activo=false;
-        $user->save();
+        $user->save();        
+        $data = array('name'=>$user->name, 'explicacion'=>$explicacion);
+        //Para enviar correo de confirmacion de nuevo
+        Mail::send('Mail.desactivar', $data, function ($message) use ($data){
+            $message->to($user->email, $user->name);
+            $message->subject('Desactivación de su cuenta');            
+        });        
         dd($user->name);
     }
 
@@ -198,10 +209,15 @@ class EmpleadoController extends Controller
         //Solicitar proceso de activacion por correo
         $data = array('name'=>$user->name, 'explicacion'=>$explicacion);
         //Para enviar correo de confirmacion de nuevo
-        Mail::send('Mail.evaluacionFase1', $data, function ($message) use ($data){
+        Mail::send('Mail.pediractivacion', $data, function ($message) use ($data){
             $message->to("admin@gmail.com", "Admin");
             $message->subject('Proceso de reactivación de cuenta');            
         });
         dd($user);
-    }    
+    }
+
+    public function inactivo()
+    {
+        return view('auth.active');
+    }
 }
