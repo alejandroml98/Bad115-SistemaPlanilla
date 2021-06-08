@@ -25,7 +25,8 @@
     <select name="idTipoUnidadPadre" id="idTipoUnidadPadre">
         <option value="">Tipo Unidad Padre</option>
         @foreach ($tiposUnidades as $tipoUnidad)
-            @if ($tipoUnidadSeleccionada -> idtipounidadpadre == $tipoUnidad -> idtipounidad)
+            @if ($tipoUnidadSeleccionada -> idtipounidad == $tipoUnidad -> idtipounidad || $tipoUnidadSeleccionada -> idtipounidad == $tipoUnidad -> idtipounidadpadre)
+            @elseif ($tipoUnidadSeleccionada -> idtipounidadpadre == $tipoUnidad -> idtipounidad)
                 <option value="{{ $tipoUnidad -> idtipounidad }}" selected>{{ $tipoUnidad -> nombretipounidad }}</option>
             @else
                 <option value="{{ $tipoUnidad -> idtipounidad }}">{{ $tipoUnidad -> nombretipounidad }}</option>
