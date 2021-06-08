@@ -58,16 +58,8 @@
             <!-- start: search & user box -->
             <div class="header-right">
                 @auth
-                @if (Auth::user()->activo==1)
-                <form action="pages-search-results.html" class="search nav-form">
-                    <div class="input-group input-search">
-                        <input type="text" class="form-control" name="q" id="q" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-                        </span>
-                    </div>
-                </form>
-
+                <div id="MyClockDisplay" class="search nav-form text-right" onload="showTime()"></div>
+                
                 <span class="separator"></span>
 
                 <div id="userbox" class="userbox">
@@ -145,7 +137,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="mailbox-folder.html">
+                                    <a href="{{ route('centrocostos.index') }}">
                                         <i class="fa fa-empire" aria-hidden="true"></i>
                                         <span>Centro de Costos</span>
                                     </a>

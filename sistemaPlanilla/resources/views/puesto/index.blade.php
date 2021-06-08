@@ -16,9 +16,9 @@
             <thead>
                 <tr>
                     <th>Código</th>
-                    <th class="w-50">Puesto</th>
+                    <th class="w-25">Puesto</th>
                     <th style="width: 1%;">¿Administrativo?</th>
-                    <th>Salario Mínimo - Salario Máximo</th>
+                    <th class="w-25">Salario Mínimo - Salario Máximo</th>
                     <th style="width: 1%;">Acciones</th>
                 </tr>
             </thead>
