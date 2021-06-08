@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CentroCostos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CentroCostosController extends Controller
 {
@@ -46,10 +47,19 @@ class CentroCostosController extends Controller
             "unique" => 'El :attribute que escribió ya existe',
             "min" => 'El :attribute debe ser mayor a 0',
         ];
-        $this->validate($request, $campos, $mensaje);
-        $centrocostos = request()->except('_token');
-        CentroCostos::insert($centrocostos);
-        return redirect('centrocostos')->with('mensaje', 'Presupuesto Inicial Asignado');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', 'crear');
+        }
+        else{
+            $centrocostos = request()->except('_token');
+            CentroCostos::insert($centrocostos);
+            return redirect('centrocostos')->with('mensaje', 'Presupuesto Inicial Asignado');
+        }
+        
 
     }
 
@@ -94,11 +104,18 @@ class CentroCostosController extends Controller
             "unique" => 'El :attribute que escribió ya existe',
             "min" => 'El :attribute debe ser mayor a 0',
         ];
-        $this->validate($request, $campos, $mensaje);
-        $centrocostos = request()->except(['_token', '_method']);
-        CentroCostos::where('idcentrocostos', '=', $id)->update( $centrocostos);
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', ('editar'.$id));
+        }
+        else {
+            $centrocostos = request()->except(['_token', '_method']);
+            CentroCostos::where('idcentrocostos', '=', $id)->update( $centrocostos);
             return redirect('centrocostos')->with('mensaje', 'Presupuesto Inicial Modificado');
- 
+        }     
     }
 
     /**

@@ -134,7 +134,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="mailbox-folder.html">
+                                    <a href="{{ route('centrocostos.index') }}">
                                         <i class="fa fa-empire" aria-hidden="true"></i>
                                         <span>Centro de Costos</span>
                                     </a>
