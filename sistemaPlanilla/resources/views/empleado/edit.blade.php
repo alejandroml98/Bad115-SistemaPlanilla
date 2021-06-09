@@ -11,3 +11,7 @@
 <h1>DOCUMENTOS ASOCIADOS</h1>
 <a href="{{ url('/tipodocumentoempleado/create', [$empleado -> codigoempleado]) }}">Agregar Documento</a>
 @include('tipodocumentoempleado.index')
+<!-- Seccion Descuentos -->
+<h1>DESCUENTOS DESIGNADOS</h1>
+<a href="{{ url('/tipodescuentoempleado/create', [$empleado -> codigoempleado]) }}">Agregar Descuento</a>
+@include('tipodescuentoempleado.index')

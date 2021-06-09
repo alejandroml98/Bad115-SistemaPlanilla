@@ -13,6 +13,7 @@ use App\Pais;
 use App\Puesto;
 use App\Region;
 use App\SubRegion;
+use App\TipoDescuento;
 use App\TipoDocumento;
 use App\User;
 use Illuminate\Database\QueryException;
@@ -124,9 +125,12 @@ class EmpleadoController extends Controller
         //Para Documentos
         $tiposDocumentosEmpleados = DB::table('tipodocumento_empleados')->where('codigoempleado','=',$id)->get();
         $tiposDocumentos = TipoDocumento::all();
+        //Para Descuentos
+        $tiposDescuentosEmpleados = DB::table('tipodescuento_empleados')->where('codigoempleado','=',$id)->get();
+        $tiposDescuentos = TipoDescuento::all();
         return view('empleado.edit', compact('direcciones', 'paises', 'regiones', 
         'subRegiones', 'generos', 'estadosCiviles', 'puestos', 'empresas', 'usuarios', 'empleado',
-        'cuentasBancarias', 'bancos', 'tiposDocumentosEmpleados', 'tiposDocumentos'));
+        'cuentasBancarias', 'bancos', 'tiposDocumentosEmpleados', 'tiposDocumentos', 'tiposDescuentosEmpleados', 'tiposDescuentos'));
     }
 
     /**

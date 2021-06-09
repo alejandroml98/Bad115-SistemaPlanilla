@@ -52,7 +52,6 @@ Route::resource('cuentabancaria', 'CuentaBancariaController');
 Route::get('/cuentabancaria/create/{empleado}', 'CuentaBancariaController@create')->name('cuentabancaria.agregar');
 Route::resource('tipodocumentoempleado', 'TipoDocumentoEmpleadoController');
 Route::get('/tipodocumentoempleado/create/{empleado}', 'TipoDocumentoEmpleadoController@create')->name('tipodocumentoempleado.agregar');
-
 //Activar y desactivar cuentas de usuarios
 Route::put('/usuario/activar/{user}', 'EmpleadoController@activar')->name('empleado.activar');
 Route::put('/usuario/desactivar/{user}', 'EmpleadoController@desactivar')->name('empleado.desactivar');
