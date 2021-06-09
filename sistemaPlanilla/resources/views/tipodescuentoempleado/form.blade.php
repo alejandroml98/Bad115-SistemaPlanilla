@@ -16,6 +16,7 @@
         {{ 'Modificar Descuento para ' }}{{ $empleado -> primernombre }}{{ ' ' }}{{ $empleado -> segundonombre }}{{ ' ' }}{{ $empleado -> apellidopaterno }}{{ ' ' }}{{ $empleado -> apellidomaterno }}{{ ' ' }}{{ $empleado -> apellidocasado }}
     @endif
 </h2>
+
 @if ($mode == 'create')    
     <input type="text" hidden name="codigoEmpleado" id="codigoEmpleadoCreate" value="{{ $empleado -> codigoempleado }}">
     <select name="idTipoDescuento" id="idTipoDescuento">

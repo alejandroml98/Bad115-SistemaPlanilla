@@ -47,7 +47,7 @@ Route::resource('tipounidad', 'TipoUnidadController');
 Route::resource('unidad', 'UnidadController');
 Route::resource('empleado', 'EmpleadoController');
 Route::resource('ventasempleado', 'VentasEmpleadoController');
-Route::get('ventasempleado/create/{empleado}', 'VentasEmpleadoController@obtenerRegiones');
+Route::get('ventasempleado/create/{empleado}', 'VentasEmpleadoController@obtenerEmpleados');
 Route::resource('cuentabancaria', 'CuentaBancariaController');
 Route::get('/cuentabancaria/create/{empleado}', 'CuentaBancariaController@create')->name('cuentabancaria.agregar');
 Route::resource('tipodocumentoempleado', 'TipoDocumentoEmpleadoController');

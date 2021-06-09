@@ -6,6 +6,8 @@ use App\Empleado;
 use App\VentasEmpleado;
 use Illuminate\Http\Request;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 class VentasEmpleadoController extends Controller
 {
     /**
@@ -26,10 +28,11 @@ class VentasEmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($codigoempleado)
     {
         $empleados = Empleado::all();
-        return view('ventasempleados.create', compact('empleados'));
+        $ventasEmpleado = VentasEmpleado::all();
+        return view('ventasempleados.create', compact('empleados', 'ventasEmpleado'));
 
     }
 
@@ -42,9 +45,9 @@ class VentasEmpleadoController extends Controller
     public function store(Request $request)
     {
         $campos = [
-            'codigoEmpleado' => ['required', 'int'],
+            'codigoEmpleado' => ['required'],
             'valorVenta' => ['required','between:0,100.00', 'min:0'],
-            'fechaVenta' => ['required','between:0,100.00', 'min:0']
+            'fechaVenta' => ['required']
         ];
         $mensaje = [
             "required" => 'El :attribute es requerido',
@@ -57,12 +60,12 @@ class VentasEmpleadoController extends Controller
         {
             Empleado::findOrFail($data['codigoEmpleado']);
             VentasEmpleado::insert($data);
-            return redirect('ventasempleado')->with('mensaje', 'Ventas Asignadas');         
+            return redirect('ventasempleado')->with('mensaje', 'Venta ha sido Asignada');         
         }    
         catch(ModelNotFoundException $e)
         {
             return redirect('ventasempleado')->with('mensaje', 'Empleado No Encontrado');
-        }
+        }  
     }
 
     /**
@@ -96,9 +99,31 @@ class VentasEmpleadoController extends Controller
      * @param  \App\VentasEmpleado  $ventasEmpleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, VentasEmpleado $ventasEmpleado)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'codigoEmpleado' => ['required'],
+            'valorVenta' => ['required','between:0,100.00', 'min:0'],
+            'fechaVenta' => ['required']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $data = request()->except('_token');
+        try
+        {
+            Empleado::findOrFail($data['idTipoRegion']);
+            $pais = request()->except(['_token', '_method']);
+            VentasEmpleado::where('idventasempleado', '=', $id)->update($pais);
+            return redirect('pais')->with('mensaje', 'País Modificado');
+        }    
+        catch(ModelNotFoundException $e)
+        {
+            return redirect('ventasempleado')->with('mensaje', 'Empleado No Encontrado');
+        }  
     }
 
     /**
@@ -113,7 +138,7 @@ class VentasEmpleadoController extends Controller
         return redirect('ventasempleado')->with('mensaje', 'Valor de la Venta Eliminado');
     }
 
-    public function obtenerRegiones(VentasEmpleado $ventasEmpleado)
+    public function obtenerEmpleados(VentasEmpleado $ventasEmpleado)
     {
         return DB::table('empleados')->where('idventasempleado', $ventasEmpleado -> idventasempleado)->get();
     }
