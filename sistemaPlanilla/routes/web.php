@@ -60,6 +60,8 @@ Route::resource('profesionempleado', 'ProfesionEmpleadoController');
 Route::get('/profesionempleado/create/{empleado}', 'ProfesionEmpleadoController@create')->name('tipoingresosempleado.agregar');
 Route::resource('unidadempleado', 'UnidadEmpleadoController');
 Route::get('/unidadempleado/create/{empleado}', 'UnidadEmpleadoController@create')->name('unidadempleado.agregar');
+Route::resource('unidadcentrocostos', 'UnidadCentroCostosController');
+Route::get('/unidadcentrocostos/create/{centrocostos}', 'UnidadCentroCostosController@create')->name('unidadcentrocostos.agregar');
 //Activar y desactivar cuentas de usuarios
 Route::put('/usuario/activar/{user}', 'EmpleadoController@activar')->name('empleado.activar');
 Route::put('/usuario/desactivar/{user}', 'EmpleadoController@desactivar')->name('empleado.desactivar');
