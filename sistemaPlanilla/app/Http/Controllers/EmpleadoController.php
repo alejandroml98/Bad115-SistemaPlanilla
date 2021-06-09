@@ -15,6 +15,7 @@ use App\Region;
 use App\SubRegion;
 use App\TipoDescuento;
 use App\TipoDocumento;
+use App\TipoIngreso;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -128,9 +129,13 @@ class EmpleadoController extends Controller
         //Para Descuentos
         $tiposDescuentosEmpleados = DB::table('tipodescuento_empleados')->where('codigoempleado','=',$id)->get();
         $tiposDescuentos = TipoDescuento::all();
+        //Para Ingresos
+        $tiposIngresosEmpleados = DB::table('tipoingresos_empleados')->where('codigoempleado','=',$id)->get();
+        $tiposIngresos = TipoIngreso::all();
         return view('empleado.edit', compact('direcciones', 'paises', 'regiones', 
         'subRegiones', 'generos', 'estadosCiviles', 'puestos', 'empresas', 'usuarios', 'empleado',
-        'cuentasBancarias', 'bancos', 'tiposDocumentosEmpleados', 'tiposDocumentos', 'tiposDescuentosEmpleados', 'tiposDescuentos'));
+        'cuentasBancarias', 'bancos', 'tiposDocumentosEmpleados', 'tiposDocumentos', 'tiposDescuentosEmpleados', 'tiposDescuentos',
+        'tiposIngresosEmpleados', 'tiposIngresos'));
     }
 
     /**
