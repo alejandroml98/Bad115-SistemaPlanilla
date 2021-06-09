@@ -17,6 +17,7 @@ use App\SubRegion;
 use App\TipoDescuento;
 use App\TipoDocumento;
 use App\TipoIngreso;
+use App\Unidad;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -136,10 +137,13 @@ class EmpleadoController extends Controller
         //Para Profesiones
         $profesionesEmpleados = DB::table('profesion_empleados')->where('codigoempleado','=',$id)->get();
         $profesiones = Profesion::all();
+        //Para Unidades
+        $unidadesEmpleados = DB::table('unidad_empleados')->where('codigoempleado','=',$id)->get();
+        $unidades = Unidad::all();
         return view('empleado.edit', compact('direcciones', 'paises', 'regiones', 
         'subRegiones', 'generos', 'estadosCiviles', 'puestos', 'empresas', 'usuarios', 'empleado',
         'cuentasBancarias', 'bancos', 'tiposDocumentosEmpleados', 'tiposDocumentos', 'tiposDescuentosEmpleados', 'tiposDescuentos',
-        'tiposIngresosEmpleados', 'tiposIngresos', 'profesionesEmpleados', 'profesiones'));
+        'tiposIngresosEmpleados', 'tiposIngresos', 'profesionesEmpleados', 'profesiones', 'unidadesEmpleados', 'unidades'));
     }
 
     /**

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Empleado;
+use App\Unidad;
 use App\UnidadEmpleado;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UnidadEmpleadoController extends Controller
 {
@@ -22,9 +26,22 @@ class UnidadEmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($codigoempleado)
     {
-        //
+        $empleado = Empleado::findOrFail($codigoempleado);
+        $empleados = Empleado::all();
+        $unidadesEmpleado = DB::table('unidad_empleados')->where('codigoempleado', '=', $codigoempleado)->get();    
+        $unidadesTabla = Unidad::all();
+        $unidadesAsignadas = array();
+        foreach($unidadesTabla as $p){
+            foreach($unidadesEmpleado as $pe){
+                if($p -> codigounidad == $pe -> codigounidad){
+                    array_push($unidadesAsignadas, $p);
+                }
+            }
+        }
+        $unidades = $unidadesTabla -> diff($unidadesAsignadas);
+        return view('unidadempleado.create', compact('empleados', 'empleado', 'unidades'));
     }
 
     /**
@@ -35,7 +52,23 @@ class UnidadEmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'codigoUnidad' => ['required']            
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        if (isset($request -> esJefe)) {
+            $request -> merge(['esJefe' => '1']);
+        } else {
+            $request -> merge(['esJefe' => '0']);
+        }
+        $unidadEmpleado = request()->except('_token');
+        UnidadEmpleado::insert($unidadEmpleado);      
+        return redirect()->action('EmpleadoController@edit', $request['codigoEmpleado'])->with('mensaje', 'Unidad Asignada');
     }
 
     /**
@@ -55,9 +88,24 @@ class UnidadEmpleadoController extends Controller
      * @param  \App\UnidadEmpleado  $unidadEmpleado
      * @return \Illuminate\Http\Response
      */
-    public function edit(UnidadEmpleado $unidadEmpleado)
+    public function edit($id)
     {
-        //
+        $unidadEmpleado = UnidadEmpleado::findOrFail($id);
+        $empleado = DB::table('empleados')->where('codigoempleado', '=', $unidadEmpleado -> codigoempleado)->first();                           
+        $unidadesEmpleados = DB::table('unidad_empleados')->where('codigoempleado', '=', $unidadEmpleado -> codigoempleado)->get();            
+        $unidadesTabla = Unidad::all();
+        $unidadesAsignadas = array();        
+        foreach($unidadesTabla as $p){
+            foreach($unidadesEmpleados as $pe){
+                if($p -> codigounidad == $pe -> codigounidad || $unidadEmpleado -> codigounidad == $p -> codigounidad){
+                    array_push($unidadesAsignadas, $p);
+                }
+            }
+        }
+        $unidades = $unidadesTabla -> diff($unidadesAsignadas);
+        $unidadSeleccionada = Unidad::where('codigounidad','=',$unidadEmpleado -> codigounidad)->first();
+        $unidades -> push($unidadSeleccionada);        
+        return view('unidadempleado.edit', compact('unidadEmpleado', 'empleado', 'unidades'));
     }
 
     /**
@@ -67,9 +115,29 @@ class UnidadEmpleadoController extends Controller
      * @param  \App\UnidadEmpleado  $unidadEmpleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UnidadEmpleado $unidadEmpleado)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'codigoUnidad' => ['required']            
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        if (isset($request -> esJefe)) {
+            $request -> merge(['esJefe' => '1']);
+        } else {
+            $request -> merge(['esJefe' => '0']);
+        }
+        $unidadEmpleado = request()->except('_token', '_method');
+        try {
+            UnidadEmpleado::where('idunidadempleado', '=', $id)->update($unidadEmpleado);
+            return redirect()->action('EmpleadoController@edit', $request['codigoEmpleado'])->with('mensaje', 'Unidad Modificada');
+        } catch(QueryException $e) {            
+            return redirect('empleado')->with('mensaje', $e);
+        }
     }
 
     /**
@@ -78,8 +146,9 @@ class UnidadEmpleadoController extends Controller
      * @param  \App\UnidadEmpleado  $unidadEmpleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UnidadEmpleado $unidadEmpleado)
+    public function destroy(Request $request, $id)
     {
-        //
+        UnidadEmpleado::where('idunidadempleado', '=', $id)->delete();
+        return redirect()->action('EmpleadoController@edit', $request['codigoEmpleado'])->with('mensaje', 'Unidad Eliminada');
     }
 }

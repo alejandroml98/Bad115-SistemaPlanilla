@@ -92,12 +92,12 @@ class ProfesionEmpleadoController extends Controller
         $profesionesAsignadas = array();
         foreach($profesionesTabla as $p){
             foreach($profesionesEmpleados as $pe){
-                if($p -> idprofesion == $pe -> idprofesion ||    $profesionEmpleado -> idprofesion == $p -> idprofesion){
+                if($p -> idprofesion == $pe -> idprofesion || $profesionEmpleado -> idprofesion == $p -> idprofesion){
                     array_push($profesionesAsignadas, $p);
                 }
             }
         }
-        $profesiones = $profesionesTabla -> diff($profesionesAsignadas);                   
+        $profesiones = $profesionesTabla -> diff($profesionesAsignadas);                  
         return view('profesionempleado.edit', compact('profesionEmpleado', 'empleado', 'profesiones'));
     }
 

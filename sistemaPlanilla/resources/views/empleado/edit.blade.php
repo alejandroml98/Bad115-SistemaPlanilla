@@ -23,3 +23,7 @@
 <h1>PROFESIONES</h1>
 <a href="{{ url('/profesionempleado/create', [$empleado -> codigoempleado]) }}">Agregar Profesion</a>
 @include('profesionempleado.index')
+<!-- Seccion Unidades -->
+<h1>UNIDADES EN LAS QUE PARTICIPA</h1>
+<a href="{{ url('/unidadempleado/create', [$empleado -> codigoempleado]) }}">Agregar Unidad</a>
+@include('unidadempleado.index')
