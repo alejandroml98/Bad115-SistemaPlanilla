@@ -15,3 +15,11 @@
 <h1>DESCUENTOS DESIGNADOS</h1>
 <a href="{{ url('/tipodescuentoempleado/create', [$empleado -> codigoempleado]) }}">Agregar Descuento</a>
 @include('tipodescuentoempleado.index')
+<!-- Seccion Ingresos -->
+<h1>INGRESOS GENERADOS</h1>
+<a href="{{ url('/tipoingresosempleado/create', [$empleado -> codigoempleado]) }}">Agregar Ingreso</a>
+@include('tipoingresoempleado.index')
+<!-- Seccion Ingresos -->
+<h1>PROFESIONES</h1>
+<a href="{{ url('/profesionempleado/create', [$empleado -> codigoempleado]) }}">Agregar Profesion</a>
+@include('profesionempleado.index')
