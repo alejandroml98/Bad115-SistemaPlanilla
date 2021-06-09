@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Empleado;
 use App\VentasEmpleado;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,10 @@ class VentasEmpleadoController extends Controller
      */
     public function index()
     {
-        //
+        $empleados = Empleado::all();
+        $ventasEmpleado = VentasEmpleado::all();
+        return view('ventasempleados.index', compact('empleados', 'ventasEmpleado'));
+
     }
 
     /**
@@ -24,7 +28,9 @@ class VentasEmpleadoController extends Controller
      */
     public function create()
     {
-        //
+        $empleados = Empleado::all();
+        return view('ventasempleados.create', compact('empleados'));
+
     }
 
     /**
@@ -35,7 +41,28 @@ class VentasEmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'codigoEmpleado' => ['required', 'int'],
+            'valorVenta' => ['required','between:0,100.00', 'min:0'],
+            'fechaVenta' => ['required','between:0,100.00', 'min:0']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $data = request()->except('_token');
+        try
+        {
+            Empleado::findOrFail($data['codigoEmpleado']);
+            VentasEmpleado::insert($data);
+            return redirect('ventasempleado')->with('mensaje', 'Ventas Asignadas');         
+        }    
+        catch(ModelNotFoundException $e)
+        {
+            return redirect('ventasempleado')->with('mensaje', 'Empleado No Encontrado');
+        }
     }
 
     /**
@@ -55,9 +82,11 @@ class VentasEmpleadoController extends Controller
      * @param  \App\VentasEmpleado  $ventasEmpleado
      * @return \Illuminate\Http\Response
      */
-    public function edit(VentasEmpleado $ventasEmpleado)
+    public function edit($id)
     {
-        //
+        $empleados = Empleado::all();
+        $ventasEmpleado = VentasEmpleado::findOrFail($id);    
+        return view('ventasempleado.edit', compact('empleados', 'ventasEmpleado'));
     }
 
     /**
@@ -78,8 +107,14 @@ class VentasEmpleadoController extends Controller
      * @param  \App\VentasEmpleado  $ventasEmpleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VentasEmpleado $ventasEmpleado)
+    public function destroy($id)
     {
-        //
+        VentasEmpleado::where('idventasempleado', '=', $id)->delete();
+        return redirect('ventasempleado')->with('mensaje', 'Valor de la Venta Eliminado');
+    }
+
+    public function obtenerRegiones(VentasEmpleado $ventasEmpleado)
+    {
+        return DB::table('empleados')->where('idventasempleado', $ventasEmpleado -> idventasempleado)->get();
     }
 }
