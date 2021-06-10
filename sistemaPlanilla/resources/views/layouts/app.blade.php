@@ -145,6 +145,29 @@
                                 </li>
                                 <li class="nav-parent">
                                     <a>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <span>Catálogos</span>
+                                    </a>
+                                    <ul class="nav nav-children">
+                                        <li>
+                                            <a href="{{ route('profesion.index') }}">
+                                                Profesiones
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('catalogocomision.index') }}">
+                                                Comisiones
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="ui-elements-tabs.html">
+                                                Enlace 3
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent">
+                                    <a>
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         @role('writer')
                                             <span>Empleados</span>
@@ -174,6 +197,12 @@
                                             </a>
                                         </li>
                                     </ul>
+                                </li>
+                                <li>
+                                    <a href="{{ route('ventasempleado.index') }}">
+                                        <i class="fa fa-dollar" aria-hidden="true"></i>
+                                        <span>Ventas</span>
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('puesto.index') }}">
@@ -212,24 +241,6 @@
                                 </li>
                                 <li class="nav-parent">
                                     <a>
-                                        <i class="fa fa-money" aria-hidden="true"></i>
-                                        <span>Comisiones</span>
-                                    </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a href="tables-basic.html">
-                                                Enlace 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="tables-advanced.html">
-                                                Enlace 2
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-parent">
-                                    <a>
                                         <i class="fa fa-users" aria-hidden="true"></i>
                                         <span>Usuarios</span>
                                     </a>
@@ -245,12 +256,6 @@
                                             </a>
                                         </li>
                                     </ul>
-                                </li>
-                                <li>
-                                    <a href="{{ route('profesion.index') }}">
-                                        <i class="fa fa-briefcase" aria-hidden="true"></i>
-                                        <span>Catalogo de profesiones</span>
-                                    </a>
                                 </li>
                                 <li class="nav-parent">
                                     <a>
