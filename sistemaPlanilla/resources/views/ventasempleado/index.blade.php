@@ -2,7 +2,7 @@
     Session::get('mensaje')
 }}    
 @endif
-<a href="{{ url('/pais/create') }}">Agregar País</a>
+<a href="{{ url('/ventasempleado/create') }}">Agregar Venta</a>
 <table class="table table-light table-bordered">
     <thead class="thead-dark">
         <tr>
@@ -14,12 +14,12 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($ventasEmpleado as $ventaEmpleado)
+        @foreach ($ventasEmpleados as $ventaEmpleado)
             <tr>
                 <td>{{ $ventaEmpleado -> idventasempleado }}</td>
                 @foreach ($empleados as $empleado)
-                    @if ($ventasEmpleado -> codigoempleado == $empleado -> codigoempleado)
-                        <td>{{ $empleado -> codigoempleado }}</td>
+                    @if ($ventaEmpleado -> codigoempleado == $empleado -> codigoempleado)
+                        <td>{{ $empleado -> codigoempleado }}-{{ $empleado -> primernombre }}{{ ' ' }}{{ $empleado -> apellidopaterno }}</td>
                     @endif
                 @endforeach
                 <td>{{ $ventaEmpleado -> valorventa }}</td>

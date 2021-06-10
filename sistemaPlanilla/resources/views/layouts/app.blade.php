@@ -81,7 +81,7 @@
                         <ul class="list-unstyled">
                             <li class="divider"></li>
                             <li>
-                                <a role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i> Perfil</a>
+                                <a href="{{ url('/profile/') }}" role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i> Perfil</a>
                             </li>
                             <!--<li>
                                 <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Bloquear pantalla</a>

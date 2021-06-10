@@ -8,4 +8,5 @@ class VentasEmpleado extends Model
 {
     protected $primaryKey = "idventasempleado";
     protected $table = 'ventas_empleados';
+    protected $dates = ['fechaventa'];
 }
