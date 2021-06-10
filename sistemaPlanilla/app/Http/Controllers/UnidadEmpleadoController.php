@@ -53,12 +53,13 @@ class UnidadEmpleadoController extends Controller
     public function store(Request $request)
     {
         $campos = [
-            'codigoUnidad' => ['required']            
+            'codigoUnidad' => ['required'],
+            'codigoEmpleado' => ['required', 'unique:unidad_empleados']
         ];
         $mensaje = [
             "required" => 'El :attribute es requerido',
             "regex" => 'El :attribute no acepta números o caracteres especiales',
-            "unique" => 'El :attribute que escribió ya existe'
+            "unique" => 'Solo puede pertenece a una unidad'
         ];
         $this->validate($request, $campos, $mensaje);
         if (isset($request -> esJefe)) {
@@ -118,12 +119,13 @@ class UnidadEmpleadoController extends Controller
     public function update(Request $request, $id)
     {
         $campos = [
-            'codigoUnidad' => ['required']            
+            'codigoUnidad' => ['required'],
+            'codigoEmpleado' => ['required', 'unique:unidad_empleados,codigoempleado,' . $id.',idunidadempleado']
         ];
         $mensaje = [
             "required" => 'El :attribute es requerido',
             "regex" => 'El :attribute no acepta números o caracteres especiales',
-            "unique" => 'El :attribute que escribió ya existe'
+            "unique" => 'Solo puede pertenece a una unidad'
         ];
         $this->validate($request, $campos, $mensaje);
         if (isset($request -> esJefe)) {
