@@ -85,3 +85,4 @@ Route::delete('/Prueba/eliminar','PruebaController@Confirmacion')->name('confirm
 Route::get('/profile', 'UserController@profile')->middleware('auth')->name('profile');  
 Route::put('/profile/update', 'UserController@update')->middleware('auth')->name('profile.update');  
 Route::put('/profile/changePassword', 'UserController@changePassword')->middleware('auth')->name('profile.changePassword');  
+Route::get('/profile/subordinados/{idjefe}', 'UserController@obtenerSubordinados')->middleware('auth')->name('profile.obtenerSubordinados');  

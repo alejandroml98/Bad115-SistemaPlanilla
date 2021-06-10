@@ -33,8 +33,9 @@
                 @if ($unidad -> codigounidad == $j -> codigounidad && $j -> codigoempleado == $ej -> codigoempleado)
                     @if ($empleado -> codigoempleado == $ej -> codigoempleado)
                         <p>{{ $unidad -> nombreunidad }} - Usted es el jefe</p>
+                        <p><a href="{{ url('/profile/subordinados/'.$empleado -> codigoempleado) }}">Ver subordinados</a></p>    
                     @else
-                        <p>{{ $unidad -> nombreunidad }} - {{ $ej -> primernombre }}{{ ' ' }}{{ $ej -> apellidopaterno }}</p>
+                        <p>{{ $unidad -> nombreunidad }} - {{ $ej -> primernombre }}{{ ' ' }}{{ $ej -> apellidopaterno }}</p>                        
                     @endif
                 @endif
             @endforeach        
