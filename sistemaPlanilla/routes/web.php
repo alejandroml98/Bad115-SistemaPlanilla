@@ -81,3 +81,7 @@ Route::get('/casita2','PruebaController@index2');
 //Route::get('/Prueba/Confirmacion','PruebaController@Confirmacion');
 Route::delete('/Prueba/eliminar','PruebaController@Confirmacion')->name('confirmacion-prueba');
 
+//User Routes
+Route::get('/profile', 'UserController@profile')->middleware('auth')->name('profile');  
+Route::put('/profile/update', 'UserController@update')->middleware('auth')->name('profile.update');  
+Route::put('/profile/changePassword', 'UserController@changePassword')->middleware('auth')->name('profile.changePassword');  
