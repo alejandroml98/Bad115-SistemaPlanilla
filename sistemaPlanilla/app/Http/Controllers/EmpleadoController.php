@@ -12,6 +12,7 @@ use App\Genero;
 use App\Pais;
 use App\Profesion;
 use App\Puesto;
+use App\RangoSalarial;
 use App\Region;
 use App\SubRegion;
 use App\TipoDescuento;
@@ -100,9 +101,16 @@ class EmpleadoController extends Controller
             "unique" => 'El :attribute que escribió ya existe'
         ];
         $this->validate($request, $campos, $mensaje);
-        $empleado = request()->except('_token');
-        Empleado::insert($empleado);
-        return redirect('empleado')->with('mensaje', 'Empleado Creado');
+        //Validando que el salario corresponde al rango salarial
+        $puesto = Puesto::where('codigopuesto','=', $request['codigoPuesto'])->first();
+        $rangoSalarial = RangoSalarial::where('idrangosalarial','=',$puesto -> idrangosalarial)->first();
+        if($request['salario'] >= $rangoSalarial -> salariominimo && $request['salario'] <= $rangoSalarial -> salariomaximo){
+            $empleado = request()->except('_token');
+            Empleado::insert($empleado);
+            return redirect('empleado')->with('mensaje', 'Empleado Creado');
+        } else {
+            return redirect()->action('EmpleadoController@create')->with('mensaje', 'El salario no está en el rango correspondiente del puesto $'.$rangoSalarial -> salariominimo.' - $'.$rangoSalarial -> salariomaximo);
+        }
     }
 
     /**
@@ -189,14 +197,22 @@ class EmpleadoController extends Controller
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
         ];
-        $this->validate($request, $campos, $mensaje);                
-        $empleado = request()->except('_token','_method', 'codigoEmpleadoAnterior');
-        try {
-            Empleado::where('codigoempleado', '=', $request -> codigoEmpleadoAnterior)->update($empleado);
-            return redirect('empleado')->with('mensaje', 'Empleado Modificado');
-        } catch(QueryException $e) {            
-            return redirect('empleado')->with('mensaje', 'Código Empleado ya existente');
-        }
+        $this->validate($request, $campos, $mensaje); 
+        //Validando que el salario corresponde al rango salarial
+        $puesto = Puesto::where('codigopuesto','=', $request['codigoPuesto'])->first();
+        $rangoSalarial = RangoSalarial::where('idrangosalarial','=',$puesto -> idrangosalarial)->first();
+        if($request['salario'] >= $rangoSalarial -> salariominimo && $request['salario'] <= $rangoSalarial -> salariomaximo){
+            $empleado = request()->except('_token','_method', 'codigoEmpleadoAnterior');
+            try {
+                Empleado::where('codigoempleado', '=', $request -> codigoEmpleadoAnterior)->update($empleado);
+                return redirect('empleado')->with('mensaje', 'Empleado Modificado');
+            } catch(QueryException $e) {            
+                return redirect('empleado')->with('mensaje', 'Código Empleado ya existente');
+            }
+        } else {
+            return redirect()->action('EmpleadoController@edit', $request['codigoEmpleado'])->with('mensaje', 'El salario no está en el rango correspondiente del puesto $'.$rangoSalarial -> salariominimo.' - $'.$rangoSalarial -> salariomaximo);            
+        }               
+        
     }
 
     /**
