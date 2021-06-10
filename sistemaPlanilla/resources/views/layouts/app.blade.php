@@ -210,28 +210,11 @@
                                         <span>Puestos de la Empresa</span>
                                     </a>
                                 </li>
-                                <li class="nav-parent">
-                                    <a>
+                                <li>
+                                    <a href="{{ route('unidad.index') }}">
                                         <i class="fa fa-sitemap" aria-hidden="true"></i>
                                         <span>Unidad Organizacional</span>
                                     </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a href="ui-elements-typography.html">
-                                                Enlace 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="ui-elements-icons.html">
-                                                Enlace 2
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="ui-elements-tabs.html">
-                                                Enlace 3
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li>
                                     <a href="{{ route('empresa.index') }}">
