@@ -43,6 +43,8 @@ class PaisController extends Controller
      */
     public function store(Request $request)
     {
+        
+
         $campos = [
             'nombrePais' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:pais'],
             'idTipoRegion' => ['required', 'int']
@@ -52,18 +54,18 @@ class PaisController extends Controller
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
         ];
-        $this->validate($request, $campos, $mensaje);
+        $this->validate($request, $campos, $mensaje); 
         $data = request()->except('_token');
         try
         {
             TipoRegion::findOrFail($data['idTipoRegion']);
             Pais::insert($data);
-            return redirect('pais')->with('mensaje', 'País Creado');         
+            return redirect('pais')->with('mensaje', 'País Creado');       
         }    
         catch(ModelNotFoundException $e)
         {
             return redirect('pais')->with('mensaje', 'Tipo Región No Encontrada');
-        }        
+        }    
     }
 
     /**

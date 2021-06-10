@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->boolean('activo');
             $table->timestamps();
-            $table->string('en_activacion')->nullable();
+            $table->timestamp('en_proceso')->nullable();
         });
     }
 

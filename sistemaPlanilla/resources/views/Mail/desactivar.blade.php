@@ -7,12 +7,8 @@
 </head>
 <body>
     <div>
-        <p>
-            Por este medio se solicita una activación del usuario: {{$name}}.            
-        </p>        
-    </div>
-    <a href="{{url('usuario/proceso/'.$id)}}">
-        Proceso de reactivación de cuenta
-    </a>
+        <h2>Su cuenta ha sido desactivada.</h2>
+        <p>Si piensa que hay un problema, inicie un proceso de activación.</p>
+    </div>    
 </body>
 </html>

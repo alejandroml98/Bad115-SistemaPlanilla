@@ -1,3 +1,12 @@
+@extends('layouts.app')
+@push('vendorcss')
+<!-- Specific Page Vendor CSS -->
+<link rel="stylesheet" href="{{ asset('assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/select2/select2.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" />
+@endpush
+@section('content')
 <form action="{{ url('/empleado/'.$empleado -> codigoempleado) }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     {{ method_field('PATCH') }}
@@ -27,3 +36,11 @@
 <h1>UNIDADES EN LAS QUE PARTICIPA</h1>
 <a href="{{ url('/unidadempleado/create', [$empleado -> codigoempleado]) }}">Agregar Unidad</a>
 @include('unidadempleado.index')
+@endsection
+@push('vendorjs')
+<!-- Specific Page Vendor -->
+<script src="{{ asset('assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js') }}"></script>
+<script src="{{ asset('assets/vendor/select2/select2.js') }}"></script>
+<script src="{{ asset('assets/vendor/select2/select2_locale_es.js') }}"></script>
+<script src="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js') }}"></script>
+@endpush

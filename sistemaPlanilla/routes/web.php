@@ -63,9 +63,14 @@ Route::get('/unidadempleado/create/{empleado}', 'UnidadEmpleadoController@create
 Route::resource('unidadcentrocostos', 'UnidadCentroCostosController');
 Route::get('/unidadcentrocostos/create/{centrocostos}', 'UnidadCentroCostosController@create')->name('unidadcentrocostos.agregar');
 //Activar y desactivar cuentas de usuarios
-Route::put('/usuario/activar/{user}', 'EmpleadoController@activar')->name('empleado.activar');
-Route::put('/usuario/desactivar/{user}', 'EmpleadoController@desactivar')->name('empleado.desactivar');
-Route::get('/usuario/proceso', 'EmpleadoController@dpedirActivacion')->name('empleado.desactivar');
+//put
+Route::get('/usuario/activar/{user}', 'EmpleadoController@activar')->name('empleado.activar');
+Route::get('/usuario/desactivar/{user}', 'EmpleadoController@desactivar')->name('empleado.desactivar');
+//post
+Route::get('/usuario/proceso', 'EmpleadoController@pedirActivacion')->name('empleado.proceso_enviar');
+//get
+Route::get('/usuario/proceso/{user}', 'EmpleadoController@perfilInactivo')->name('empleado.proceso_perfil');
+Route::get('inactivos', 'EmpleadoController@inactivos')->name('empleado.inactivos');
 Route::get('inactivo', 'EmpleadoController@inactivo');
 
 //Rutas de direccion

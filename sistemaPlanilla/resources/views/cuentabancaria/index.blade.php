@@ -1,38 +1,49 @@
-@if (Session::has('mensaje')){{
-    Session::get('mensaje')
-}}    
-@endif
-<table class="table table-light table-bordered">
-    <thead class="thead-dark">
-        <tr>
-            <th>ID</th>
-            <th>Número Cuenta</th>
-            <th>Banco</th>
-            <th>Saldo</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($cuentasBancarias as $cuentaBancaria)            
-            <tr>
-                <td>{{ $cuentaBancaria -> idcuentabancaria }}</td>
-                <td>{{ $cuentaBancaria -> cuentabancaria }}</td>
-                @foreach ($bancos as $banco)
+
+<a class="btn btn-primary mb-3" href="{{ url('/cuentabancaria/create', [$empleado -> codigoempleado]) }}" id="btnCrear">
+    Agregar Cuenta Bancaria <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+<section class="panel">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="fa fa-caret-down"></a>
+        </div>
+        <h2 class="panel-title">Cuentas Bancarias Registradas</h2>
+    </header>
+    <div class="panel-body" lang="es">
+        <table class="table table-bordered table-striped mb-none" id="datatable-default">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Número Cuenta</th>
+                    <th>Banco</th>
+                    <th>Saldo</th>
+                    <th style="width: 1%;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($cuentasBancarias as $cuentaBancaria)
+                <tr class="gradeX">
+                    <td>{{ $loop -> iteration}}</td>
+                    <td>{{ $cuentaBancaria -> cuentabancaria }}</td>
+                    @foreach ($bancos as $banco)
                     @if ($banco -> idbanco == $cuentaBancaria -> idbanco)
-                        <td>{{ $banco -> nombrebanco }}</td>
+                    <td>{{ $banco -> nombrebanco }}</td>
                     @endif
+                    @endforeach
+                    <td>{{ $cuentaBancaria -> saldocuentabancaria }}</td>
+                    <td class="text-center">
+                        <a href="{{ url('/cuentabancaria/'.$cuentaBancaria -> idcuentabancaria.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                        <form id="{{ 'formulario-prueba'.$cuentaBancaria -> idcuentabancaria }}" class="btn btn-danger p-0" method="post" action="{{ url('/cuentabancaria/'.$cuentaBancaria -> idcuentabancaria) }}">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $cuentaBancaria -> idcuentabancaria }}', '{{ $cuentaBancaria -> cuentabancaria }}','la cuenta bancaria')">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
                 @endforeach
-                <td>{{ $cuentaBancaria -> saldocuentabancaria }}</td>
-                <td>
-                    <a href="{{ url('/cuentabancaria/'.$cuentaBancaria -> idcuentabancaria.'/edit') }}" class="btn btn-warning">Editar</a>
-                    <form  method="post" action="{{ url('/cuentabancaria/'.$cuentaBancaria -> idcuentabancaria) }}">                
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                        <input type="text" name="codigoEmpleado" hidden value="{{ $cuentaBancaria -> codigoempleado }}">
-                        <button type="submit" onclick="return confirm('¿Borrar de verdad el registro?')">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
+</section>

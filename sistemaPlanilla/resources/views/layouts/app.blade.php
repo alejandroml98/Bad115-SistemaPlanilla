@@ -58,7 +58,6 @@
             <!-- start: search & user box -->
             <div class="header-right">
                 @auth
-                @if (Auth::user()->activo==1)
                 <div id="MyClockDisplay" class="search nav-form text-right" onload="showTime()"></div>
                 
                 <span class="separator"></span>
@@ -70,7 +69,9 @@
                         </figure>
                         <div class="profile-info" data-lock-name="{{ Auth::user()->name }}" data-lock-email="{{ Auth::user()->email }}">
                             <span class="name">{{ Auth::user()->name }}</span>
+                            @if (Auth::user()->activo==1)
                             <span class="role">Poner unidad Organizacional</span>
+                            @endif
                         </div>
 
                         <i class="fa custom-caret"></i>
@@ -82,9 +83,9 @@
                             <li>
                                 <a href="{{ url('/profile/') }}" role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i> Perfil</a>
                             </li>
-                            <li>
+                            <!--<li>
                                 <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Bloquear pantalla</a>
-                            </li>
+                            </li>-->
                             <li>
                                 <a role="menuitem" tabindex="-1" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Cerrar Sesión</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -94,8 +95,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-            @endif
+            </div>            
             @endauth
             <!-- Right Side Of Navbar -->
             <ul class="notifications">
@@ -145,6 +145,29 @@
                                 </li>
                                 <li class="nav-parent">
                                     <a>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <span>Catálogos</span>
+                                    </a>
+                                    <ul class="nav nav-children">
+                                        <li>
+                                            <a href="{{ route('profesion.index') }}">
+                                                Profesiones
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('catalogocomision.index') }}">
+                                                Comisiones
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="ui-elements-tabs.html">
+                                                Enlace 3
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent">
+                                    <a>
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         @role('writer')
                                             <span>Empleados</span>
@@ -176,57 +199,28 @@
                                     </ul>
                                 </li>
                                 <li>
+                                    <a href="{{ route('ventasempleado.index') }}">
+                                        <i class="fa fa-dollar" aria-hidden="true"></i>
+                                        <span>Ventas</span>
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="{{ route('puesto.index') }}">
                                         <i class="fa fa-cubes" aria-hidden="true"></i>
                                         <span>Puestos de la Empresa</span>
                                     </a>
                                 </li>
-                                <li class="nav-parent">
-                                    <a>
+                                <li>
+                                    <a href="{{ route('unidad.index') }}">
                                         <i class="fa fa-sitemap" aria-hidden="true"></i>
                                         <span>Unidad Organizacional</span>
                                     </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a href="ui-elements-typography.html">
-                                                Enlace 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="ui-elements-icons.html">
-                                                Enlace 2
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="ui-elements-tabs.html">
-                                                Enlace 3
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li>
                                     <a href="{{ route('empresa.index') }}">
                                         <i class="fa fa-building" aria-hidden="true"></i>
                                         <span>Empresa</span>
                                     </a>
-                                </li>
-                                <li class="nav-parent">
-                                    <a>
-                                        <i class="fa fa-money" aria-hidden="true"></i>
-                                        <span>Comisiones</span>
-                                    </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a href="tables-basic.html">
-                                                Enlace 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="tables-advanced.html">
-                                                Enlace 2
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="nav-parent">
                                     <a>
@@ -245,12 +239,6 @@
                                             </a>
                                         </li>
                                     </ul>
-                                </li>
-                                <li>
-                                    <a href="{{ route('profesion.index') }}">
-                                        <i class="fa fa-briefcase" aria-hidden="true"></i>
-                                        <span>Catalogo de profesiones</span>
-                                    </a>
                                 </li>
                                 <li class="nav-parent">
                                     <a>
