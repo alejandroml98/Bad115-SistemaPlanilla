@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CatalogoComision;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CatalogoComisionController extends Controller
 {
@@ -36,7 +37,9 @@ class CatalogoComisionController extends Controller
      */
     public function store(Request $request)
     {
-        $campos = [
+       
+
+         $campos = [
             'nombreComision' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:catalogo_comisions'],
             'porcentaje' => ['required','between:0,100.00', 'min:0'],
             'valMinComision' => ['required','between:0,999999', 'min:0', 'lt:valMaxComision'],
@@ -49,12 +52,20 @@ class CatalogoComisionController extends Controller
             "min" => 'El :attribute debe ser mayor a 0',
             "gt" => 'El :attribute debe ser menor que Comision Mínimo',
             "lt" => 'El :attribute debe ser mayor que Comision Máximo' 
-
+           
         ];
-        $this->validate($request, $campos, $mensaje);
-        $comision = request()->except('_token');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', 'crear');
+        }
+        else{
+            $comision = request()->except('_token');
         CatalogoComision::insert($comision);
         return redirect('catalogocomision')->with('mensaje', 'Comision Creado');
+        }
     }
 
     /**
@@ -89,25 +100,35 @@ class CatalogoComisionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $campos = [
-            'nombreComision' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/'],
-            'porcentaje' => ['required','between:0,100.00', 'min:0', 'max:100'],
-            'valMinComision' => ['required','between:0,999999', 'min:0', 'lt:valMaxComision'],
-            'valMaxComision' => ['required','between:0,999999', 'min:0', 'gt:valMinComision']
-        ];
-        $mensaje = [
-            "required" => 'El :attribute es requerido',
-            "regex" => 'El :attribute no acepta números o caracteres especiales',
-            "unique" => 'El :attribute que escribió ya existe',
-            "min" => 'El :attribute debe ser mayor a 0',
-            "gt" => 'El :attribute debe ser menor que Comision Mínimo',
-            "lt" => 'El :attribute debe ser mayor que Comision Máximo'   
+       
 
-        ];
-        $this->validate($request, $campos, $mensaje);
-        $comision = request()->except(['_token', '_method']);
+
+            $campos = [
+                'nombreComision' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/'],
+                'porcentaje' => ['required','between:0,100.00', 'min:0', 'max:100'],
+                'valMinComision' => ['required','between:0,999999', 'min:0', 'lt:valMaxComision'],
+                'valMaxComision' => ['required','between:0,999999', 'min:0', 'gt:valMinComision']
+            ];
+            $mensaje = [
+                "required" => 'El :attribute es requerido',
+                "regex" => 'El :attribute no acepta números o caracteres especiales',
+                "unique" => 'El :attribute que escribió ya existe',
+                "min" => 'El :attribute debe ser mayor a 0',
+                "gt" => 'El :attribute debe ser menor que Comision Mínimo',
+                "lt" => 'El :attribute debe ser mayor que Comision Máximo'           
+            ];
+            $validator = Validator::make($request->all(), $campos, $mensaje);
+            if ($validator->fails()){
+                return back()
+                ->withErrors($validator) // send back all errors to the login form
+                ->withInput()
+                ->with('peticion', ('editar'.$id));
+            }
+            else {
+                $comision = request()->except(['_token', '_method']);
             CatalogoComision::where('idcatalogocomision', '=', $id)->update($comision);
             return redirect('catalogocomision')->with('mensaje', 'Comision Modificada');
+            }    
     }
 
     /**

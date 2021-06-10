@@ -58,7 +58,6 @@
             <!-- start: search & user box -->
             <div class="header-right">
                 @auth
-                @if (Auth::user()->activo==1)
                 <div id="MyClockDisplay" class="search nav-form text-right" onload="showTime()"></div>
                 
                 <span class="separator"></span>
@@ -70,7 +69,9 @@
                         </figure>
                         <div class="profile-info" data-lock-name="{{ Auth::user()->name }}" data-lock-email="{{ Auth::user()->email }}">
                             <span class="name">{{ Auth::user()->name }}</span>
+                            @if (Auth::user()->activo==1)
                             <span class="role">Poner unidad Organizacional</span>
+                            @endif
                         </div>
 
                         <i class="fa custom-caret"></i>
@@ -82,9 +83,9 @@
                             <li>
                                 <a href="{{ url('/profile/') }}" role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i> Perfil</a>
                             </li>
-                            <li>
+                            <!--<li>
                                 <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Bloquear pantalla</a>
-                            </li>
+                            </li>-->
                             <li>
                                 <a role="menuitem" tabindex="-1" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Cerrar Sesión</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -94,8 +95,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-            @endif
+            </div>            
             @endauth
             <!-- Right Side Of Navbar -->
             <ul class="notifications">

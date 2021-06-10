@@ -16,9 +16,9 @@
                     <p>Si quieres volverla activar presiona el siguiente boton:</p>
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Enviar solicitud de reactivación de cuenta') }}                                
-                            </button>
+                            <a href="{{url('usuario/proceso')}}" class="btn btn-primary">
+                                {{ __('Enviar solicitud de reactivación de cuenta') }}
+                            </a>                    
                         </div>
                     </div>
                 </div>
