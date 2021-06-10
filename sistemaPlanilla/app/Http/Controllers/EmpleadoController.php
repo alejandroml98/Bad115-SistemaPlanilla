@@ -51,8 +51,18 @@ class EmpleadoController extends Controller
         $generos = Genero::all();
         $estadosCiviles = EstadoCivil::all();
         $puestos = Puesto::all();
-        $empresas = Empresa::all();
-        $usuarios = User::all();
+        $empresas = Empresa::all();        
+        $usuariosTabla = User::all();
+        $empleado = Empleado::all();
+        $usuariosAsignados = array();
+        foreach($empleado as $emp){
+            foreach($usuariosTabla as $u){
+                if($u -> id == $emp -> iduser){
+                    array_push($usuariosAsignados, $u);
+                }
+            }
+        }
+        $usuarios = $usuariosTabla -> diff($usuariosAsignados);        
         return view('empleado.create', compact('direcciones', 'paises', 'regiones', 
         'subRegiones', 'generos', 'estadosCiviles', 'puestos', 'empresas', 'usuarios'));
     }

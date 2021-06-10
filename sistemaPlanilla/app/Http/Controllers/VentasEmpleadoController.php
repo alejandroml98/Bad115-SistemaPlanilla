@@ -18,8 +18,8 @@ class VentasEmpleadoController extends Controller
     public function index()
     {
         $empleados = Empleado::all();
-        $ventasEmpleado = VentasEmpleado::all();
-        return view('ventasempleados.index', compact('empleados', 'ventasEmpleado'));
+        $ventasEmpleados = VentasEmpleado::all();
+        return view('ventasempleado.index', compact('empleados', 'ventasEmpleados'));
 
     }
 
@@ -28,11 +28,11 @@ class VentasEmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($codigoempleado)
+    public function create()
     {
         $empleados = Empleado::all();
         $ventasEmpleado = VentasEmpleado::all();
-        return view('ventasempleados.create', compact('empleados', 'ventasEmpleado'));
+        return view('ventasempleado.create', compact('empleados', 'ventasEmpleado'));
 
     }
 
@@ -46,8 +46,8 @@ class VentasEmpleadoController extends Controller
     {
         $campos = [
             'codigoEmpleado' => ['required'],
-            'valorVenta' => ['required','between:0,100.00', 'min:0'],
-            'fechaVenta' => ['required']
+            'valorVenta' => ['required','between:0,999999.99', 'min:0'],
+            'fechaVenta' => ['required', 'date']
         ];
         $mensaje = [
             "required" => 'El :attribute es requerido',
@@ -88,8 +88,8 @@ class VentasEmpleadoController extends Controller
     public function edit($id)
     {
         $empleados = Empleado::all();
-        $ventasEmpleado = VentasEmpleado::findOrFail($id);    
-        return view('ventasempleado.edit', compact('empleados', 'ventasEmpleado'));
+        $ventaEmpleado = VentasEmpleado::findOrFail($id);    
+        return view('ventasempleado.edit', compact('empleados', 'ventaEmpleado'));
     }
 
     /**
@@ -103,8 +103,8 @@ class VentasEmpleadoController extends Controller
     {
         $campos = [
             'codigoEmpleado' => ['required'],
-            'valorVenta' => ['required','between:0,100.00', 'min:0'],
-            'fechaVenta' => ['required']
+            'valorVenta' => ['required','between:0,999999.99', 'min:0'],
+            'fechaVenta' => ['required', 'date']
         ];
         $mensaje = [
             "required" => 'El :attribute es requerido',
@@ -112,13 +112,12 @@ class VentasEmpleadoController extends Controller
             "unique" => 'El :attribute que escribió ya existe'
         ];
         $this->validate($request, $campos, $mensaje);
-        $data = request()->except('_token');
+        $data = request()->except('_token', '_method');
         try
         {
-            Empleado::findOrFail($data['idTipoRegion']);
-            $pais = request()->except(['_token', '_method']);
-            VentasEmpleado::where('idventasempleado', '=', $id)->update($pais);
-            return redirect('pais')->with('mensaje', 'País Modificado');
+            Empleado::findOrFail($data['codigoEmpleado']);            
+            VentasEmpleado::where('idventasempleado', '=', $id)->update($data);
+            return redirect('ventasempleado')->with('mensaje', 'Venta Modificada');
         }    
         catch(ModelNotFoundException $e)
         {
@@ -136,10 +135,5 @@ class VentasEmpleadoController extends Controller
     {
         VentasEmpleado::where('idventasempleado', '=', $id)->delete();
         return redirect('ventasempleado')->with('mensaje', 'Valor de la Venta Eliminado');
-    }
-
-    public function obtenerEmpleados(VentasEmpleado $ventasEmpleado)
-    {
-        return DB::table('empleados')->where('idventasempleado', $ventasEmpleado -> idventasempleado)->get();
     }
 }
