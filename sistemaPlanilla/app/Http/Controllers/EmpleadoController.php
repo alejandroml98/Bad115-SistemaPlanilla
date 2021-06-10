@@ -2,18 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Banco;
+use App\CuentaBancaria;
 use App\Direccion;
 use App\Empleado;
 use App\Empresa;
 use App\EstadoCivil;
 use App\Genero;
 use App\Pais;
+use App\Profesion;
 use App\Puesto;
 use App\Region;
 use App\SubRegion;
+use App\TipoDescuento;
+use App\TipoDocumento;
+use App\TipoIngreso;
+use App\Unidad;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class EmpleadoController extends Controller
 {
@@ -43,8 +53,18 @@ class EmpleadoController extends Controller
         $generos = Genero::all();
         $estadosCiviles = EstadoCivil::all();
         $puestos = Puesto::all();
-        $empresas = Empresa::all();
-        $usuarios = User::all();
+        $empresas = Empresa::all();        
+        $usuariosTabla = User::all();
+        $empleado = Empleado::all();
+        $usuariosAsignados = array();
+        foreach($empleado as $emp){
+            foreach($usuariosTabla as $u){
+                if($u -> id == $emp -> iduser){
+                    array_push($usuariosAsignados, $u);
+                }
+            }
+        }
+        $usuarios = $usuariosTabla -> diff($usuariosAsignados);        
         return view('empleado.create', compact('direcciones', 'paises', 'regiones', 
         'subRegiones', 'generos', 'estadosCiviles', 'puestos', 'empresas', 'usuarios'));
     }
@@ -114,8 +134,28 @@ class EmpleadoController extends Controller
         $puestos = Puesto::all();
         $empresas = Empresa::all();
         $usuarios = User::all();
+        //Para Cuenta Bancaria
+        $cuentasBancarias = DB::table('cuenta_bancarias')->where('codigoempleado','=',$id)->get();
+        $bancos = Banco::all();
+        //Para Documentos
+        $tiposDocumentosEmpleados = DB::table('tipodocumento_empleados')->where('codigoempleado','=',$id)->get();
+        $tiposDocumentos = TipoDocumento::all();
+        //Para Descuentos
+        $tiposDescuentosEmpleados = DB::table('tipodescuento_empleados')->where('codigoempleado','=',$id)->get();
+        $tiposDescuentos = TipoDescuento::all();
+        //Para Ingresos
+        $tiposIngresosEmpleados = DB::table('tipoingresos_empleados')->where('codigoempleado','=',$id)->get();
+        $tiposIngresos = TipoIngreso::all();
+        //Para Profesiones
+        $profesionesEmpleados = DB::table('profesion_empleados')->where('codigoempleado','=',$id)->get();
+        $profesiones = Profesion::all();
+        //Para Unidades
+        $unidadesEmpleados = DB::table('unidad_empleados')->where('codigoempleado','=',$id)->get();
+        $unidades = Unidad::all();
         return view('empleado.edit', compact('direcciones', 'paises', 'regiones', 
-        'subRegiones', 'generos', 'estadosCiviles', 'puestos', 'empresas', 'usuarios', 'empleado'));
+        'subRegiones', 'generos', 'estadosCiviles', 'puestos', 'empresas', 'usuarios', 'empleado',
+        'cuentasBancarias', 'bancos', 'tiposDocumentosEmpleados', 'tiposDocumentos', 'tiposDescuentosEmpleados', 'tiposDescuentos',
+        'tiposIngresosEmpleados', 'tiposIngresos', 'profesionesEmpleados', 'profesiones', 'unidadesEmpleados', 'unidades'));
     }
 
     /**
@@ -174,27 +214,58 @@ class EmpleadoController extends Controller
     public function activar(User $user)
     {
         $user->activo=true;
+        $user->en_proceso=null;
         $user->save();
-        dd($user);
+        $data = array('email'=> $user->email, 'name'=>$user->name);
+        //Para enviar correo de confirmacion de nuevo
+        Mail::send('Mail.activar', $data, function ($message) use ($data){
+            $message->to($data['email'], $data['name']);
+            $message->subject('Activación de su cuenta');            
+        });
+        return redirect('/casita3');        
     }
 
     public function desactivar(User $user)
     {
         $user->activo=false;
-        $user->save();
+        $user->save();        
+        $data = array('email'=> $user->email, 'name'=>$user->name);
+        //Para enviar correo de confirmacion de nuevo
+        Mail::send('Mail.desactivar', $data, function ($message) use ($data){
+            $message->to($data['email'], $data['name']);
+            $message->subject('Desactivación de su cuenta');            
+        });       
         dd($user->name);
     }
 
-    public function pedirActivacion(Request $request)
+    public function pedirActivacion()
     {
         $user= Auth::User();
+        $user->en_proceso=now();
+        $user->save();
         //Solicitar proceso de activacion por correo
-        $data = array('name'=>$user->name, 'explicacion'=>$explicacion);
+        $data = array('name'=>$user->name, 'id'=>$user->id);
         //Para enviar correo de confirmacion de nuevo
-        Mail::send('Mail.evaluacionFase1', $data, function ($message) use ($data){
-            $message->to("admin@gmail.com", "Admin");
-            $message->subject('Proceso de reactivación de cuenta');            
+        Mail::send('Mail.pedirActivacion', $data, function ($message) use ($data){
+            $message->to("alead@mailinator.com", "Admin");
+            $message->subject('Solicitud de reactivación de cuenta');            
         });
-        dd($user);
-    }    
+        dd('Pedir Activacion');
+    }
+
+    public function inactivo()
+    {
+        return view('auth.active');
+    }
+
+    public function inactivos()
+    {
+        return User::where('activo', 0)->paginate(5);
+    }
+
+    public function perfilInactivo(User $user)
+    {
+        return $user;       
+    }
+
 }

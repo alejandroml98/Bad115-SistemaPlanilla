@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\CentroCostos;
 use App\TipoUnidad;
 use App\Unidad;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UnidadController extends Controller
 {
@@ -80,7 +82,10 @@ class UnidadController extends Controller
         $tiposUnidades = TipoUnidad::all();
         $unidades = Unidad::all();
         $unidadSeleccionada = Unidad::findOrFail($id);
-        return view('unidad.edit', compact('tiposUnidades', 'unidadSeleccionada', 'unidades'));
+        //Para Centro Costos
+        $unidadesCentroCostos = DB::table('unidad_centrocostos')->where('codigounidad','=',$id)->get();
+        $centrosCostos = CentroCostos::all();
+        return view('unidad.edit', compact('tiposUnidades', 'unidadSeleccionada', 'unidades', 'unidadesCentroCostos', 'centrosCostos'));
     }
 
     /**

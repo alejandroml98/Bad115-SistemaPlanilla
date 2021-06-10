@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\CentroCostos;
+use App\Unidad;
 use App\Unidad_CentroCostos;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UnidadCentroCostosController extends Controller
 {
@@ -22,9 +26,12 @@ class UnidadCentroCostosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($codigounidad)
     {
-        //
+        $unidad = Unidad::findOrFail($codigounidad);
+        $unidades = Unidad::all();
+        $centrosCostos = CentroCostos::all();
+        return view('unidadcentrocostos.create', compact('unidad', 'unidades', 'centrosCostos'));
     }
 
     /**
@@ -35,7 +42,21 @@ class UnidadCentroCostosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = [
+            'idCentroCostos' => ['required'],
+            'presupuestoFinal' => ['required', 'numeric', 'min:0', 'max:999999', 'between:0,999999.99'],
+            'gastoTotal' => ['required', 'numeric', 'min:0', 'max:999999', 'between:0,999999.99'],
+            'anio' => ['required', 'date']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $unidadCentroCostos = request()->except('_token');
+        DB::table('unidad_centrocostos')->insert($unidadCentroCostos);
+        return redirect()->action('UnidadController@edit', $request['codigoUnidad'])->with('mensaje', 'Centro Costos Agregado');
     }
 
     /**
@@ -55,9 +76,12 @@ class UnidadCentroCostosController extends Controller
      * @param  \App\Unidad_CentroCostos  $unidad_CentroCostos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unidad_CentroCostos $unidad_CentroCostos)
+    public function edit($id)
     {
-        //
+        $unidadCentroCostos = Unidad_CentroCostos::findOrFail($id);        
+        $unidad = DB::table('unidads')->where('codigounidad', '=', $unidadCentroCostos -> codigounidad)->first();                   
+        $centrosCostos = CentroCostos::all();
+        return view('unidadcentrocostos.edit', compact('unidadCentroCostos', 'unidad', 'centrosCostos'));
     }
 
     /**
@@ -67,9 +91,27 @@ class UnidadCentroCostosController extends Controller
      * @param  \App\Unidad_CentroCostos  $unidad_CentroCostos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Unidad_CentroCostos $unidad_CentroCostos)
+    public function update(Request $request, $id)
     {
-        //
+        $campos = [
+            'idCentroCostos' => ['required'],
+            'presupuestoFinal' => ['required', 'numeric', 'min:0', 'max:999999', 'between:0,999999.99'],
+            'gastoTotal' => ['required', 'numeric', 'min:0', 'max:999999', 'between:0,999999.99'],
+            'anio' => ['required', 'date']
+        ];
+        $mensaje = [
+            "required" => 'El :attribute es requerido',
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya existe'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $unidadCentroCostos = request()->except('_token', '_method');
+        try {
+            Unidad_CentroCostos::where('idunidadcentrocostos', '=', $id)->update($unidadCentroCostos);
+            return redirect()->action('UnidadController@edit', $request['codigoUnidad'])->with('mensaje', 'Centro Costos Modificado');
+        } catch(QueryException $e) {            
+            return redirect('empleado')->with('mensaje', $e);
+        }
     }
 
     /**
@@ -78,8 +120,9 @@ class UnidadCentroCostosController extends Controller
      * @param  \App\Unidad_CentroCostos  $unidad_CentroCostos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Unidad_CentroCostos $unidad_CentroCostos)
+    public function destroy(Request $request, $id)
     {
-        //
+        Unidad_CentroCostos::where('idunidadcentrocostos', '=', $id)->delete();
+        return redirect()->action('UnidadController@edit', $request['codigoUnidad'])->with('mensaje', 'Centro Costos Eliminado');
     }
 }

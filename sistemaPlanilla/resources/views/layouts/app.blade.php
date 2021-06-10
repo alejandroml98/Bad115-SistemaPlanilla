@@ -58,15 +58,8 @@
             <!-- start: search & user box -->
             <div class="header-right">
                 @auth
-                <form action="pages-search-results.html" class="search nav-form">
-                    <div class="input-group input-search">
-                        <input type="text" class="form-control" name="q" id="q" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-                        </span>
-                    </div>
-                </form>
-
+                <div id="MyClockDisplay" class="search nav-form text-right" onload="showTime()"></div>
+                
                 <span class="separator"></span>
 
                 <div id="userbox" class="userbox">
@@ -76,7 +69,9 @@
                         </figure>
                         <div class="profile-info" data-lock-name="{{ Auth::user()->name }}" data-lock-email="{{ Auth::user()->email }}">
                             <span class="name">{{ Auth::user()->name }}</span>
+                            @if (Auth::user()->activo==1)
                             <span class="role">Poner unidad Organizacional</span>
+                            @endif
                         </div>
 
                         <i class="fa custom-caret"></i>
@@ -86,11 +81,11 @@
                         <ul class="list-unstyled">
                             <li class="divider"></li>
                             <li>
-                                <a role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i> Perfil</a>
+                                <a href="{{ url('/profile/') }}" role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i> Perfil</a>
                             </li>
-                            <li>
+                            <!--<li>
                                 <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Bloquear pantalla</a>
-                            </li>
+                            </li>-->
                             <li>
                                 <a role="menuitem" tabindex="-1" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Cerrar Sesión</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -100,7 +95,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div>            
             @endauth
             <!-- Right Side Of Navbar -->
             <ul class="notifications">
@@ -120,6 +115,7 @@
         <div class="inner-wrapper">
             <!-- start: sidebar -->
             @auth
+            @if (Auth::user()->activo==1)
             <aside id="sidebar-left" class="sidebar-left">
 
                 <div class="sidebar-header">
@@ -142,7 +138,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="mailbox-folder.html">
+                                    <a href="{{ route('centrocostos.index') }}">
                                         <i class="fa fa-empire" aria-hidden="true"></i>
                                         <span>Centro de Costos</span>
                                     </a>
@@ -286,6 +282,7 @@
                     </div>
                 </div>
             </aside>
+            @endif
             @endauth
             <!-- end: sidebar -->
 

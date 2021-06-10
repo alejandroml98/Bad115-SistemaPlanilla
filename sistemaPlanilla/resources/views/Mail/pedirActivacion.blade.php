@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +8,11 @@
 <body>
     <div>
         <p>
-            Bienvenido a SIGPICIDES!!! {{$email}}
-            {{$explicacion}}
-        </p>
+            Por este medio se solicita una activación del usuario: {{$name}}.            
+        </p>        
     </div>
-    <div>
-        <a href="http://homestead.test"></a>
-    </div>
+    <a href="{{url('usuario/proceso/'.$id)}}">
+        Proceso de reactivación de cuenta
+    </a>
 </body>
 </html>
