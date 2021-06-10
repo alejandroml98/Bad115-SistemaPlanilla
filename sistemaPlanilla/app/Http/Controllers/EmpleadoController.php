@@ -22,6 +22,8 @@ use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class EmpleadoController extends Controller
 {
@@ -202,43 +204,58 @@ class EmpleadoController extends Controller
     public function activar(User $user)
     {
         $user->activo=true;
+        $user->en_proceso=null;
         $user->save();
-        $data = array('name'=>$user->name);
+        $data = array('email'=> $user->email, 'name'=>$user->name);
         //Para enviar correo de confirmacion de nuevo
         Mail::send('Mail.activar', $data, function ($message) use ($data){
-            $message->to($user->email, $user->name);
+            $message->to($data['email'], $data['name']);
             $message->subject('Activación de su cuenta');            
-        });        
+        });
+        return redirect('/casita3');        
     }
 
     public function desactivar(User $user)
     {
         $user->activo=false;
         $user->save();        
-        $data = array('name'=>$user->name, 'explicacion'=>$explicacion);
+        $data = array('email'=> $user->email, 'name'=>$user->name);
         //Para enviar correo de confirmacion de nuevo
         Mail::send('Mail.desactivar', $data, function ($message) use ($data){
-            $message->to($user->email, $user->name);
+            $message->to($data['email'], $data['name']);
             $message->subject('Desactivación de su cuenta');            
-        });        
+        });       
         dd($user->name);
     }
 
-    public function pedirActivacion(Request $request)
+    public function pedirActivacion()
     {
         $user= Auth::User();
+        $user->en_proceso=now();
+        $user->save();
         //Solicitar proceso de activacion por correo
-        $data = array('name'=>$user->name, 'explicacion'=>$explicacion);
+        $data = array('name'=>$user->name, 'id'=>$user->id);
         //Para enviar correo de confirmacion de nuevo
-        Mail::send('Mail.pediractivacion', $data, function ($message) use ($data){
-            $message->to("admin@gmail.com", "Admin");
-            $message->subject('Proceso de reactivación de cuenta');            
+        Mail::send('Mail.pedirActivacion', $data, function ($message) use ($data){
+            $message->to("alead@mailinator.com", "Admin");
+            $message->subject('Solicitud de reactivación de cuenta');            
         });
-        dd($user);
+        dd('Pedir Activacion');
     }
 
     public function inactivo()
     {
         return view('auth.active');
     }
+
+    public function inactivos()
+    {
+        return User::where('activo', 0)->paginate(5);
+    }
+
+    public function perfilInactivo(User $user)
+    {
+        return $user;       
+    }
+
 }
