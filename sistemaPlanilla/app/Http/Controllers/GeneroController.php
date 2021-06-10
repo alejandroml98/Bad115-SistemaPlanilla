@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Genero;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class GeneroController extends Controller
 {
@@ -37,6 +38,9 @@ class GeneroController extends Controller
      */
     public function store(Request $request)
     {
+       
+
+
         $campos = [
             'nombreGenero' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:generos']
         ];
@@ -45,10 +49,18 @@ class GeneroController extends Controller
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
         ];
-        $this->validate($request, $campos, $mensaje);
-        $genero = request()->except('_token');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', 'crear');
+        }
+        else{
+            $genero = request()->except('_token');
         Genero::insert($genero);
         return redirect('genero')->with('mensaje', 'Genero Creado');
+        } 
     }
 
     /**
@@ -82,6 +94,9 @@ class GeneroController extends Controller
      */
     public function update(Request $request, $id)
     {
+    
+
+
         $campos = [
             'nombreGenero' => ['required','string', 'max:100', 'regex:/^[a-zA-Z ]*$/', 'unique:generos']
         ];
@@ -90,10 +105,19 @@ class GeneroController extends Controller
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
         ];
-        $this->validate($request, $campos, $mensaje);
-        $genero = request()->except(['_token', '_method']);
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', ('editar'.$id));
+        }
+        else {
+            $genero = request()->except(['_token', '_method']);
         Genero::where('idgenero', '=', $id)->update($genero);
         return redirect('genero')->with('mensaje', 'Genero Modificado');
+        }        
+    
     }
 
     /**

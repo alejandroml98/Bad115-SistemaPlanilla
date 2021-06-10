@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Banco;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BancoController extends Controller
 {
@@ -36,6 +37,8 @@ class BancoController extends Controller
      */
     public function store(Request $request)
     {
+        
+
         $campos = [
             'nombreBanco' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/', 'unique:bancos']
         ];
@@ -44,10 +47,18 @@ class BancoController extends Controller
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
         ];
-        $this->validate($request, $campos, $mensaje);
-        $banco = request()->except('_token');
-        Banco::insert($banco);
-        return redirect('banco')->with('mensaje', 'Banco Creado');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', 'crear');
+        }
+        else{
+            $banco = request()->except('_token');
+            Banco::insert($banco);
+            return redirect('banco')->with('mensaje', 'Banco Creado');
+        } 
 
     }
 
@@ -84,6 +95,8 @@ class BancoController extends Controller
      */
     public function update(Request $request, $id)
     {
+       
+
         $campos = [
             'nombreBanco' => ['required','string', 'max:100', 'regex:/^[a-zA-Z ]*$/']
         ];
@@ -92,10 +105,19 @@ class BancoController extends Controller
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
         ];
-        $this->validate($request, $campos, $mensaje);
-        $banco = request()->except(['_token', '_method']);
-        Banco::where('idbanco', '=', $id)->update($banco);
-        return redirect('banco')->with('mensaje', 'Banco Modificado');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', ('editar'.$id));
+        }
+        else {
+            $banco = request()->except(['_token', '_method']);
+            Banco::where('idbanco', '=', $id)->update($banco);
+            return redirect('banco')->with('mensaje', 'Banco Modificado');
+        }        
+    
  
     }
 
