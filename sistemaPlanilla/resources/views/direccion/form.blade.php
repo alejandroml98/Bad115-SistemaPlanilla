@@ -18,6 +18,7 @@
     <section class="panel">
         <div class="panel-body p-5">
             <div class="row">
+            <h1>{{url()->previous()}} </h1>
                 @if ($mode == 'create')           
                     <div class="col-md-4 mb-3">
                         <label for="validationDefault01">País</label>
@@ -98,7 +99,8 @@
                     </div>
 
                 @endif
-                <div  class="col-md-12 mb-3"> 		
+                <div  class="col-md-12 mb-3"> 	
+                <input type="text" name="anterior"  value="{{ url()->previous()}}" hidden>	 
                     @if ($mode == 'create')
                         <label for="validationDefault01" class="control-label">Detalle</label>
                         <input type="text" name="detalleDireccion" id="detalleDireccionCreate" value="{{ old('detalleDireccionCreate') }}" placeholder="Detalle de direccion" title="" data-toggle="tooltip" data-trigger="hover" class="form-control" data-original-title="Ingrese detalles como calle, barrio, casa, etc" id="inputTooltip">

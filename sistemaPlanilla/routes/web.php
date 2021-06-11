@@ -42,6 +42,7 @@ Route::resource('renta', 'RentaController');
 Route::resource('subregion', 'SubRegionController');
 Route::resource('rangosalarial', 'RangoSalarialController');
 Route::resource('puesto', 'PuestoController');
+
 Route::resource('empresa', 'EmpresaController');
 Route::resource('tipounidad', 'TipoUnidadController');
 Route::resource('unidad', 'UnidadController');

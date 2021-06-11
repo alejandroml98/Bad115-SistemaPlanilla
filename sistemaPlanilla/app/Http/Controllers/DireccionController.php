@@ -8,6 +8,7 @@ use App\Region;
 use App\SubRegion;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use SebastianBergmann\Environment\Console;
 
 class DireccionController extends Controller
 {
@@ -87,7 +88,7 @@ class DireccionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {  //$anterior = back();
         $direccion = Direccion::findOrFail($id);
         $subRegiones = SubRegion::all();
         $regiones = Region::all();
@@ -118,10 +119,13 @@ class DireccionController extends Controller
         try
         {
             SubRegion::findOrFail($data['idSubRegion']);
-            $direccion = request()->except(['_token', '_method','pais','region']);
+            $direccion = request()->except(['_token', '_method','pais','region','anterior']);
+            $anterior = $request->input('anterior');
             Direccion::where('iddireccion', '=', $id)->update($direccion);
-            return redirect('direccion')->with('mensaje', 'Direccion Modificada');         
-        }    
+            //return redirect('direccion')->with('mensaje', 'Direccion Modificada');  
+            
+            return redirect($anterior);
+        }
         catch(ModelNotFoundException $e)
         {
             return redirect('direccion')->with('mensaje', 'Sub Región no encontrada');
