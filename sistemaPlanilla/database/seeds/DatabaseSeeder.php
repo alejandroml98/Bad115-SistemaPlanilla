@@ -13,5 +13,16 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UserSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(GeneroSeeder::class);
+        $this->call(EstadoCivilSeeder::class);
+        $this->call(ProfesionSeeder::class);
+        $this->call(TipoIngresosSeeder::class);
+        $this->call(TipoDescuentoSeeder::class);
+        $this->call(TipoDocumentoSeeder::class);
+        $this->call(RentaSeeder::class);
+        $this->call(RangoSalarialSeeder::class);
+
+
+        
     }
 }
