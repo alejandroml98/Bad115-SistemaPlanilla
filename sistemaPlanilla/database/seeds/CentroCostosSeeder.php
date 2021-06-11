@@ -27,5 +27,8 @@ class CentroCostosSeeder extends Seeder
         DB::table('centro_costos')->insert([
             'presupuestoInicial' => 45567891.75
         ]);
+        DB::table('centro_costos')->insert([
+            'presupuestoInicial' => 48867875.75
+        ]);
     }
 }
