@@ -52,7 +52,7 @@
 <script src="{{ asset('js/profesion.js') }}"></script>
 @if (Session::has('mensaje'))
 <script type="text/javascript">
-    mostrarMensaje('{{ Session::get("mensaje") }}');
+    mostrarMensaje('{{ Session::get("mensaje") }}');    
 </script>
 @endif
 @endpush
