@@ -19,10 +19,13 @@ class TipoDescuentoSeeder extends Seeder
             'nombreTipoDescuento' => 'AFP'
         ]);
         DB::table('tipo_descuentos')->insert([
+            'nombreTipoDescuento' => 'ISSS'
+        ]);
+        DB::table('tipo_descuentos')->insert([
             'nombreTipoDescuento' => 'Descuento por Creditos Personales'
         ]);
         DB::table('tipo_descuentos')->insert([
-            'nombreTipoDescuento' => 'Ahorros'
+            'nombreTipoDescuento' => 'Ahorros Personales'
         ]);
         DB::table('tipo_descuentos')->insert([
             'nombreTipoDescuento' => 'Cuota Alimenticia'
