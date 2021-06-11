@@ -145,6 +145,29 @@
                                 </li>
                                 <li class="nav-parent">
                                     <a>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <span>Catálogos</span>
+                                    </a>
+                                    <ul class="nav nav-children">
+                                        <li>
+                                            <a href="{{ route('profesion.index') }}">
+                                                Profesiones
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('catalogocomision.index') }}">
+                                                Comisiones
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="ui-elements-tabs.html">
+                                                Enlace 3
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent">
+                                    <a>
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         @role('writer')
                                             <span>Empleados</span>
@@ -176,57 +199,28 @@
                                     </ul>
                                 </li>
                                 <li>
+                                    <a href="{{ route('ventasempleado.index') }}">
+                                        <i class="fa fa-dollar" aria-hidden="true"></i>
+                                        <span>Ventas</span>
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="{{ route('puesto.index') }}">
                                         <i class="fa fa-cubes" aria-hidden="true"></i>
                                         <span>Puestos de la Empresa</span>
                                     </a>
                                 </li>
-                                <li class="nav-parent">
-                                    <a>
+                                <li>
+                                    <a href="{{ route('unidad.index') }}">
                                         <i class="fa fa-sitemap" aria-hidden="true"></i>
                                         <span>Unidad Organizacional</span>
                                     </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a href="ui-elements-typography.html">
-                                                Enlace 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="ui-elements-icons.html">
-                                                Enlace 2
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="ui-elements-tabs.html">
-                                                Enlace 3
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li>
                                     <a href="{{ route('empresa.index') }}">
                                         <i class="fa fa-building" aria-hidden="true"></i>
                                         <span>Empresa</span>
                                     </a>
-                                </li>
-                                <li class="nav-parent">
-                                    <a>
-                                        <i class="fa fa-money" aria-hidden="true"></i>
-                                        <span>Comisiones</span>
-                                    </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a href="tables-basic.html">
-                                                Enlace 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="tables-advanced.html">
-                                                Enlace 2
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="nav-parent">
                                     <a>
@@ -245,12 +239,6 @@
                                             </a>
                                         </li>
                                     </ul>
-                                </li>
-                                <li>
-                                    <a href="{{ route('profesion.index') }}">
-                                        <i class="fa fa-briefcase" aria-hidden="true"></i>
-                                        <span>Catalogo de profesiones</span>
-                                    </a>
                                 </li>
                                 <li class="nav-parent">
                                     <a>

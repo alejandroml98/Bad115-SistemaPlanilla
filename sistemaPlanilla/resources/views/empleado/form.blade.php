@@ -9,6 +9,10 @@
         </ul>
     </h3>
 @endif
+@if (Session::has('mensaje')){{
+    Session::get('mensaje')
+}}    
+@endif
 <h2>{{ $mode == 'create' ? 'Agregar Empleado'  : 'Modificar Empleado' }}</h2>
 @if ($mode == 'create')
     <label for="codigoEmpleado">{{ 'Código' }}</label>

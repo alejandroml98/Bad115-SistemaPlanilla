@@ -15,6 +15,7 @@ use App\UnidadEmpleado;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -88,5 +89,22 @@ class UserController extends Controller
         } else {
             return redirect('profile')->with('mensaje', 'Introduzca la contraseña actual correctamente');
         }             
+    }
+
+    public function obtenerSubordinados($codigoempleado){
+        $unidadEmpleado = UnidadEmpleado::where('codigoempleado','=',$codigoempleado)->first();
+        $unidadesEmpleados = UnidadEmpleado::where([['codigounidad','=',$unidadEmpleado -> codigounidad], ['esjefe','=',"0"]])->get();
+        $subordinados = array();
+        foreach (Empleado::all() as $u) {
+            foreach($unidadesEmpleados as $ue){
+                if($ue -> codigoempleado == $u -> codigoempleado){
+                    array_push($subordinados, $u);
+                }
+            }
+        }
+        $puestos = Puesto::all();
+        $unidad = Unidad::where('codigounidad','=',$unidadEmpleado -> codigounidad)->first();
+        $empleado = Empleado::where('codigoempleado','=',$codigoempleado)->first();
+        return view ('auth.subordinados', compact('subordinados', 'unidad', 'empleado', 'puestos'));
     }
 }

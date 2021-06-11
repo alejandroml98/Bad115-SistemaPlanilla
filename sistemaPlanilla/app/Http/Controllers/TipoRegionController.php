@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\TipoRegion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TipoRegionController extends Controller
 {
@@ -36,6 +37,8 @@ class TipoRegionController extends Controller
      */
     public function store(Request $request)
     {
+       
+
         $campos = [
             'nombreTipoRegion' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/'],
             'nombreTipoSubRegion' => ['required','string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/']
@@ -45,10 +48,18 @@ class TipoRegionController extends Controller
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
         ];
-        $this->validate($request, $campos, $mensaje);
-        $tipoRegion = request()->except('_token');
-        TipoRegion::insert($tipoRegion);
-        return redirect('tiporegion')->with('mensaje', 'Tipo Región Creado');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', 'crear');
+        }
+        else{
+            $tipoRegion = request()->except('_token');
+            TipoRegion::insert($tipoRegion);
+            return redirect('tiporegion')->with('mensaje', 'Tipo Región Creado');
+        }  
     }
 
     /**
@@ -92,10 +103,18 @@ class TipoRegionController extends Controller
             "regex" => 'El :attribute no acepta números o caracteres especiales',
             "unique" => 'El :attribute que escribió ya existe'
         ];
-        $this->validate($request, $campos, $mensaje);
-        $tipoRegion = request()->except(['_token', '_method']);
-        TipoRegion::where('idtiporegion', '=', $id)->update($tipoRegion);
-        return redirect('tiporegion')->with('mensaje', 'Tipo Región Modificado');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', ('editar'.$id));
+        }
+        else {
+            $tipoRegion = request()->except(['_token', '_method']);
+            TipoRegion::where('idtiporegion', '=', $id)->update($tipoRegion);
+            return redirect('tiporegion')->with('mensaje', 'Tipo Región Modificado');
+        }    
     }
 
     /**

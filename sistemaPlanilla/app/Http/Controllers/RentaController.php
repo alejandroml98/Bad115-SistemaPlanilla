@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Renta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RentaController extends Controller
 {
@@ -36,13 +37,13 @@ class RentaController extends Controller
      */
     public function store(Request $request)
     {
+        //aqui
         $campos = [
             'valMin' => ['required','between:0,999999', 'min:0', 'lt:valMax'],
             'valMax' => ['required','between:0,999999', 'min:0', 'gt:valMin'],
             'valorFijo' => ['required','between:0,999999', 'min:0'],
             'exceso' => ['required','between:0,999999', 'min:0'],
             'periodo' => ['required','string', 'max:1', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/']
-
         ];
         $mensaje = [
             "required" => 'El :attribute es requerido',
@@ -50,13 +51,20 @@ class RentaController extends Controller
             "unique" => 'El :attribute que escribió ya existe',
             "min" => 'El :attribute debe ser mayor a 0',
             "gt" => 'El :attribute debe ser menor que Comision Mínimo',
-            "lt" => 'El :attribute debe ser mayor que Comision Máximo' 
-
+            "lt" => 'El :attribute debe ser mayor que Comision Máximo'        
         ];
-        $this->validate($request, $campos, $mensaje);
-        $renta = request()->except('_token');
-        Renta::insert($renta);
-        return redirect('renta')->with('mensaje', 'Tipo de Renta Creado');
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', 'crear');
+        }
+        else{
+            $renta = request()->except('_token');
+            Renta::insert($renta);
+            return redirect('renta')->with('mensaje', 'Renta Creada');
+        }
      }
 
     /**
@@ -91,13 +99,15 @@ class RentaController extends Controller
      */
     public function update(Request $request, $id)
     {
+      
+
+        //movimiento
         $campos = [
             'valMin' => ['required','between:0,999999', 'min:0', 'lt:valMax'],
             'valMax' => ['required','between:0,999999', 'min:0', 'gt:valMin'],
             'valorFijo' => ['required','between:0,999999', 'min:0'],
             'exceso' => ['required','between:0,999999', 'min:0'],
             'periodo' => ['required','string', 'max:1', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/']
-
         ];
         $mensaje = [
             "required" => 'El :attribute es requerido',
@@ -105,13 +115,20 @@ class RentaController extends Controller
             "unique" => 'El :attribute que escribió ya existe',
             "min" => 'El :attribute debe ser mayor a 0',
             "gt" => 'El :attribute debe ser menor que Comision Mínimo',
-            "lt" => 'El :attribute debe ser mayor que Comision Máximo'   
-
+            "lt" => 'El :attribute debe ser mayor que Comision Máximo'           
         ];
-        $this->validate($request, $campos, $mensaje);
-        $renta = request()->except(['_token', '_method']);
+        $validator = Validator::make($request->all(), $campos, $mensaje);
+        if ($validator->fails()){
+            return back()
+            ->withErrors($validator) // send back all errors to the login form
+            ->withInput()
+            ->with('peticion', ('editar'.$id));
+        }
+        else {
+            $renta = request()->except(['_token', '_method']);
             Renta::where('idrenta', '=', $id)->update($renta);
             return redirect('renta')->with('mensaje', 'Tipo de Renta Modificada');
+        } 
 
     }
 
