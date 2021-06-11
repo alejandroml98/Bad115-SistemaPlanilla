@@ -26,7 +26,7 @@ class EmpresaSeeder extends Seeder
             ]);
 
 
-            DB::table('empresas')->insert([
+            /*DB::table('empresas')->insert([
                 'codigoEmpresa' => 'VO98632',
                 'idDireccion' => 3,
                 'nombreEmpresa' => 'Viajes de Oriente',
@@ -38,29 +38,29 @@ class EmpresaSeeder extends Seeder
                 'correoElectronicoEmpresa' =>'ViajesdeOriente@gmail.com',
                 'salarioMinimo' => 400
                 ]);
-                DB::table('empresas')->insert([
-                    'codigoEmpresa' => 'WH65812',
-                    'idDireccion' => 1,
-                    'nombreEmpresa' => 'Wehruty',
-                    'nit' => '42361527',
-                    'nic' => '23154231',
-                    'telefonoEmpresa' =>'65421000',
-                    'paginaWeb' =>'www.Wehruty.com',
-                    'periodoPago' =>'t',
-                    'correoElectronicoEmpresa' =>'Wehruty@gmail.com',
-                    'salarioMinimo' => 300
-                    ]);
-                    DB::table('empresas')->insert([
-                        'codigoEmpresa' => 'OR15013',
-                        'idDireccion' => 4,
-                        'nombreEmpresa' => 'Othepth',
-                        'nit' => '75684972',
-                        'nic' => '14723410',
-                        'telefonoEmpresa' =>'63230111',
-                        'paginaWeb' =>'www.Othepth.com',
-                        'periodoPago' =>'t',
-                        'correoElectronicoEmpresa' =>'Othepth@gmail.com',
-                        'salarioMinimo' => 400
-                        ]);
+            DB::table('empresas')->insert([
+                'codigoEmpresa' => 'WH65812',
+                'idDireccion' => 1,
+                'nombreEmpresa' => 'Wehruty',
+                'nit' => '42361527',
+                'nic' => '23154231',
+                'telefonoEmpresa' =>'65421000',
+                'paginaWeb' =>'www.Wehruty.com',
+                'periodoPago' =>'t',
+                'correoElectronicoEmpresa' =>'Wehruty@gmail.com',
+                'salarioMinimo' => 300
+                ]);
+            DB::table('empresas')->insert([
+                'codigoEmpresa' => 'OR15013',
+                'idDireccion' => 4,
+                'nombreEmpresa' => 'Othepth',
+                'nit' => '75684972',
+                'nic' => '14723410',
+                'telefonoEmpresa' =>'63230111',
+                'paginaWeb' =>'www.Othepth.com',
+                'periodoPago' =>'t',
+                'correoElectronicoEmpresa' =>'Othepth@gmail.com',
+                'salarioMinimo' => 400
+                ]);*/
     }
 }
