@@ -13,7 +13,7 @@ class PuestoSeeder extends Seeder
     public function run()
     {
         DB::table('puestos')->insert([
-            'codigoPuesto' => 'sc78564',
+            'codigoPuesto' => 'SC78564',
             'idRangoSalarial' => 1,
             'nombrePuesto' => 'Secretaria',
             'esAdministrativo' => 'F'
@@ -91,6 +91,19 @@ class PuestoSeeder extends Seeder
             'nombrePuesto' => 'Programador Senior',
             'esAdministrativo' => 'F'
         ]);
+        DB::table('puestos')->insert([
+            'codigoPuesto' => 'RH11502',
+            'idRangoSalarial' => 2,
+            'nombrePuesto' => 'Gerente de Recursos Humanos',
+            'esAdministrativo' => 'F'
+        ]);
+        DB::table('puestos')->insert([
+            'codigoPuesto' => 'IN38592',
+            'idRangoSalarial' => 2,
+            'nombrePuesto' => 'Ingeniero de Producción Industrial',
+            'esAdministrativo' => 'F'
+        ]);
+        
 
 
     }
