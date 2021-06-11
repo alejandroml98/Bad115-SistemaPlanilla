@@ -5,47 +5,55 @@
 <link rel="stylesheet" href="assets/vendor/pnotify/pnotify.custom.css" />
 @endpush
 @section('content')
-@if (Session::has('mensaje')){{
-    Session::get('mensaje')
-}}    
-@endif
-<a href="{{ url('/empleado/create') }}">Agregar Empleado</a>
-<table class="table table-light table-bordered">
-    <thead class="thead-dark">
-        <tr>
-            <th>Código</th>
-            <th>Nombres</th>            
-            <th>Apellidos</th>                        
-            <th>Puesto</th>
-            <th>Correo Empresarial</th>                       
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($empleados as $empleado)
-            <tr>
-                <td>{{ $empleado -> codigoempleado }}</td>
-                <td>{{ $empleado -> primernombre }}{{ ' ' }}{{ $empleado -> segundonombre }}</td>                
-                <td>{{ $empleado -> apellidopaterno }}{{ ' ' }}{{ $empleado -> apellidomaterno }}{{ ' ' }}{{ $empleado -> apellidocasado }}</td>
-                @foreach ($puestos as $puesto)
+<a class="btn btn-primary mb-3" href="{{ url('/empleado/create') }}" id="btnCrear">
+    Agregar Empleado <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+<section class="panel">
+    <header class="panel-heading">
+        <h2 class="panel-title">Empleados Registrados</h2>
+    </header>
+    <div class="panel-body" lang="es">
+        <table class="table table-bordered table-striped mb-none" id="datatable-default">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Puesto</th>
+                    <th>Correo Empresarial</th>
+                    <th style="width: 1%;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($empleados as $empleado)
+                <tr class="gradeX">
+                    <td>{{ $empleado -> codigoempleado }}</td>
+                    <td>{{ $empleado -> primernombre }}{{ ' ' }}{{ $empleado -> segundonombre }}</td>
+                    <td>{{ $empleado -> apellidopaterno }}{{ ' ' }}{{ $empleado -> apellidomaterno }}{{ ' ' }}{{ $empleado -> apellidocasado }}</td>
+                    @foreach ($puestos as $puesto)
                     @if ($puesto -> codigopuesto == $empleado -> codigopuesto)
-                        <td>{{ $puesto -> nombrepuesto }}</td>
+                    <td>{{ $puesto -> nombrepuesto }}</td>
                     @endif
+                    @endforeach
+                    <td>{{ $empleado -> correoempresarial }}</td>
+                    <td class="text-center">
+                        <a href="{{ url('/empleado/'.$empleado -> codigoempleado.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                        <form id="{{ 'formulario-prueba'.$empleado -> codigoempleado }}" class="btn btn-danger p-0" method="post" action="{{ url('/empleado/'.$empleado -> codigoempleado) }}">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $empleado -> codigoempleado }}', '{{ $empleado -> primernombre }} {{ $empleado -> segundonombre }}','al empleado')">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
                 @endforeach
-                <td>{{ $empleado -> correoempresarial }}</td>
-                <td>
-                    <a href="{{ url('/empleado/'.$empleado -> codigoempleado.'/edit') }}" class="btn btn-warning">Editar</a>
-                    <form  method="post" action="{{ url('/empleado/'.$empleado -> codigoempleado) }}">                
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                        <button type="submit" onclick="return confirm('¿Borrar de verdad el registro?')">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
+</section>
 @endsection
+
 @push('vendorjs')
 <script src="assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
 <script src="assets/vendor/select2/select2.js"></script>

@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 @extends('layouts.app')
 @push('vendorcss')
 <link rel="stylesheet" href="assets/vendor/select2/select2.css" />
@@ -14,10 +7,10 @@
 @endpush
 @section('content')
 <a class=" btn btn-primary mb-3" href="{{ url('/direccion/create') }}" id="btnCrear">
-    Agregar Renta<i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+    Agregar Direccion <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 <section class="panel">
     <header class="panel-heading">
-        <h2 class="panel-title">Rentas Registradas</h2>
+        <h2 class="panel-title">Direcciones Registradas</h2>
     </header>
     <div class="panel-body" lang="es">
         <table class="table table-bordered table-striped mb-none" id="datatable-default">
@@ -58,7 +51,7 @@
                         <form id="{{ 'formulario-prueba'. $direccion -> iddireccion  }}" class="btn btn-danger p-0" method="post" action="{{ url('/direccion/'. $direccion -> iddireccion ) }}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{  $direccion -> iddireccion }}', 'ah gokuuu',' la dirección ')">
+                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{  $direccion -> iddireccion }}', '{{$direccion -> detalledireccion}}',' la dirección ')">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </form>
@@ -86,39 +79,4 @@
     mostrarMensaje('{{ Session::get("mensaje") }}');
 </script>
 @endif
-@if (count($errors) > 0 && Session::get('peticion') == 'crear')
-<script>
-    document.getElementById('btnCrear').click();
-</script>
-@elseif (count($errors) > 0 && Session::get('peticion') != 'crear')
-<script>
-    document.getElementById("{{Session::get('peticion')}}").click();
-</script>
-@endif
-<script type="text/javascript">
-    $(document).ready(function() {
-        var table = $('#datatable-default').DataTable();
-        var id = 1;
-        table.on('click', '.editar', function() {
-            $tr = $(this).closest('tr');
-            id = $(this).data("id");
-            if ($($tr).hasClass('child')) {
-                $tr = $tr.prev('parent');
-            }
-            var data = table.row($tr).data();
-            $('#valMin').val(data[1]);
-            $('#valMax').val(data[2]);
-            $('#valorFijo').val(data[3]);
-            $('#exceso').val(data[4]);
-            $('#periodo').val(data[5]);
-
-            $('#editar-form').attr('action', '/direccion/' + id);
-            if (('editar'.$id) == "{{Session::get('peticion')}}") {
-                document.getElementById("{{'error'.Session::get('peticion')}}").style.display = 'block';
-            } else {
-                document.getElementById("{{'error'.Session::get('peticion')}}").style.display = 'none';
-            }
-        });
-    });
-</script>
 @endpush
