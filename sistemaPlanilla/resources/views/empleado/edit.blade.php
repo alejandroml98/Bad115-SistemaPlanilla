@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{{ asset('assets/vendor/select2/select2.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datepicker/css/datepicker3.css') }}" />
 @endpush
 @section('content')
 <form action="{{ url('/empleado/'.$empleado -> codigoempleado) }}" method="post" enctype="multipart/form-data">
@@ -43,4 +44,5 @@
 <script src="{{ asset('assets/vendor/select2/select2.js') }}"></script>
 <script src="{{ asset('assets/vendor/select2/select2_locale_es.js') }}"></script>
 <script src="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js') }}"></script>
+<script src="{{ asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
 @endpush
