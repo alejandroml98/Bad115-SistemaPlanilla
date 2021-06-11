@@ -38,7 +38,7 @@ class RentaSeeder extends Seeder
 
         DB::table('rentas')->insert([
             'valMin' => 1904.69 ,
-            'valMax'=> 10000000,
+            'valMax'=> 100000,
             'valorFijo' => 228.57,
             'exceso'=>0.30,
             'periodo'=> 'T'
