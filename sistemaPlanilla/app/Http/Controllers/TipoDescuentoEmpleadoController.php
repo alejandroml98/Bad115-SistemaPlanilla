@@ -19,6 +19,9 @@ class TipoDescuentoEmpleadoController extends Controller
     public function index()
     {
         //
+          
+        $datosTipoDescuentoEmpleado['tipoDescuentos'] = TipoDescuento_Empleado::all();
+        return view('tipodescuento.index', $datosTipoDescuentoEmpleado);
     }
 
     /**
