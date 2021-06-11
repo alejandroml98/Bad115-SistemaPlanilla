@@ -41,5 +41,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UnidadSeeder::class);
         $this->call(UnidadCentroCostosSeeder::class);
         $this->call(EmpleadoUnidadSeeder::class);
+        $this->call(TipoDescuentoEmpleadoSeeder::class);
     }
 }
