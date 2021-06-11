@@ -15,3 +15,19 @@
 	});
 
 }).apply( this, [ jQuery ]);
+
+(function( $ ) {
+
+	'use strict';
+
+	var datatableInit = function() {
+
+		$('table.mostrar').dataTable();
+
+	};
+
+	$(function() {
+		datatableInit();
+	});
+
+}).apply( this, [ jQuery ]);
