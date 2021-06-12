@@ -107,4 +107,12 @@ class UserController extends Controller
         $empleado = Empleado::where('codigoempleado','=',$codigoempleado)->first();
         return view ('auth.subordinados', compact('subordinados', 'unidad', 'empleado', 'puestos'));
     }
+
+    public function obtenerUnidadEmpleado(){
+        $user = Auth::user();
+        $empleado = Empleado::where('iduser', '=', $user -> id)->first();
+        $unidadEmpleado = UnidadEmpleado::where('codigoempleado','=',$empleado -> codigoempleado)->first();
+        $unidad = Unidad::where('codigounidad', '=', $unidadEmpleado -> codigounidad)->first();        
+        return $unidad -> nombreunidad;
+    }
 }

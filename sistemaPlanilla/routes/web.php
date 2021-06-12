@@ -92,3 +92,4 @@ Route::get('/profile', 'UserController@profile')->middleware('auth')->name('prof
 Route::put('/profile/update', 'UserController@update')->middleware('auth')->name('profile.update');  
 Route::put('/profile/changePassword', 'UserController@changePassword')->middleware('auth')->name('profile.changePassword');  
 Route::get('/profile/subordinados/{idjefe}', 'UserController@obtenerSubordinados')->middleware('auth')->name('profile.obtenerSubordinados');  
+Route::get('/user/unidad', 'UserController@obtenerUnidadEmpleado')->middleware('auth')->name('user.obtenerUnidad');
