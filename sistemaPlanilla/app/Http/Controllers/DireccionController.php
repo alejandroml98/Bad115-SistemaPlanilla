@@ -57,12 +57,13 @@ class DireccionController extends Controller
             "unique" => 'El :attribute que escribió ya existe'
         ];
         $this->validate($request, $campos, $mensaje); 
-        $data = request()->except('_token','pais','region');
+        $data = request()->except('_token','pais','region','anterior');
         try
         {
             SubRegion::findOrFail($data['idSubRegion']);
+            $anterior = $request->input('anterior');
             Direccion::insert($data);
-            return redirect('direccion')->with('mensaje', 'Dirección Creada');         
+            return redirect($anterior)->with('mensaje', 'Dirección Creada');         
         }    
         catch(ModelNotFoundException $e)
         {

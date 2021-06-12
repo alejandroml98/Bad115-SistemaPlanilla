@@ -7,131 +7,148 @@
 <section class="panel">
     <div class="panel-body p-5">
         @if ($mode == 'create')
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label for="codigoEmpleado" class="control-label">{{ 'Código' }}</label>
-                    <input type="text" name="codigoEmpleado" maxlength="7" required id="codigoEmpleadoCreate" value="{{ old('codigoEmpleadoCreate') }}" data-toggle="tooltip" data-trigger="hover" class="form-control" data-original-title="El codigo debe tener 2 letras y 5 numeros">
+        <input hidden type="text" name="codigoEmpleadoAnterior" maxlength="7" required id="codigoEmpleadoAnterior" value="{{ isset($empleado -> codigoempleado) ? $empleado -> codigoempleado : old('codigoEmpleadoAnterior') }}">
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <label class="control-label" for="codigoEmpleado">{{ 'Código' }}</label>
+                    <input type="text" data-toggle="tooltip" data-trigger="hover" class="form-control" data-original-title="El codigo debe tener 2 letras y 5 numeros" name="codigoEmpleado" maxlength="7" required id="codigoEmpleado" value="{{ isset($empleado -> codigoempleado) ? $empleado -> codigoempleado : old('codigoEmpleado') }}">
                 </div>
-                <div class="col-md-4 mb-3">
-                    <label for="primerNombre" class="control-label">{{ 'Primer Nombre' }}</label>
-                    <input type="text" name="primerNombre" id="primerNombreCreate" value="{{ old('primerNombreCreate') }}" class="form-control">
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="segundoNombre" class="control-label">{{ 'Segundo Nombre' }}</label>
-                    <input type="text" name="segundoNombre" id="segundoNombreCreate" value="{{ old('segundoNombreCreate') }}" class="form-control">
-                </div>
+                <div class="col-md-8">
+                    <label class="control-label" for="idUser">{{ 'Usuario' }}</label>
+                    <select name="idUser" id="idUser" data-plugin-selectTwo class="form-control">
+                        @foreach ($usuarios as $usuario)
+                       
+                        <option value="{{ $usuario -> id }}">{{ $usuario -> name }} - {{ $usuario -> email }}</option>
+                        
+                        @endforeach
+                    </select>
+                </div>                
             </div>
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label for="apellidoPaterno" class="control-label">{{ 'Apellido Paterno' }}</label>
-                    <input type="text" name="apellidoPaterno" id="apellidoPaternoCreate" value="{{ old('apellidoPaternoCreate') }}" class="form-control">
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label for="primerNombre">{{ 'Primer Nombre' }}</label>
+                    <input type="text" class="form-control" name="primerNombre" id="primerNombre" value="{{ isset($empleado -> primernombre) ? $empleado -> primernombre : old('primerNombre') }}">
                 </div>
-                <div class="col-md-4 mb-3">
-                    <label for="apellidoMaterno" class="control-label">{{ 'Apellido Materno' }}</label>
-                    <input type="text" name="apellidoMaterno" id="apellidoMaternoCreate" value="{{ old('apellidoMaternoCreate') }}" class="form-control">
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="apellidoCasado" class="control-label">{{ 'Apellido Casado' }}</label>
-                    <input type="text" name="apellidoCasado" id="apellidoCasadoCreate" value="{{ old('apellidoCasadoCreate') }}" class="form-control">
-                </div>
+                <div class="col-md-6">
+                    <label class="control-label" for="segundoNombre">{{ 'Segundo Nombre' }}</label>
+                    <input type="text" class="form-control" name="segundoNombre" id="segundoNombre" value="{{ isset($empleado -> segundonombre) ? $empleado -> segundonombre : old('segundoNombre') }}">
+                </div>                
             </div>
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label for="fechaNacimiento" class="control-label">{{ 'Fecha Nacimiento' }}</label>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <label class="control-label" for="apellidoPaterno">{{ 'Apellido Paterno' }}</label>
+                    <input type="text" class="form-control" name="apellidoPaterno" id="apellidoPaterno" value="{{ isset($empleado -> apellidopaterno) ? $empleado -> apellidopaterno : old('apellidoPaterno') }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="control-label" for="apellidoMaterno">{{ 'Apellido Materno' }}</label>
+                    <input type="text" class="form-control" name="apellidoMaterno" id="apellidoMaterno" value="{{ isset($empleado -> apellidomaterno) ? $empleado -> apellidomaterno : old('apellidoMaterno') }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="control-label" for="apellidoCasado">{{ 'Apellido Casado' }}</label>
+                    <input type="text" class="form-control" name="apellidoCasado" id="apellidoCasado" value="{{ isset($empleado -> apellidocasado) ? $empleado -> apellidocasado : old('apellidoCasado') }}">
+                </div>                
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <label class="control-label" for="fechaNacimiento" class="control-label">{{ 'Fecha Nacimiento' }}</label>
                     <div class="input-group date">
                         <span class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </span>
-                        <input data-plugin-datepicker data-date-end-date="-18y" type="text" class="form-control" name="fechaNacimiento" id="fechaNacimientoCreate" value="{{ old('fechaNacimientoCreate') }}">
+                        <input data-plugin-datepicker data-date-end-date="-18y" type="text" class="form-control" name="fechaNacimiento" id="fechaNacimientoCreate" value="{{ isset($empleado -> fechanacimiento) ? date('Y/m/d', strtotime($empleado -> fechanacimiento)) : old('fechaNacimientoCreate') }}">
                     </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="idDireccion" class="control-label">{{ 'Dirección' }}</label>
-                    <select data-plugin-selectTwo class="form-control populate" name="idDireccion" id="idDireccionCreate">
-                        <option value="" selected disabled>Seleccione una dirección</option>
-                        @foreach ($direcciones as $direccion)
-                        @foreach ($subRegiones as $subRegion)
-                        @if ($subRegion -> idsubregion == $direccion -> idsubregion)
-                        @foreach ($regiones as $region)
-                        @if ($region -> idregion == $subRegion -> idregion)
-                        @foreach ($paises as $pais)
-                        @if ($pais -> idpais == $region -> idpais)
-                        <option value="{{ $direccion -> iddireccion }}">{{ $pais -> nombrepais }}, {{ $region -> nombreregion }}, {{ $subRegion -> nombresubregion }}, {{ $direccion -> detalledireccion }}</option>
-                        @endif
-                        @endforeach
-                        @endif
-                        @endforeach
-                        @endif
-                        @endforeach
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="idGenero">{{ 'Genero' }}</label>
-                    <select name="idGenero" id="idGenero" data-plugin-selectTwo class="form-control populate">
-                        <option value="" selected disabled>Seleccione un genero</option>
+                </div>                
+                <div class="col-md-4">
+                    <label class="control-label" for="idGenero">{{ 'Genero' }}</label>
+                    <select name="idGenero" id="idGenero" data-plugin-selectTwo class="form-control mt-1">
                         @foreach ($generos as $genero)
+                        
                         <option value="{{ $genero -> idgenero }}">{{ $genero -> nombregenero }}</option>
+                    
                         @endforeach
                     </select>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label for="idEstadoCivil">{{ 'Estado Civil' }}</label>
-                    <select name="idEstadoCivil" id="idEstadoCivil" data-plugin-selectTwo class="form-control populate">
-                        <option value="" selected disabled>Seleccione un estado civil</option>
+                <div class="col-md-4">
+                    <label class="control-label" for="idEstadoCivil">{{ 'Estado Civil' }}</label>
+                    <select name="idEstadoCivil" id="idEstadoCivil" data-plugin-selectTwo class="form-control mt-1">
                         @foreach ($estadosCiviles as $estadoCivil)
+                       
                         <option value="{{ $estadoCivil -> idestadocivil }}">{{ $estadoCivil -> nombreestadocivil }}</option>
+                    
                         @endforeach
                     </select>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="codigoPuesto">{{ 'Puesto' }}</label>
-                    <select name="codigoPuesto" id="codigoPuesto" data-plugin-selectTwo class="form-control populate">
-                        <option value="" selected disabled>Seleccione un puesto</option>
-                        @foreach ($puestos as $puesto)
-                        <option value="{{ $puesto -> codigopuesto }}">{{ $puesto -> nombrepuesto }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="codigoEmpresa">{{ 'Empresa' }}</label>
-                    <select name="codigoEmpresa" id="codigoEmpresa" data-plugin-selectTwo class="form-control populate">
-                        @foreach ($empresas as $empresa)
-                        <option value="{{ $empresa -> codigoempresa }}">{{ $empresa -> nombreempresa }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                </div>                
             </div>
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label for="salario">{{ 'Salario' }}</label>
-                    <input type="number" step=".01" min="0" max="9999999" name="salario" id="salarioCreate" value="{{ old('salarioCreate') }}" class="form-control">
-                </div>
-                <div class="col-md-4 mb-3">
 
-                    <label for="correoElectronico">{{ 'Correo Eléctronico' }}</label>
-                    <input type="email" name="correoElectronico" id="correoElectronicoCreate" value="{{ old('correoElectronicoCreate') }}" class="form-control">
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="correoEmpresarial">{{ 'Correo Empresarial' }}</label>
-                    <input type="email" name="correoEmpresarial" id="correoEmpresarialCreate" value="{{ old('correoEmpresarialCreate') }}" class="form-control">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8 mb-3">
-                    <label for="idUser">{{ 'Usuario' }}</label>
-                    <select name="idUser" id="idUser" data-plugin-selectTwo class="form-control populate">
-                        <option value="" selected disabled>Escoja un usuario para este empleado</option>
-                        @foreach ($usuarios as $usuario)
-                        <option value="{{ $usuario -> id }}">{{ $usuario -> name }} - {{ $usuario -> email }}</option>
+            <div class="row mb-4">            
+                <div class="col-md-4">
+                    <label class="control-label" for="codigoEmpresa">{{ 'Empresa' }}</label>
+                    <select name="codigoEmpresa" id="codigoEmpresa" class="form-control mt-1">
+                        @foreach ($empresas as $empresa)
+                       
+                        <option value="{{ $empresa -> codigoempresa }}">{{ $empresa -> nombreempresa }}</option>
+                    
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-4">
+                    <label class="control-label" for="codigoPuesto">{{ 'Puesto' }}</label>
+                    <select name="codigoPuesto" id="codigoPuesto" data-plugin-selectTwo class="form-control mt-1">
+                        @foreach ($puestos as $puesto)
+                        
+                        <option value="{{ $puesto -> codigopuesto }}">{{ $puesto -> nombrepuesto }}</option>
+                        
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="control-label" for="salario">{{ 'Salario' }}</label>
+                    <input type="number" class="form-control" step=".01" min="0" max="9999999" name="salario" id="salario" value="{{ isset($empleado -> salario) ? $empleado -> salario : old('salarioCreate') }}">
+                </div>                
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label class="control-label" for="correoEmpresarial">{{ 'Correo Empresarial' }}</label>
+                    <input type="email" class="form-control" name="correoEmpresarial" id="correoEmpresarial" value="{{ isset($empleado -> correoempresarial) ? $empleado -> correoempresarial : old('correoEmpresarial') }}">
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label" for="correoElectronico">{{ 'Correo Eléctronico' }}</label>
+                    <input type="email" class="form-control" name="correoElectronico" id="correoElectronico" value="{{ isset($empleado -> correoelectronico) ? $empleado -> correoelectronico : old('correoElectronico') }}">
                 </div>
             </div>
+            <div class="row mb-4">
+                <div class="col-md-9">
+                    <label class="control-label" for="idDireccion">{{ 'Dirección' }}</label>
+                    <select name="idDireccion" id="idDireccionCreate" data-plugin-selectTwo class="form-control mt-1">
+                        @foreach ($direcciones as $direccion)
+                            @foreach ($subRegiones as $subRegion)
+                                @if ($subRegion -> idsubregion == $direccion -> idsubregion)
+                                    @foreach ($regiones as $region)
+                                        @if ($region -> idregion == $subRegion -> idregion)
+                                            @foreach ($paises as $pais)
+                                                @if ($pais -> idpais == $region -> idpais)
+                                                <option value="{{ $direccion -> iddireccion }}" selected>{{ $pais -> nombrepais }}, {{ $region -> nombreregion }}, {{ $subRegion -> nombresubregion }}, {{ $direccion -> detalledireccion }}</option>
+                                                    @else
+                                                        <option value="{{ $direccion -> iddireccion }}">{{ $pais -> nombrepais }}, {{ $region -> nombreregion }}, {{ $subRegion -> nombresubregion }}, {{ $direccion -> detalledireccion }}</option>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3 align-self-center mt-lg-4 pt-xs-1">
+                    <a href="{{ url('/direccion/create') }}" class="btn btn-primary">
+                        Agregar Direccion <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                </div> 
+            </div>
+
 
         @else
             <input hidden type="text" name="codigoEmpleadoAnterior" maxlength="7" required id="codigoEmpleadoAnterior" value="{{ isset($empleado -> codigoempleado) ? $empleado -> codigoempleado : old('codigoEmpleadoAnterior') }}">

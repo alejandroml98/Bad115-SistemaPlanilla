@@ -26,6 +26,16 @@
 <script src="{{ asset('assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js') }}"></script>
 <script src="{{ asset('assets/vendor/select2/select2.js') }}"></script>
 <script src="{{ asset('assets/vendor/select2/select2_locale_es.js') }}"></script>
+<script src="{{ asset('assets/vendor/jquery-datatables/media/js/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/jquery-datatables-bs3/assets/js/datatables.js') }}"></script>
+<script src="{{ asset('assets/javascripts/tables/examples.datatables.default.js') }}"></script>
 <script src="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js') }}"></script>
 <script src="{{ asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset('js/profesion.js') }}"></script>
+@if (Session::has('mensaje'))
+<script type="text/javascript">
+    mostrarMensaje('{{ Session::get("mensaje") }}');
+</script>
+@endif
 @endpush
