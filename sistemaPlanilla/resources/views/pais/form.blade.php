@@ -108,10 +108,12 @@
     
 
     </div>
-    <div class="row ">
-    <div class="col-md-4 mb-3">   <input type="submit" class="btn btn-success" value="{{ $mode == 'create' ? 'Agregar' : 'Modificar' }}">
-                <a class="btn " href="{{ url('/pais/') }}">REGRESAR</a></div>
-    
+    <div class="row ml-1 pt-4">
+            <div class="form-group">
+                <input type="submit" value="{{ $mode == 'create' ? 'Agregar' : 'Modificar' }}" class="btn btn-primary">
+                <a class="btn btn-danger" href="{{url()->previous()}}">Cancelar</a>
+            </div>
+        </div>
   
     
     

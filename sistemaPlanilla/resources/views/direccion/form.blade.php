@@ -18,7 +18,7 @@
     <section class="panel">
         <div class="panel-body p-5">
             <div class="row">
-            <h1>{{url()->previous()}} </h1>
+            <h1> </h1>
                 @if ($mode == 'create')           
                     <div class="col-md-4 mb-3">
                         <label for="validationDefault01">País</label>
@@ -111,7 +111,7 @@
                 </div>
                 <div class="col-md-12 mb-3 mt-5">
                     <input class="btn btn-primary" type="submit" value="{{ $mode == 'create' ? 'Agregar' : 'Modificar' }}">
-                    <a class="btn btn-danger" href="{{ url('/direccion/') }}">Cancelar</a>
+                    <a class="btn btn-danger" href="{{url()->previous()}}"> Cancelar </a>
                 </div>      
     </section>
 </div>
