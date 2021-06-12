@@ -23,6 +23,10 @@ class TipoUnidadSeeder extends Seeder
             'nombreTipoUnidad' => 'Seccion',
             'idTipoUnidadPadre' => 2
         ]);
+        DB::table('tipo_unidads')->insert([
+            'nombreTipoUnidad' => 'SubSeccion',
+            'idTipoUnidadPadre' => 3
+        ]);
 
     }
 }
