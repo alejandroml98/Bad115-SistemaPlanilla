@@ -16,95 +16,92 @@ class PuestoSeeder extends Seeder
             'codigoPuesto' => 'SC78564',
             'idRangoSalarial' => 1,
             'nombrePuesto' => 'Secretaria',
-            'esAdministrativo' => 'F'
+            'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
             'codigoPuesto' => 'AV45221',
             'idRangoSalarial' => 2,
             'nombrePuesto' => 'Administrador de Ventas',
-            'esAdministrativo' => 'T'
+            'esAdministrativo' => '1'
         ]);
 
         DB::table('puestos')->insert([
             'codigoPuesto' => 'SGV7852',
             'idRangoSalarial' => 1,
             'nombrePuesto' => 'SubGenere de Ventas',
-            'esAdministrativo' => 'T'
+            'esAdministrativo' => '1'
         ]);
         DB::table('puestos')->insert([
             'codigoPuesto' => 'GV85064',
             'idRangoSalarial' => 1,
             'nombrePuesto' => 'Gerente de Ventas',
-            'esAdministrativo' => 'T'
+            'esAdministrativo' => '1'
         ]);
         DB::table('puestos')->insert([
             'codigoPuesto' => 'GM89570',
             'idRangoSalarial' => 2,
             'nombrePuesto' => 'Gerente de marketing',
-            'esAdministrativo' => 'F'
+            'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
             'codigoPuesto' => 'GF98064',
             'idRangoSalarial' => 4,
             'nombrePuesto' => 'Gerente Administrativo y Financiero',
-            'esAdministrativo' => 'F'
+            'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
             'codigoPuesto' => 'OG78784',
             'idRangoSalarial' => 3,
             'nombrePuesto' => 'Operador  de Garatias',
-            'esAdministrativo' => 'F'
+            'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
             'codigoPuesto' => 'CG93564',
             'idRangoSalarial' => 1,
             'nombrePuesto' => 'Contador General',
-            'esAdministrativo' => 'F'
+            'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
             'codigoPuesto' => 'AC79894',
             'idRangoSalarial' => 3,
             'nombrePuesto' => 'Auxiliar Contable',
-            'esAdministrativo' => 'F'
+            'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
             'codigoPuesto' => 'GF00742',
             'idRangoSalarial' => 1,
             'nombrePuesto' => 'Gerente Área de Informatica',
-            'esAdministrativo' => 'F'
+            'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
             'codigoPuesto' => 'AF70564',
             'idRangoSalarial' => 1,
             'nombrePuesto' => 'Asistente Informatico',
-            'esAdministrativo' => 'F'
+            'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
             'codigoPuesto' => 'AS07464',
             'idRangoSalarial' => 1,
             'nombrePuesto' => 'Analista de Sistemas Informáticos',
-            'esAdministrativo' => 'F'
+            'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
             'codigoPuesto' => 'PS70764',
             'idRangoSalarial' => 2,
             'nombrePuesto' => 'Programador Senior',
-            'esAdministrativo' => 'F'
+            'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
             'codigoPuesto' => 'RH11502',
             'idRangoSalarial' => 2,
             'nombrePuesto' => 'Gerente de Recursos Humanos',
-            'esAdministrativo' => 'F'
+            'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
             'codigoPuesto' => 'IN38592',
             'idRangoSalarial' => 2,
             'nombrePuesto' => 'Ingeniero de Producción Industrial',
-            'esAdministrativo' => 'F'
+            'esAdministrativo' => '0'
         ]);
-        
-
-
     }
 }
