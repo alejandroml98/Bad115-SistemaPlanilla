@@ -156,4 +156,8 @@ class EmpresaController extends Controller
     {
         //
     }
+
+    public function obtenerInfoEmpresa(){
+        return Empresa::all()->first()->nombreempresa;
+    }
 }

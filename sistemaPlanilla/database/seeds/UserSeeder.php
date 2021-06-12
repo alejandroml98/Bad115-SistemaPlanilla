@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -15,93 +16,108 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Ernesto',
             'email' => 'ernesto@gmail.com',
-            'password' => 'ernesto1',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('ernesto1'),
+            'activo' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => 'Admin123',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('Admin123'),
+            'activo' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'josue',
             'email' => 'josue@gmail.com',
-            'password' => 'josue123',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('josue123'),
+            'activo' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'juan',
             'email' => 'juan@gmail.com',
-            'password' => 'juan1234',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('juan1234'),
+            'activo' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'pedro',
             'email' => 'pedro@gmail.com',
-            'password' => 'pedro123',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('pedro123'),
+            'activo' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'maria',
             'email' => 'maria@gmail.com',
-            'password' => 'maria123',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('maria123'),
+            'activo' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'Karla',
             'email' => 'karla@gmail.com',
-            'password' => 'aleman78',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('aleman78'),
+            'activo' => '1'
         ]);
 
         DB::table('users')->insert([
             'name' => 'hugo',
             'email' => 'hugo@gmail.com',
-            'password' => 'hugodi10',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('hugodi10'),
+            'activo' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'Daniel',
             'email' => 'daniel234@gmail.com',
-            'password' => 'daniel45',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('daniel45'),
+            'activo' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'Lucas',
             'email' => 'lucas4Ortiz@gmail.com',
-            'password' => 'Ortiz11As',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('Ortiz11As'),
+            'activo' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'Adrian',
             'email' => 'Adrian7Cortez@gmail.com',
-            'password' => 'Hernan34Ui',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('Hernan34Ui'),
+            'activo' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'Martin',
             'email' => 'Martin12Cortez@gmail.com',
-            'password' => 'maRtin34Ui',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('maRtin34Ui'),
+            'activo' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'Francisco',
             'email' => 'Francisco1Javier@gmail.com',
-            'password' => 'Francisco34',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('Francisco34'),
+            'activo' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'Diego',
             'email' => 'Diego1Arce@gmail.com',
-            'password' => 'DiegoAe34',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('DiegoAe34'),
+            'activo' => '1'
         ]);
         DB::table('users')->insert([
             'name' => 'JoseLuis',
             'email' => 'Joseluis@gmail.com',
-            'password' => 'Josueluis34',
-            'activo' => 'T'
+            'email_verified_at' => now(),
+            'password' => Hash::make('Josueluis34'),
+            'activo' => '1'
         ]);
     }
 }

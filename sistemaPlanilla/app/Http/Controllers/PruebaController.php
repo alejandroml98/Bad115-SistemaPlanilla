@@ -6,6 +6,7 @@ use App\Prueba;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class PruebaController extends Controller
@@ -33,9 +34,18 @@ class PruebaController extends Controller
     {
         //
         if(Auth::user()->activo==1){
-            dd(Auth::user()->activo);
+            try {
+                $result= DB::select(
+                    'call update_salary(?)', array(3)          
+                );
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
+            
+            //DB::raw("call update_salary(:idrango)", array('idrango'=>3));
+            dd('activo');
         }
-        dd(1);
+        dd('inactivo');
         return view ('auth.profile');
     }
     /**
