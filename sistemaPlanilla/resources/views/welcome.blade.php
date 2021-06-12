@@ -69,7 +69,7 @@
 								<div class="summary">
 									<h4 class="title">Empresa</h4>
 									<div class="info">
-										<strong class="amount">Joyas De Africa</strong>
+										<strong class="amount" name="nomEmpresa"></strong>
 									</div>
 								</div>
 								<div class="summary-footer">
@@ -130,4 +130,14 @@
     mostrarMensaje('{{ Session::get("mensaje") }}');
 </script>
 @endif
+<script>
+    $(function() {                                    
+        var url = "{{ url('/info/empresa') }}";
+        $.get(url, function(data) {
+            var span = $('strong[name=nomEmpresa]');            
+            span.append(data);
+            console.log(data);                                                        
+        });                                    
+    });
+</script>
 @endpush
