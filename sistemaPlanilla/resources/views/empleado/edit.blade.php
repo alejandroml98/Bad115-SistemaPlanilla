@@ -17,32 +17,29 @@
 				<li class="active">
 					<a href="#datosper" data-toggle="tab"><i class="fa fa-star"></i> Datos Personales</a>
 				</li>
-				<li>
-					<a href="#documentosotros" data-toggle="tab">Documentos y otros</a>
-				</li>
+                <li>
+					<a href="#documentosotros" data-toggle="tab">Documentos y Finanzas</a>
+				</li>  
+                <li>
+					<a href="#informacion" data-toggle="tab">Información Empresarial</a>
+				</li>				              
 			</ul>
 			<div class="tab-content">
-				<div id="documentosotros" class="tab-pane">
+				<div id="informacion" class="tab-pane">
                     <!-- Seccion Cuentas Bancarias -->
                     @include('cuentabancaria.index')
+                    <!-- Seccion Profesiones -->
+                    @include('profesionempleado.index')
+                    <!-- Seccion Unidades -->
+                    @include('unidadempleado.index')
+                </div>
+                <div id="documentosotros" class="tab-pane">
                     <!-- Seccion Documentos -->
-                    <h1>DOCUMENTOS ASOCIADOS</h1>
-                    <a href="{{ url('/tipodocumentoempleado/create', [$empleado -> codigoempleado]) }}">Agregar Documento</a>
                     @include('tipodocumentoempleado.index')
                     <!-- Seccion Descuentos -->
-                    <h1>DESCUENTOS DESIGNADOS</h1>
-                    <a href="{{ url('/tipodescuentoempleado/create', [$empleado -> codigoempleado]) }}">Agregar Descuento</a>
                     @include('tipodescuentoempleado.index')
                     <!-- Seccion Ingresos -->
                     @include('tipoingresoempleado.index')
-                    <!-- Seccion Ingresos -->
-                    <h1>PROFESIONES</h1>
-                    <a href="{{ url('/profesionempleado/create', [$empleado -> codigoempleado]) }}">Agregar Profesion</a>
-                    @include('profesionempleado.index')
-                    <!-- Seccion Unidades -->
-                    <h1>UNIDADES EN LAS QUE PARTICIPA</h1>
-                    <a href="{{ url('/unidadempleado/create', [$empleado -> codigoempleado]) }}">Agregar Unidad</a>
-                    @include('unidadempleado.index')
                 </div>
 				<div id="datosper" class="tab-pane active">
                     <form action="{{ url('/empleado/'.$empleado -> codigoempleado) }}" method="post" enctype="multipart/form-data">
@@ -67,4 +64,10 @@
 <script src="{{ asset('assets/javascripts/tables/examples.datatables.default.js') }}"></script>
 <script src="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js') }}"></script>
 <script src="{{ asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset('js/profesion.js') }}"></script>
+@if (Session::has('mensaje'))
+<script type="text/javascript">
+    mostrarMensaje('{{ Session::get("mensaje") }}');
+</script>
+@endif
 @endpush

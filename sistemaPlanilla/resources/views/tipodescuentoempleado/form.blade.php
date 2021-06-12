@@ -112,6 +112,7 @@
 </div>
 @else 
 <div class="col-md-4 mb-3">
+<label for="idTipoDescuento">{{ 'TIpo de descuento' }}</label>
 <input type="text" hidden name="codigoEmpleado" id="codigoEmpleadoCreate" value="{{ $empleado -> codigoempleado }}" data-plugin-selectTwo class="form-control populate">
     <select required data-plugin-selectTwo class="form-control populate" name="idTipoDescuento" id="idTipoDescuento">        
         @foreach ($tiposDescuentos as $tipoDescuento)
@@ -133,9 +134,9 @@
 </div>
 @endif
 <div class="row">
-<div class="col-md-4 mb-3">
-<input   class="btn btn-success" type="submit" value="{{ $mode == 'create' ? 'Agregar' : 'Modificar' }}">
-<a href="{{ url('/empleado/'.$empleado -> codigoempleado.'/edit') }}">REGRESAR</a>
+<div class="col-md-12 mb-3">
+<input  class="btn btn-primary" type="submit" value="{{ $mode == 'create' ? 'Agregar' : 'Modificar' }}">
+<a class="btn btn-danger" href="{{ url('/empleado/'.$empleado -> codigoempleado.'/edit') }}">Cancelar</a>
 </div>
 </div>
 </section>
