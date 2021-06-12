@@ -70,7 +70,7 @@
                         <div class="profile-info" data-lock-name="{{ Auth::user()->name }}" data-lock-email="{{ Auth::user()->email }}">
                             <span class="name">{{ Auth::user()->name }}</span>
                             @if (Auth::user()->activo==1)
-                            <span class="role">Poner unidad Organizacional</span>
+                                <span class="role" name = "unidad">Unidad: </span>                                
                             @endif
                         </div>
 
@@ -321,6 +321,16 @@
 
     <!-- sweetAlert library -->
     @include('sweetalert::alert')
+
+    <script>
+        $(function() {                                    
+            var url = "{{ url('/user/unidad') }}";
+            $.get(url, function(data) {
+                var span = $('span[name=unidad]');            
+                span.append(data);                                                       
+            });                                    
+        });
+    </script>
 
 </body>
 
