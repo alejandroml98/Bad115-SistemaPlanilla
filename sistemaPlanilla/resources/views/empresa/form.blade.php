@@ -122,30 +122,27 @@
                     <div class="form-row pb-3">
                         <div class="form-group col-md-8">
                             <label for="idDireccion">{{ 'Dirección Empresa' }}</label>
-                            <select data-plugin-selectTwo name="idDireccion" id="idDireccionCreate" class="form-control">
                                 @foreach ($direcciones as $direccion)
-                                @foreach ($subRegiones as $subRegion)
-                                @if ($subRegion -> idsubregion == $direccion -> idsubregion)
-                                @foreach ($regiones as $region)
-                                @if ($region -> idregion == $subRegion -> idregion)
-                                @foreach ($paises as $pais)
-                                @if ($pais -> idpais == $region -> idpais)
-                                @if ($empresa -> iddireccion == $direccion -> iddireccion)
-                                <option selected value="{{ $direccion -> iddireccion }}">{{ $pais -> nombrepais }}, {{ $region -> nombreregion }}, {{ $subRegion -> nombresubregion }}, {{ $direccion -> detalledireccion }}</option>
-                                @else
-                                <option value="{{ $direccion -> iddireccion }}">{{ $pais -> nombrepais }}, {{ $region -> nombreregion }}, {{ $subRegion -> nombresubregion }}, {{ $direccion -> detalledireccion }}</option>
-                                @endif
-                                @endif
+                                    @foreach ($subRegiones as $subRegion)
+                                        @if ($subRegion -> idsubregion == $direccion -> idsubregion)
+                                            @foreach ($regiones as $region)
+                                                @if ($region -> idregion == $subRegion -> idregion)
+                                                    @foreach ($paises as $pais)
+                                                        @if ($pais -> idpais == $region -> idpais)
+                                                            @if ($empresa -> iddireccion == $direccion -> iddireccion)
+                                                                <input hidden value="{{$empresa -> iddireccion }}" name="idDireccion" id="idDireccionCreate">
+                                                                <input class="form-control" disabled type="text" value="{{ $pais -> nombrepais }}, {{ $region -> nombreregion }}, {{ $subRegion -> nombresubregion }}, {{ $direccion -> detalledireccion }}">
+                                                            @endif
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endforeach
                                 @endforeach
-                                @endif
-                                @endforeach
-                                @endif
-                                @endforeach
-                                @endforeach
-                            </select>
                         </div>
                         <div class="form-group col-md-4 align-self-center pt-3 ">
-                            <a href="{{ url('/direccion/'.$direccion -> iddireccion.'/edit') }}" class="btn btn-primary">
+                            <a href="{{ url('/direccion/'.$empresa -> iddireccion.'/edit') }}" class="btn btn-primary">
                                 Editar Direccion <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
                         </div>                    
                     </div>

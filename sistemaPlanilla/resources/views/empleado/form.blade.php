@@ -260,7 +260,6 @@
             <div class="row mb-4">
                 <div class="col-md-9">
                     <label class="control-label" for="idDireccion">{{ 'Dirección' }}</label>
-                    <select name="idDireccion" id="idDireccionCreate" data-plugin-selectTwo class="form-control mt-1">
                         @foreach ($direcciones as $direccion)
                             @foreach ($subRegiones as $subRegion)
                                 @if ($subRegion -> idsubregion == $direccion -> idsubregion)
@@ -269,9 +268,8 @@
                                             @foreach ($paises as $pais)
                                                 @if ($pais -> idpais == $region -> idpais)
                                                     @if ($direccion -> iddireccion == $empleado -> iddireccion)
-                                                        <option value="{{ $direccion -> iddireccion }}" selected>{{ $pais -> nombrepais }}, {{ $region -> nombreregion }}, {{ $subRegion -> nombresubregion }}, {{ $direccion -> detalledireccion }}</option>
-                                                    @else
-                                                        <option value="{{ $direccion -> iddireccion }}">{{ $pais -> nombrepais }}, {{ $region -> nombreregion }}, {{ $subRegion -> nombresubregion }}, {{ $direccion -> detalledireccion }}</option>
+                                                        <input hidden value="{{ $empleado -> iddireccion }}" name="idDireccion">
+                                                        <input disabled type="text" class="form-control" value="{{ $pais -> nombrepais }}, {{ $region -> nombreregion }}, {{ $subRegion -> nombresubregion }}, {{ $direccion -> detalledireccion }}">
                                                     @endif
                                                 @endif
                                             @endforeach
@@ -280,10 +278,9 @@
                                 @endif
                             @endforeach
                         @endforeach
-                    </select>
                 </div>
-                <div class="col-md-3 align-self-center pt-lg-5 ">
-                    <a href="{{ url('/direccion/'.$direccion -> iddireccion.'/edit') }}" class="btn btn-primary">
+                <div class="col-md-3 align-self-center mt-lg-4 pt-xs-1">
+                    <a href="{{ url('/direccion/'.$empleado -> iddireccion.'/edit') }}" class="btn btn-primary">
                         Editar Direccion <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
                 </div> 
             </div>
@@ -300,7 +297,7 @@
             </ul>
         </div>
         @endif
-        <div class="row ml-1">
+        <div class="row ml-1 pt-4">
             <div class="form-group">
                 <input type="submit" value="{{ $mode == 'create' ? 'Agregar' : 'Modificar' }}" class="btn btn-primary">
                 <a class="btn btn-danger" href="{{ url('/empleado/') }}">Cancelar</a>
