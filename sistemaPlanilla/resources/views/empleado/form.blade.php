@@ -7,7 +7,7 @@
 <section class="panel">
     <div class="panel-body p-5">
         @if ($mode == 'create')
-        <input hidden type="text" name="codigoEmpleadoAnterior" maxlength="7" required id="codigoEmpleadoAnterior" value="{{ isset($empleado -> codigoempleado) ? $empleado -> codigoempleado : old('codigoEmpleadoAnterior') }}">
+       
             <div class="row mb-4">
                 <div class="col-md-4">
                     <label class="control-label" for="codigoEmpleado">{{ 'Código' }}</label>

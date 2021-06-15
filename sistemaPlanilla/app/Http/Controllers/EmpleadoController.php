@@ -102,13 +102,13 @@ class EmpleadoController extends Controller
         ];
         $this->validate($request, $campos, $mensaje);
         //Validando que el salario corresponde al rango salarial
-        $codEmp = $request->input('codigoEmpleado');
+        $codigoEmpleado = $request->input('codigoEmpleado');
         $puesto = Puesto::where('codigopuesto','=', $request['codigoPuesto'])->first();
         $rangoSalarial = RangoSalarial::where('idrangosalarial','=',$puesto -> idrangosalarial)->first();
         if($request['salario'] >= $rangoSalarial -> salariominimo && $request['salario'] <= $rangoSalarial -> salariomaximo){
             $empleado = request()->except('_token');
             Empleado::insert($empleado);
-            return redirect('empleado/'.$codEmp.'/edit')->with('mensaje', 'Empleado Creado');
+            return redirect('empleado/'.$codigoEmpleado.'/edit')->with('mensaje', 'Empleado Creado');
         } else {
             return redirect()->action('EmpleadoController@create')->with('mensaje', 'El salario no está en el rango correspondiente del puesto $'.$rangoSalarial -> salariominimo.' - $'.$rangoSalarial -> salariomaximo);
         }
