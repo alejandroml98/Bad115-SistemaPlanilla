@@ -151,8 +151,9 @@
                      
                       
                     @else
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0">{{ $unidad -> nombreunidad }} - {{ $ej -> primernombre }}{{ ' ' }}{{ $ej -> apellidopaterno }}</h6>
-                        <p></p>                        
+                    </li>                  
                     @endif
                     <hr>
                 @endif

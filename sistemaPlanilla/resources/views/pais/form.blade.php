@@ -63,7 +63,7 @@
 <div class="col-xs-12">
         
             <header class="panel-heading">
-                <h2 class="panel-title">{{ $mode == 'create' ? 'Crear SubRegión'  : 'Modificar SubRegión' }}</h2>
+                <h2 class="panel-title">{{ $mode == 'create' ? 'Crear País'  : 'Modificar País' }}</h2>
             </header>
             <section class="panel">
             <div class="panel-body p-5">
