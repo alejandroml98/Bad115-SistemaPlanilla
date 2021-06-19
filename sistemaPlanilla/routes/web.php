@@ -94,3 +94,7 @@ Route::put('/profile/changePassword', 'UserController@changePassword')->middlewa
 Route::get('/profile/subordinados/{idjefe}', 'UserController@obtenerSubordinados')->middleware('auth')->name('profile.obtenerSubordinados');  
 Route::get('/user/unidad', 'UserController@obtenerUnidadEmpleado')->middleware('auth')->name('user.obtenerUnidad');
 Route::get('info/empresa', 'EmpresaController@obtenerInfoEmpresa');
+
+//Planilla Routes
+Route::get('/planilla/unidades', 'PlanillaController@listaUnidadesPrincipales')->middleware('auth')->name('planilla.unidades');
+Route::get('/planilla/{codigounidad}/generarplanilla', 'PlanillaController@generarPlanilla')->middleware('auth')->name('planilla.generarplanilla');
