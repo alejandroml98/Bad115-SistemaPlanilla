@@ -25,5 +25,6 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(['direccion.form'], 'App\Http\ViewComposers\DireccionesComposer');
+        View::composer(['empleado.frontindex'], 'App\Http\ViewComposers\EmpleadosComposer');
     }
 }

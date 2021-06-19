@@ -253,6 +253,9 @@
                                                     <a href="{{ route('estadocivil.index') }}">Estado Civil</a>
                                                 </li>
                                                 <li>
+                                                <a href="{{ route('genero.index') }}">Genero</a>
+                                                </li>
+                                                <li>
                                                 <a href="{{ route('tipodocumento.index') }}">Tipos de documento</a>
                                                 </li>
                                                 <li>
@@ -261,6 +264,30 @@
                                                 <li>
                                                 <a href="{{ route('rangosalarial.index') }}">Rango Salarial</a>
                                                 </li>
+                                                <li>
+                                                <a href="{{ route('tipoingresos.index') }}">Tipo Ingreso</a>
+                                                </li>
+                                               
+                                            </ul>
+                                        </li>
+                                        <li class="nav-parent">
+                                            <a>Ubicación</a>
+                                            <ul class="nav nav-children">
+                                                
+                                                <li>
+                                                <a href="{{ route('pais.index') }}">Pais</a>
+                                                </li>
+                                                <li>
+                                                <a href="{{ route('tiporegion.index') }}">Tipos Región</a>
+                                                </li>
+                                                <li>
+                                                <a href="{{ route('region.index') }}">Regiones</a>
+                                                </li>
+                                                <li>
+                                                <a href="{{ route('subregion.index') }}">Sub Regiones</a>
+                                                </li>
+                                               
+                                               
                                             </ul>
                                         </li>
                                     </ul>
