@@ -28,7 +28,21 @@ class PlanillaController extends Controller
         $totalAPagarUnidad = 0;
         $totalSalarios = 0;
 
+        //Obtengamos todos los empleados de las subunidades de la unidad padre
+        $subUnidades = Unidad::where('codigounidadantecesora', '=', $codigounidad)->get();
+        //Obtengamos los empleados de la unidad padre
         $empleados = UnidadEmpleado::where('codigounidad', '=', $codigounidad)->get(); //Todos los empleados        
+
+        //Concatenemos a los empleados, los empleados de las subunidades
+        foreach ($subUnidades as $subUnidad) {
+            //Obtener los empleados de las subunidades
+            $emps = UnidadEmpleado::where('codigounidad', '=', $subUnidad -> codigounidad)->get(); //Todos los empleados        
+            foreach($emps as $e) {
+                //Añadir los empleados a el conjunto de empleados total
+                $empleados -> push($e);
+            }            
+        }
+        //Para llevar control de cuantos usuarios tenemos
         $totalEmpleados = $empleados -> count();
 
         //Está será la variable más importante, tendrá y se organizará de la siguiente manera, será un array:
@@ -102,11 +116,11 @@ class PlanillaController extends Controller
                         //Sumamos al total agrupado de ingresos
                         $totalIngresosEmpleado[$n] += $i -> valotipoingresoempleado;
                         //Sumamos al total de el tipo ingresos global
-                        $totalTipoIngresos[$n] += $d -> valortipodescuentoempleado;
+                        $totalTipoIngresos[$n] += $i -> valotipoingresoempleado;
                         //Sumamos al total de ingresos del empleado sin agrupar
                         $totalIngresosEmpleadoActual += $i -> valotipoingresoempleado;
                         //Sumamos al total de ingresos global sin agrupar
-                        $totalIngresos += $d -> valortipodescuentoempleado;
+                        $totalIngresos += $i -> valotipoingresoempleado;
                     }
                 }
                 $n++;
@@ -129,6 +143,9 @@ class PlanillaController extends Controller
 
             array_push($planilla, $planillaEmpleadoActual);
         }
+
+        //dd($totalTipoIngresos);
+
         return view('planilla.planilla', compact(
             'planilla', 'tipoIngresos', 'totalTipoIngresos', 'totalIngresos', 'totalSalarios', 'unidad',
             'tipoDescuentos', 'totalTipoDescuentos', 'totalDescuentos', 'totalAPagarUnidad', 'totalEmpleados'
