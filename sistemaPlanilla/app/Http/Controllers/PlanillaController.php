@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\CentroCostos;
 use App\Empleado;
+use App\Empresa;
+use App\Puesto;
 use App\TipoDescuento;
 use App\TipoDescuento_Empleado;
 use App\TipoIngreso;
@@ -156,5 +158,99 @@ class PlanillaController extends Controller
         } else {
             dd("NO les podes pagar");
         }*/
+    }
+
+    public function boletaPago($codigoempleado) {
+
+        $emp = Empleado::where('codigoempleado','=', $codigoempleado)->first();
+        $unidadEmpleado = UnidadEmpleado::where('codigoempleado','=', $codigoempleado)->first();
+        $unidad = Unidad::where('codigounidad', '=', $unidadEmpleado -> codigounidad)->first();
+        $unidadPrincipal = Unidad::where('codigounidad', '=', $unidad -> codigounidadantecesora)->first();
+
+        //Está será la variable más importante, tendrá y se organizará de la siguiente manera, será un array:
+        //[codigoEmpleado, salario, [Descuentos Agrupados], totalDescuentos, [Ingresos Agrupados], totalIngresos, salarioNeto]
+        $boletaPago = array();
+
+        $tipoIngresos = TipoIngreso::all(); //Para poder agrupar por tipo ingreso        
+        $tipoDescuentos = TipoDescuento::all();//lo mismo con descuentos        
+        //Para recorrer todos los empleados de la unidad        
+            
+            //Primer paso obtener el salario fijo del empleado
+            $salario = Empleado::where('codigoempleado', '=', $emp -> codigoempleado)->first()->salario;
+
+            //Ahora declaremos unas variables para los totales
+            $totalDescuentosEmpleadoActual = 0;
+            $totalIngresosEmpleadoActual = 0;
+
+            //PARA DESCUENTOS POR EMPLEADO        
+            //Para guardar agrupados los descuentos, si no tiene pues simplemente dejarle 0, por eso es de 
+            //tamaño n tiposdescuentos e inicializado con 0
+            $totalDescuentosEmpleado = array_fill(0, $tipoDescuentos -> count(), 0);
+
+            $n = 0;
+            //recorramos los tipos de descuento para encontrar los totales de cada uno por empleado
+            foreach ($tipoDescuentos as $descuento){
+                //Aquí buscamos todos los descuentos del empleado actual
+                $descuentoEmpleado = TipoDescuento_Empleado::where([
+                    ['codigoempleado', '=', $emp -> codigoempleado],
+                    ['idTipoDescuento', '=', $descuento -> idtipodescuento ]
+                ])->get();
+                //Agrupando por tipo descuento
+                foreach($descuentoEmpleado as $d) {
+                    //Vamos 1 por 1 agrupando
+                    if($d -> idtipodescuento == $descuento -> idtipodescuento) {
+                        //Sumamos al total agrupado de descuentos
+                        $totalDescuentosEmpleado[$n] += $d -> valortipodescuentoempleado;                                            
+                        //Sumamos al total de descuentos del empleado sin agrupar
+                        $totalDescuentosEmpleadoActual += $d -> valortipodescuentoempleado;                                                
+                    }
+                }
+                $n++;
+            }            
+
+            //PARA INGRESOS            
+            //Para guardar agrupados los ingresos, si no tiene pues simplemente dejarle 0, por eso es de 
+            //tamaño n tipoIngresos e inicializado con 0
+            $totalIngresosEmpleado = array_fill(0, $tipoIngresos -> count(), 0);
+
+            $n = 0;
+            //Recorremos los tipoIngresos para así poder agruparlos por tipo
+            foreach ($tipoIngresos as $ingreso) {
+                //Aquí buscamos todos los descuentos del empleado actual
+                $ingresoEmpleado = TipoIngresos_Empleado::where([
+                    ['codigoempleado', '=', $emp -> codigoempleado],
+                    ['idTipoIngresos', '=', $ingreso -> idtipoingresos ]
+                ])->get();
+                //Agrupando por tipo ingreso
+                foreach($ingresoEmpleado as $i) {
+                    //Vamos 1 por 1 agrupando
+                    if($i -> idtipoingresos == $ingreso -> idtipoingresos) {
+                        //Sumamos al total agrupado de ingresos
+                        $totalIngresosEmpleado[$n] += $i -> valotipoingresoempleado;                        
+                        //Sumamos al total de ingresos del empleado sin agrupar
+                        $totalIngresosEmpleadoActual += $i -> valotipoingresoempleado;                        
+                    }
+                }
+                $n++;
+            }            
+
+            $salarioNetoEmpleado = $salario + $totalIngresosEmpleadoActual - $totalDescuentosEmpleadoActual;            
+            
+            array_push($boletaPago, $emp -> codigoempleado);
+            array_push($boletaPago, $emp -> primernombre.' '.$emp -> apellidopaterno);
+            array_push($boletaPago, $salario);
+            array_push($boletaPago, $totalDescuentosEmpleado);
+            array_push($boletaPago, $totalDescuentosEmpleadoActual);
+            array_push($boletaPago, $totalIngresosEmpleado);
+            array_push($boletaPago, $totalIngresosEmpleadoActual);
+            array_push($boletaPago, $salarioNetoEmpleado);                              
+
+        $empresa = Empresa::all()->first();                
+        $puesto = Puesto::where('codigopuesto', '=', $emp -> codigopuesto)->first();
+
+        return view('planilla.boletapago', compact(
+            'boletaPago', 'tipoIngresos', 'unidad', 'tipoDescuentos', 'emp', 'empresa', 'unidadPrincipal',
+            'puesto'
+        ));
     }
 }
