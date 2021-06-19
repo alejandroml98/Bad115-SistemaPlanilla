@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="assets/vendor/pnotify/pnotify.custom.css" />
 @endpush
 @section('content')
-<a class="btn btn-primary mb-3" href="{{ url('/empleado/create') }}" id="btnCrear">
+<a class="btn btn-primary mb-3" href="{{ route('register') }}" id="btnCrear">
     Agregar Empleado <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 <section class="panel">
     <header class="panel-heading">

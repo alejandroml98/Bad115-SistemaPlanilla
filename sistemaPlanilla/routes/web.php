@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 //Solicita verificar correo despues del registro
 Auth::routes(['verify' => true]);
@@ -24,6 +24,7 @@ Auth::routes(['verify' => true]);
 //Grupo de rutas: El usuario tiene que estar verificado para acceder a ellas
 Route::middleware(['verified','active'])->group(function () {
     Route::get('/casita3','PruebaController@indexProfile');    
+    Route::get('/home', 'HomeController@index')->name('home');    
 });
 Route::resource('banco', 'BancoController');
 Route::resource('catalogocomision', 'CatalogoComisionController');
@@ -47,6 +48,7 @@ Route::resource('empresa', 'EmpresaController');
 Route::resource('tipounidad', 'TipoUnidadController');
 Route::resource('unidad', 'UnidadController');
 Route::resource('empleado', 'EmpleadoController');
+Route::get('empleado/create/{user}', 'EmpleadoController@create2')->name('empleado.create2');
 Route::resource('ventasempleado', 'VentasEmpleadoController');
 Route::get('ventasempleado/create/{empleado}', 'VentasEmpleadoController@obtenerEmpleados');
 Route::resource('cuentabancaria', 'CuentaBancariaController');
@@ -79,7 +81,6 @@ Route::resource('direccion', 'DireccionController');
 Route::get('pais/{pais}/region', 'PaisController@obtenerRegiones');
 Route::get('region/{region}/subregion', 'RegionController@obtenerSubRegiones');
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 /**           Rutas de pruebas de formulario y sweet alert                            */
 Route::get('/casita','PruebaController@index')->middleware('auth');
