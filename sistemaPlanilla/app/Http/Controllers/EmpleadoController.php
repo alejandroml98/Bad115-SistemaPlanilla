@@ -70,6 +70,22 @@ class EmpleadoController extends Controller
         'subRegiones', 'generos', 'estadosCiviles', 'puestos', 'empresas', 'usuarios'));
     }
 
+    public function create2($user)
+    {
+        $direcciones = Direccion::all();
+        $paises = Pais::all();
+        $regiones = Region::all();
+        $subRegiones = SubRegion::all();
+        $generos = Genero::all();
+        $estadosCiviles = EstadoCivil::all();
+        $puestos = Puesto::all();
+        $empresas = Empresa::all();        
+        $usuarios = User::where('id',$user)->get();
+                
+        return view('empleado.create', compact('direcciones', 'paises', 'regiones', 
+        'subRegiones', 'generos', 'estadosCiviles', 'puestos', 'empresas', 'usuarios'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

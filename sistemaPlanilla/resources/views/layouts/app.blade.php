@@ -70,7 +70,7 @@
                         <div class="profile-info" data-lock-name="{{ Auth::user()->name }}" data-lock-email="{{ Auth::user()->email }}">
                             <span class="name">{{ Auth::user()->name }}</span>
                             @if (Auth::user()->activo==1)
-                                <span class="role" name = "unidad">Unidad: </span>                                
+                                <span class="role" name = "unidad"></span>                                
                             @endif
                         </div>
 
@@ -101,11 +101,7 @@
             <ul class="notifications">
                 @guest
                 <li>
-                    <a class="register-links" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
-                </li>
-
-                <li>
-                    <a class="register-links" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
+                    <a class="register-links" href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp; {{ __('Iniciar Sesión') }}</a>
                 </li>
                 @endguest
             </ul>
@@ -132,15 +128,22 @@
                         <nav id="menu" class="nav-main" role="navigation">
                             <ul class="nav nav-main">
                                 <li class="nav-active">
-                                    <a href="index.html">
+                                    <a href="{{ route('home') }}">
                                         <i class="fa fa-home" aria-hidden="true"></i>
                                         <span>Inicio</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('centrocostos.index') }}">
-                                        <i class="fa fa-empire" aria-hidden="true"></i>
-                                        <span>Centro de Costos</span>
+                                    <a href="{{ route('unidad.index') }}">
+                                        <i class="fa fa-sitemap" aria-hidden="true"></i>
+                                        <span>Unidad Organizacional</span>
+                                    </a>
+                                </li>
+                                {{-- <!-- @role('admin') --> --}}
+                                <li>
+                                    <a href="{{ route('empresa.index') }}">
+                                        <i class="fa fa-building" aria-hidden="true"></i>
+                                        <span>Empresa</span>
                                     </a>
                                 </li>
                                 <li class="nav-parent">
@@ -150,6 +153,11 @@
                                     </a>
                                     <ul class="nav nav-children">
                                         <li>
+                                            <a href="{{ route('puesto.index') }}">
+                                                Puestos de la Empresa
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="{{ route('profesion.index') }}">
                                                 Profesiones
                                             </a>
@@ -158,140 +166,71 @@
                                             <a href="{{ route('catalogocomision.index') }}">
                                                 Comisiones
                                             </a>
-                                        </li>
-                                        <li>
-                                            <a href="ui-elements-tabs.html">
-                                                Enlace 3
-                                            </a>
-                                        </li>
+                                        </li>                                        
                                     </ul>
                                 </li>
-                                <li class="nav-parent">
-                                    <a>
-                                        <i class="fa fa-user" aria-hidden="true"></i>
-                                        @role('writer')
+                                    <li>
+                                        <a href="{{ route('empleado.index') }}">
+                                            <i class="fa fa-users" aria-hidden="true"></i>
                                             <span>Empleados</span>
-                                        @else
-                                            <span>No Empleados</span>
-                                        @endrole                                        
-                                    </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            @can('edit articles')
-                                            <a href="pages-signup.html">Enlace edit articles</a>
-                                            @endcan                                            
-                                        </li>
-                                        <li>
-                                            <a href="pages-signin.html">
-                                                Enlace 2
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="pages-recover-password.html">
-                                                Enlace 3
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="pages-lock-screen.html">
-                                                Enlace 4
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="{{ route('ventasempleado.index') }}">
-                                        <i class="fa fa-dollar" aria-hidden="true"></i>
-                                        <span>Ventas</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('puesto.index') }}">
-                                        <i class="fa fa-cubes" aria-hidden="true"></i>
-                                        <span>Puestos de la Empresa</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('unidad.index') }}">
-                                        <i class="fa fa-sitemap" aria-hidden="true"></i>
-                                        <span>Unidad Organizacional</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('empresa.index') }}">
-                                        <i class="fa fa-building" aria-hidden="true"></i>
-                                        <span>Empresa</span>
-                                    </a>
-                                </li>
-                                <li class="nav-parent">
-                                    <a>
-                                        <i class="fa fa-users" aria-hidden="true"></i>
-                                        <span>Usuarios</span>
-                                    </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a href="maps-google-maps.html">
-                                                Enlace 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="maps-google-maps-builder.html">
-                                                Enlace 2
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-parent">
-                                    <a>
-                                        <i class="fa fa-align-left" aria-hidden="true"></i>
-                                        <span>Configuraciones</span>
-                                    </a>
-                                    <ul class="nav nav-children">
-                                        <li class="nav-parent">
-                                            <a>Generales</a>
-                                            <ul class="nav nav-children">
-                                                <li>
-                                                    <a href="{{ route('estadocivil.index') }}">Estado Civil</a>
-                                                </li>
-                                                <li>
-                                                <a href="{{ route('genero.index') }}">Genero</a>
-                                                </li>
-                                                <li>
-                                                <a href="{{ route('tipodocumento.index') }}">Tipos de documento</a>
-                                                </li>
-                                                <li>
-                                                <a href="{{ route('tipodescuento.index') }}">Tipos de descuento</a>
-                                                </li>
-                                                <li>
-                                                <a href="{{ route('rangosalarial.index') }}">Rango Salarial</a>
-                                                </li>
-                                                <li>
-                                                <a href="{{ route('tipoingresos.index') }}">Tipo Ingreso</a>
-                                                </li>
-                                               
-                                            </ul>
-                                        </li>
-                                        <li class="nav-parent">
-                                            <a>Ubicación</a>
-                                            <ul class="nav nav-children">
-                                                
-                                                <li>
-                                                <a href="{{ route('pais.index') }}">Pais</a>
-                                                </li>
-                                                <li>
-                                                <a href="{{ route('tiporegion.index') }}">Tipos Región</a>
-                                                </li>
-                                                <li>
-                                                <a href="{{ route('region.index') }}">Regiones</a>
-                                                </li>
-                                                <li>
-                                                <a href="{{ route('subregion.index') }}">Sub Regiones</a>
-                                                </li>
-                                               
-                                               
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+                                        </a>    
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('ventasempleado.index') }}">
+                                            <i class="fa fa-dollar" aria-hidden="true"></i>
+                                            <span>Ventas</span>
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="nav-parent">
+                                        <a>
+                                            <i class="fa fa-align-left" aria-hidden="true"></i>
+                                            <span>Configuraciones</span>
+                                        </a>
+                                        <ul class="nav nav-children">
+                                            <li class="nav-parent">
+                                                <a>Generales</a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a href="{{ route('estadocivil.index') }}">Estado Civil</a>
+                                                    </li>
+                                                    <li>
+                                                    <a href="{{ route('genero.index') }}">Genero</a>
+                                                    </li>
+                                                    <li>
+                                                    <a href="{{ route('tipodocumento.index') }}">Tipos de documento</a>
+                                                    </li>
+                                                    <li>
+                                                    <a href="{{ route('tipodescuento.index') }}">Tipos de descuento</a>
+                                                    </li>
+                                                    <li>
+                                                    <a href="{{ route('rangosalarial.index') }}">Rango Salarial</a>
+                                                    </li>
+                                                    <li>
+                                                    <a href="{{ route('tipoingresos.index') }}">Tipo Ingreso</a>
+                                                    </li>                                               
+                                                </ul>
+                                            </li>
+                                            <li class="nav-parent">
+                                                <a>Ubicación</a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                    <a href="{{ route('pais.index') }}">Pais</a>
+                                                    </li>
+                                                    <li>
+                                                    <a href="{{ route('tiporegion.index') }}">Tipos Región</a>
+                                                    </li>
+                                                    <li>
+                                                    <a href="{{ route('region.index') }}">Regiones</a>
+                                                    </li>
+                                                    <li>
+                                                    <a href="{{ route('subregion.index') }}">Sub Regiones</a>
+                                                    </li> 
+                                                </ul>
+                                            </li>                                
+                                        </ul>
+                                    </li>
+                                {{-- <!--@endrole--> --}}
                             </ul>
                         </nav>
                     </div>
