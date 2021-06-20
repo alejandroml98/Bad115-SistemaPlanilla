@@ -10,3 +10,5 @@ class Empleado extends Model
     public $incrementing = false;
     protected $dates = ['fechanacimiento'];
 }
+
+

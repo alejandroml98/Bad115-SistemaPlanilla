@@ -24,3 +24,5 @@ function mostrarMensaje(mensaje) {
         confirmButtonText: 'Entendido'
     })
 }
+
+
