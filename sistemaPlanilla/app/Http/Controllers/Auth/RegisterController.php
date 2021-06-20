@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -29,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/empleado/create';    
 
     /**
      * Create a new controller instance.
@@ -38,7 +40,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -50,7 +52,6 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -64,12 +65,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // dd($data);
         $user = new User();
-        $user->name=$data['name'];
-        $user->email= $data['email'];
+        $user->name='--';
+        $user->email= $data['email'];        
         $user->password = Hash::make($data['password']);        
         $user->activo=true;
-        $user->save();        
+        $user->save();                                          
+        if (array_key_exists('roles', $data)){
+            //dd($data['roles'][0]);
+            foreach($data['roles'] as $rol){
+                $user->assignRole($rol);
+            }
+        }
+        $this->redirectTo='/empleado/create/'.$user->id;      
         return $user;
+    }
+
+    public function register(Request $request)
+    {
+        // dd($request->request);
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+        
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
     }
 }
