@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -114,5 +116,10 @@ class UserController extends Controller
         $unidadEmpleado = UnidadEmpleado::where('codigoempleado','=',$empleado -> codigoempleado)->first();
         $unidad = Unidad::where('codigounidad', '=', $unidadEmpleado -> codigounidad)->first();        
         return $unidad -> nombreunidad;
+    }
+    public function rolcreate()
+    {
+        $permisos = Permission::all();
+        return view ('roles.create',compact('permisos'));
     }
 }
