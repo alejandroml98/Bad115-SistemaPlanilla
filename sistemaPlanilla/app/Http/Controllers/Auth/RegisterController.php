@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 
@@ -91,5 +92,11 @@ class RegisterController extends Controller
         
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
+    }
+
+    public function showRegistrationForm()
+    {        
+        $roles = DB::table('roles')->get();        
+        return view('auth.register', ['roles'=>$roles]);
     }
 }
