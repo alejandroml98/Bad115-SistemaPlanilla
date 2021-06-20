@@ -13,7 +13,7 @@ class EstadoCivilSeeder extends Seeder
     public function run()
     {
         DB::table('estado_civils')->insert([
-            'nombreEstadoCivil' => 'Soletero'
+            'nombreEstadoCivil' => 'Soltero'
         ]);
         DB::table('estado_civils')->insert([
             'nombreEstadoCivil' => 'Casado'
