@@ -31,60 +31,88 @@
     $unidad que es la unidad de la planilla    
     
 -->
-<h1>Planilla para la unidad de: {{ $unidad -> nombreunidad }}</h1>
-<table>
-    <thead>
-        <tr>
-            <th>Código Empleado</th>
-            <th>Nombre Empleado</th>
-            <th>Salario</th>
-            @foreach ($tipoDescuentos as $tipoD)
-                <th>{{ $tipoD -> nombretipodescuento }}</th>
-            @endforeach
-            <th>Total Descuentos</th>
-            @foreach ($tipoIngresos as $tipoI)
-                <th>{{ $tipoI -> nombretipoingresos }}</th>
-            @endforeach
-            <th>Total Ingresos</th>
-            <th>Salario Neto</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($planilla as $empleado)
-           <tr>
-               <td><a href="{{ url('/planilla/'.$empleado[0].'/boletapago') }}">{{ $empleado[0] }}</a></td>
-               <td>{{ $empleado[1] }}</td>
-               <td>{{ $empleado[2] }}</td>                                  
-               @foreach ($empleado[3] as $descuento)
-                   <td>{{ $descuento }}</td>
-               @endforeach
-               <td>{{ $empleado[4] }}</td>
-               @foreach ($empleado[5] as $ingreso)
-                   <td>{{ $ingreso }}</td>
-               @endforeach
-               <td>{{ $empleado[6] }}</td>
-               <td>{{ $empleado[7] }}</td>
-           </tr> 
-        @endforeach
-        <tr>
-            <td>TOTALES</td>
-            <td>Empleados: {{ $totalEmpleados }}</td>
-            <td>{{ $totalSalarios }}</td>
-            @foreach ($totalTipoDescuentos as $tipoDescuento)
-                   <td>{{ $tipoDescuento }}</td>
-            @endforeach
-            <td>{{ $totalDescuentos }}</td>
-            @foreach ($totalTipoIngresos as $tipoIngreso)
-                   <td>{{ $tipoIngreso }}</td>
-            @endforeach
-            <td>{{ $totalIngresos }}</td>
-            <td>{{ $totalAPagarUnidad }}</td>
-        </tr>
-    </tbody>
-</table>
+@extends('layouts.app')
+@push('vendorcss')
+<link rel="stylesheet" href="{{ asset('assets/vendor/select2/select2.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/jquery-datatables-bs3/assets/css/datatables.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/pnotify/pnotify.custom.css') }}" />
+@endpush
+@section('content')
+<a class=" btn btn-primary mb-3" href="{{ route('planilla.unidades') }}">Regresar</a>
+<section class="panel">
+    <header class="panel-heading">
+        <h2 class="panel-title">Planilla para la unidad de: {{ $unidad -> nombreunidad }}</h2>
+    </header>
+    <div class="panel-body" lang="es">
+        <table class="table table-bordered table-striped mb-none table-hover" id="datatable-tabletools">
+            <thead>
+                <tr>
+                    <th>Código Empleado</th>
+                    <th>Nombre Empleado</th>
+                    <th>Salario</th>
+                    @foreach ($tipoDescuentos as $tipoD)
+                        <th>{{ $tipoD -> nombretipodescuento }}</th>
+                    @endforeach
+                    <th>Total Descuentos</th>
+                    @foreach ($tipoIngresos as $tipoI)
+                        <th>{{ $tipoI -> nombretipoingresos }}</th>
+                    @endforeach
+                    <th>Total Ingresos</th>
+                    <th>Salario Neto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($planilla as $empleado)
+                <tr class="gradeX text-center">
+                    <td><a class="text-decoration-none text-bold" href="{{ url('/planilla/'.$empleado[0].'/boletapago') }}">{{ $empleado[0] }}</a></td>
+                    <td>{{ $empleado[1] }}</td>
+                    <td>{{ $empleado[2] }}</td>                                  
+                    @foreach ($empleado[3] as $descuento)
+                        <td>{{ $descuento }}</td>
+                    @endforeach
+                    <td>{{ $empleado[4] }}</td>
+                    @foreach ($empleado[5] as $ingreso)
+                        <td>{{ $ingreso }}</td>
+                    @endforeach
+                    <td>{{ $empleado[6] }}</td>
+                    <td>{{ $empleado[7] }}</td>
+                </tr>
+                @endforeach
+                <tr class="table-success text-center">
+                    <td class="text-bold text-center">TOTALES</td>
+                    <td>Empleados: {{ $totalEmpleados }}</td>
+                    <td>{{ $totalSalarios }}</td>
+                    @foreach ($totalTipoDescuentos as $tipoDescuento)
+                           <td>{{ $tipoDescuento }}</td>
+                    @endforeach
+                    <td>{{ $totalDescuentos }}</td>
+                    @foreach ($totalTipoIngresos as $tipoIngreso)
+                           <td>{{ $tipoIngreso }}</td>
+                    @endforeach
+                    <td>{{ $totalIngresos }}</td>
+                    <td>{{ $totalAPagarUnidad }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+@endsection
 
-<style>
-    table, th, td {
-        border: 1px solid black;
-    }
-</style>
+@push('vendorjs')
+<script src="{{ asset('assets/vendor/jquery-placeholder/jquery.placeholder.js') }}"></script>
+<script src="{{ asset('assets/vendor/select2/select2.js') }}"></script>
+<script src="{{ asset('assets/vendor/select2/select2_locale_es.js') }}"></script>
+<script src="{{ asset('assets/vendor/jquery-datatables/media/js/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/jquery-datatables-bs3/assets/js/datatables.js') }}"></script>
+<script src="{{ asset('assets/javascripts/tables/examples.datatables.default.js') }}"></script>
+<script src="{{ asset('assets/vendor/pnotify/pnotify.custom.js') }}"></script>
+<script src="{{ asset('assets/javascripts/ui-elements/examples.modals.js') }}"></script>
+<script src="{{ asset('assets/javascripts/tables/examples.datatables.tabletools.js') }}"></script>
+<script src="{{ asset('js/profesion.js') }}"></script>
+@if (Session::has('mensaje'))
+<script type="text/javascript">
+    mostrarMensaje('{{ Session::get("mensaje") }}');
+</script>
+@endif
+@endpush
