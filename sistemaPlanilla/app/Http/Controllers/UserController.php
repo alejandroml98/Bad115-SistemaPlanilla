@@ -75,6 +75,43 @@ class UserController extends Controller
         return view('auth.profile', compact('user'));
     }
 
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        $roles = DB::table('roles')->get(); 
+        $rolesU = $user->getRoleNames();
+        return view('user/edit',compact('rolesU','user','roles'));
+    }
+
+    public function update2(Request $request)
+    {   
+        $campos = [
+            'name' => ['string', 'max:100', 'regex:/^[a-zA-Zá-úÁ-Ú ]*$/'],
+            'email' => [ 'string', 'unique:users,email,' . Auth::user()->id]
+        ];
+        $mensaje = [
+            
+            "regex" => 'El :attribute no acepta números o caracteres especiales',
+            "unique" => 'El :attribute que escribió ya <existe></existe>'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $user = request()->except(['_token', '_method','roles','multiselect']);
+        
+        $rolesx = request()->input('roles');
+        
+            //dd($data['roles'][0]);
+           
+        
+        User::where('id', '=', $request['id'])->update($user);
+        $user= User::findOrFail($request['id']);
+        foreach($rolesx as $rol){
+            $user->assignRole($rol);
+            
+        return redirect('user/index');
+        
+        }
+    }
+
     public function update(Request $request)
     {
         $campos = [

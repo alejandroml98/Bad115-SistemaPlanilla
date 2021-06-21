@@ -28,8 +28,11 @@
                 <td>{{$loop -> iteration}}</td>
                     <td>{{ $user -> name }}</td>
                     <td>{{ $user -> email }}</td>
-                    <td>{{ $user -> activo }}</td>
-                   
+                    @if ($user->activo==true)
+                    <td class="success">Activo</td>    
+                    @else
+                    <td class="danger">Inactivo</td>    
+                    @endif
                     
                   
                     <td class="text-center">

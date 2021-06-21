@@ -278,7 +278,23 @@
                                                     <a href="{{ route('subregion.index') }}">Sub Regiones</a>
                                                     </li> 
                                                 </ul>
-                                            </li>                                
+                                            </li>   
+                                                                       
+                                        </ul>
+                                        <ul class="nav nav-children">
+                                            <li class="nav-parent">
+                                                <a>Permisos</a>
+                                                <ul class="nav nav-children">
+                                                <li>
+                                                    <a href="{{ url('user/index') }}">Usuarios</a>
+                                                    </li>
+                                                    <li>
+                                                    <a href="{{ url('roles/index') }}">Roles</a>
+                                                    </li>
+                                                     
+                                                </ul>
+                                            </li>   
+                                                                      
                                         </ul>
                                     </li>
                                 @endrole

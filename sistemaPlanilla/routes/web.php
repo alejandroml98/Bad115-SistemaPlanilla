@@ -83,6 +83,11 @@ Route::get('pais/{pais}/region', 'PaisController@obtenerRegiones');
 Route::post('auth/role/store', 'UserController@rolstore');
 Route::get('region/{region}/subregion', 'RegionController@obtenerSubRegiones');
 
+//ruta modificar usuario
+Route::get('/user/{id}/edit', 'UserController@edit');
+Route::post('/user/{id}', 'UserController@update2');
+
+
 
 /**           Rutas de pruebas de formulario y sweet alert                            */
 Route::get('/roles/index','UserController@rolindex');
@@ -100,6 +105,7 @@ Route::delete('/Prueba/eliminar','PruebaController@Confirmacion')->name('confirm
 //User Routes
 Route::get('/profile', 'UserController@profile')->middleware('auth')->name('profile');  
 Route::put('/profile/update', 'UserController@update')->middleware('auth')->name('profile.update');  
+Route::put('/profile/update2', 'UserController@update2')->middleware('auth')->name('profile.update'); 
 Route::put('/profile/changePassword', 'UserController@changePassword')->middleware('auth')->name('profile.changePassword');  
 Route::get('/profile/subordinados/{idjefe}', 'UserController@obtenerSubordinados')->middleware('auth')->name('profile.obtenerSubordinados');  
 Route::get('/user/unidad', 'UserController@obtenerUnidadEmpleado')->middleware('auth')->name('user.obtenerUnidad');

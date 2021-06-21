@@ -13,7 +13,7 @@
         <h2 class="panel-title">Roles Existentes</h2>
     </header>
     <div class="panel-body" lang="es">
-        <table class="table table-bordered table-striped mb-none" id="datatable-default">
+        <table class="table table-bordered table-striped mb-none" >
             <thead>
                 <tr>
                 <th>ID</th>

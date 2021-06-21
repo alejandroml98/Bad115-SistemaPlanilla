@@ -34,6 +34,7 @@
             <th>Unidad</th>
             <th>Código</th>
             <th>Empleado</th>
+            <th>Puesto </th>
            
                 </tr>
             </thead>
@@ -44,8 +45,9 @@
                 <td>{{ $unidad -> nombreunidad }}</td>
                 @foreach ($puestos as $puesto)
             @if ($puesto -> codigopuesto == $subordinado -> codigopuesto)
-                <td>{{ $subordinado -> codigoempleado }}<td>
-                <td>{{ $subordinado -> primernombre }}{{ ' ' }}{{ $subordinado -> apellidopaterno }}-{{ $puesto -> nombrepuesto }}</td>
+                <td>{{ $subordinado -> codigoempleado }}</td>
+                <td>{{ $subordinado -> primernombre }}{{ ' ' }}{{ $subordinado -> apellidopaterno }}</td>
+                <td>{{ $puesto -> nombrepuesto }}</td>
             @endif
         @endforeach  
                   

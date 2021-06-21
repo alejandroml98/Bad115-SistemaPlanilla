@@ -83,6 +83,8 @@ class RegisterController extends Controller
         return $user;
     }
 
+   
+
     public function register(Request $request)
     {
         // dd($request->request);
