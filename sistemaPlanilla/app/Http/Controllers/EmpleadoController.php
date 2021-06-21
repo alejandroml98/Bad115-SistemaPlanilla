@@ -255,7 +255,7 @@ class EmpleadoController extends Controller
     {
         $user->activo=true;
         $user->en_proceso=null;
-        $user->save();
+        $user->save();              
         $data = array('email'=> $user->email, 'name'=>$user->name);
         //Para enviar correo de confirmacion de nuevo
         Mail::send('Mail.activar', $data, function ($message) use ($data){
@@ -284,14 +284,15 @@ class EmpleadoController extends Controller
         $user= Auth::User();
         $user->en_proceso=now();
         $user->save();
+        $empleado= Empleado::where('iduser',$user->id)->first();  
         //Solicitar proceso de activacion por correo
-        $data = array('name'=>$user->name, 'id'=>$user->id);
+        $data = array('name'=>$user->name, 'id'=>$user->id, 'empleadocod'=>$empleado->codigoempleado);
         //Para enviar correo de confirmacion de nuevo
         Mail::send('Mail.pedirActivacion', $data, function ($message) use ($data){
-            $message->to("alead@mailinator.com", "Admin");
+            $message->to("gestor@mailinator.com", "Admin");
             $message->subject('Solicitud de reactivación de cuenta');            
         });
-        dd('Pedir Activacion');
+        return redirect(route('home'));
     }
 
     public function inactivo()
