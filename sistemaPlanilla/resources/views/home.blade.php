@@ -5,8 +5,9 @@
 <link rel="stylesheet" href="assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
 <link rel="stylesheet" href="assets/vendor/pnotify/pnotify.custom.css" />
 @endpush
+@role('admin')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6">        
         <div class="panel-group" id="accordion2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -53,6 +54,7 @@
                 </div>
             </div>            
         </div>
+        
     </div>
     <div class="col-md-6">
 		<div class="row">
@@ -93,7 +95,7 @@
 								<div class="summary">
 									<h4 class="title">Empleados</h4>
 								    <div class="info">
-								        <strong class="amount">15</strong>
+								        <strong name="cantEmpleados" class="amount"></strong>
 							        </div>
 						        </div>
 						        <div class="summary-footer">
@@ -112,7 +114,12 @@
         @include('empleado.frontindex')
     </div>
 </div>
-</div>
+</div>    
+@else
+    <h1>¡Bienvenido!</h1>    
+
+@endrole
+
 @endsection
 @push('vendorjs')
 <script src="assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
@@ -135,6 +142,14 @@
         var url = "{{ route('user.empresa') }}";
         $.get(url, function(data) {
             var span = $('strong[name=nomEmpresa]');            
+            span.append(data);                                                      
+        });                                    
+    });
+
+    $(function() {                                    
+        var url = "{{ url('/numempleados') }}";
+        $.get(url, function(data) {
+            var span = $('strong[name=cantEmpleados]');            
             span.append(data);                                                      
         });                                    
     });

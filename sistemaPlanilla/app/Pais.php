@@ -10,8 +10,9 @@ class Pais extends Model
     protected $primaryKey = "idPais";
 
     public function tipoRegion() {
-        return $this -> belongsTo(TipoRegion::class);
+        return $this -> hasOne(TipoRegion::class, 'idtiporegion', 'idtiporegion');
     }
+
     public function region() {
         return $this -> hasMany(Region::class);
     }

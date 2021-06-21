@@ -13,6 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @if(!Auth::user()->en_proceso)
                     <p>Si quieres volverla activar presiona el siguiente boton:</p>
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
@@ -21,6 +22,13 @@
                             </a>                    
                         </div>
                     </div>
+                    @else
+                    <div class="form-group row mb-0">
+                        <div class="col-md-6 offset-md-4">
+                            <h2>Tu proceso de activación se encuentra activo</h2>                  
+                        </div>
+                    </div>
+                    @endif                    
                 </div>
             </div>
         </div>

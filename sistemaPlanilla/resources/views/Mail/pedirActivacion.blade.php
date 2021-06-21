@@ -11,7 +11,7 @@
             Por este medio se solicita una activación del usuario: {{$name}}.            
         </p>        
     </div>
-    <a href="{{url('usuario/proceso/'.$id)}}">
+    <a href="{{url('empleado/'.$empleadocod.'/edit')}}">
         Proceso de reactivación de cuenta
     </a>
 </body>

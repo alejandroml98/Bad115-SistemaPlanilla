@@ -43,7 +43,7 @@
     <header class="panel-heading">
         <h2 class="panel-title">Planilla para la unidad de: {{ $unidad -> nombreunidad }}</h2>
     </header>
-    <div class="panel-body" lang="es">
+    <div class="panel-body" lang="es" style="overflow: scroll;">
         <table class="table table-bordered table-striped mb-none table-hover" id="datatable-tabletools">
             <thead>
                 <tr>

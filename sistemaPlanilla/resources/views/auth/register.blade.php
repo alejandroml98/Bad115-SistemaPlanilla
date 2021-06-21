@@ -2,6 +2,7 @@
 @push('vendorcss')
 <link rel="stylesheet" href="{{ asset('assets/vendor/select2/select2.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" />
 @endpush
 
 @section('content')
@@ -94,5 +95,6 @@
 @push('vendorjs')
 <script src="{{ asset('assets/vendor/select2/select2.js') }}"></script>
 <script src="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js') }}"></script>
+<script src="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
 <script src="{{ asset('assets/javascripts/forms/examples.advanced.form.js') }}"></script>    
 @endpush
