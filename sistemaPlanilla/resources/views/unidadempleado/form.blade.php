@@ -22,7 +22,8 @@
         <div class="form-group">
             <div class="form-check p-0">
                 <label for="esJefe" class="form-check-label pr-3">{{ '¿Es Jefe?' }}</label>
-                <input type="checkbox" name="esJefe" id="esJefe" value="1" class="form-check-input">
+                <input hidden type="checkbox" name="esJefe" id="esJefe" value='0' class="form-check-input">
+                <input type="checkbox" name="esJefe" id="esJefe" class="form-check-input">                
             </div>
         </div>  
     @else
@@ -43,9 +44,9 @@
             <div class="form-check p-0">
                 <label for="esJefe" class="form-check-label pr-3">{{ '¿Es Jefe?' }}</label>
                 @if ($unidadEmpleado -> esjefe)
-                    <input type="checkbox" name="esJefe" id="esJefe" value="1" checked>
+                    <input type="checkbox" name="esJefe" id="esJefe" value='1' checked>
                 @else
-                    <input type="checkbox" name="esJefe" id="esJefe" value="1">
+                    <input type="checkbox" name="esJefe" id="esJefe" value='0'>
                 @endif 
             </div>
         </div>  

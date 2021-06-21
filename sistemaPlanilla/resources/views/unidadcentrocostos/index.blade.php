@@ -42,7 +42,7 @@
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <input type="text" name="codigoUnidad" hidden value="{{ $unidadCentroCostos -> codigounidad }}">
-                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $unidadCentroCostos -> idunidadcentrocostos }}', '{{ $centroCostos -> presupuestoinicial }}','la unidad con presupuesto inicial')">
+                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $unidadCentroCostos -> idunidadcentrocostos }}', '{{ $centroCostos -> presupuestoinicial }}','la unidad con presupuesto inicial', 'CentroC')">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </form>

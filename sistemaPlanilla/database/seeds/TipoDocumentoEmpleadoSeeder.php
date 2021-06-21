@@ -18,7 +18,7 @@ class TipoDocumentoEmpleadoSeeder extends Seeder
             'idTipoDocumento' => 1
         ]);
         DB::table('tipodocumento_empleados')->insert([
-            'valorDocumento' => '0456123789',
+            'valorDocumento' => '04561237',
             'codigoEmpleado' => 'ER45201',
             'idTipoDocumento' => 2
         ]);
@@ -28,7 +28,7 @@ class TipoDocumentoEmpleadoSeeder extends Seeder
             'idTipoDocumento' => 4
         ]);
         DB::table('tipodocumento_empleados')->insert([
-            'valorDocumento' => '951332156',
+            'valorDocumento' => '95133215',
             'codigoEmpleado' => 'ER45201',
             'idTipoDocumento' => 5
         ]);
@@ -57,7 +57,7 @@ class TipoDocumentoEmpleadoSeeder extends Seeder
 
 
         DB::table('tipodocumento_empleados')->insert([
-            'valorDocumento' => '0886594-3',
+            'valorDocumento' => '08865944-3',
             'codigoEmpleado' => 'JU12374',
             'idTipoDocumento' => 1
         ]);
@@ -80,7 +80,7 @@ class TipoDocumentoEmpleadoSeeder extends Seeder
 
 
         DB::table('tipodocumento_empleados')->insert([
-            'valorDocumento' => '0886856-3',
+            'valorDocumento' => '08868565-3',
             'codigoEmpleado' => 'JN85234',
             'idTipoDocumento' => 1
         ]);
@@ -101,7 +101,7 @@ class TipoDocumentoEmpleadoSeeder extends Seeder
         ]);
         
         DB::table('tipodocumento_empleados')->insert([
-            'valorDocumento' => '0562856-3',
+            'valorDocumento' => '05628565-3',
             'codigoEmpleado' => 'PG78523',
             'idTipoDocumento' => 1
         ]);
@@ -123,7 +123,7 @@ class TipoDocumentoEmpleadoSeeder extends Seeder
 
         //MA78951
         DB::table('tipodocumento_empleados')->insert([
-            'valorDocumento' => '0562856-3',
+            'valorDocumento' => '05628565-3',
             'codigoEmpleado' => 'MA78951',
             'idTipoDocumento' => 1
         ]);
@@ -165,7 +165,7 @@ class TipoDocumentoEmpleadoSeeder extends Seeder
         ]);
         //HU32758
         DB::table('tipodocumento_empleados')->insert([
-            'valorDocumento' => '0587632-3',
+            'valorDocumento' => '05876325-3',
             'codigoEmpleado' => 'HU32758',
             'idTipoDocumento' => 1
         ]);
@@ -187,7 +187,7 @@ class TipoDocumentoEmpleadoSeeder extends Seeder
 
         //DN75315
         DB::table('tipodocumento_empleados')->insert([
-            'valorDocumento' => '0587632-3',
+            'valorDocumento' => '05876321-3',
             'codigoEmpleado' => 'DN75315',
             'idTipoDocumento' => 1
         ]);
@@ -209,7 +209,7 @@ class TipoDocumentoEmpleadoSeeder extends Seeder
 
             //LC64820
         DB::table('tipodocumento_empleados')->insert([
-            'valorDocumento' => '8956232-3',
+            'valorDocumento' => '89562324-3',
             'codigoEmpleado' => 'LC64820',
             'idTipoDocumento' => 1
         ]);
@@ -231,7 +231,7 @@ class TipoDocumentoEmpleadoSeeder extends Seeder
 
             //AR93146
         DB::table('tipodocumento_empleados')->insert([
-            'valorDocumento' => '856974632-3',
+            'valorDocumento' => '85697463-3',
             'codigoEmpleado' => 'AR93146',
             'idTipoDocumento' => 1
         ]);
@@ -253,7 +253,7 @@ class TipoDocumentoEmpleadoSeeder extends Seeder
 
         //MT78430
         DB::table('tipodocumento_empleados')->insert([
-            'valorDocumento' => '0478521-3',
+            'valorDocumento' => '04785251-3',
             'codigoEmpleado' => 'MT78430',
             'idTipoDocumento' => 1
         ]);
@@ -297,7 +297,7 @@ class TipoDocumentoEmpleadoSeeder extends Seeder
 
         //DG86421
         DB::table('tipodocumento_empleados')->insert([
-            'valorDocumento' => '0589541-3',
+            'valorDocumento' => '05895414-3',
             'codigoEmpleado' => 'DG86421',
             'idTipoDocumento' => 1
         ]);
@@ -319,7 +319,7 @@ class TipoDocumentoEmpleadoSeeder extends Seeder
 
         //JL35624
         DB::table('tipodocumento_empleados')->insert([
-            'valorDocumento' => '078564-3',
+            'valorDocumento' => '07856443-3',
             'codigoEmpleado' => 'JL35624',
             'idTipoDocumento' => 1
         ]);
