@@ -13,10 +13,10 @@ class TipoIngresosSeeder extends Seeder
     public function run()
     {
         DB::table('tipo_ingresos')->insert([
-            'nombreTipoIngresos' => 'Bonificacion'
+            'nombreTipoIngresos' => 'Bonificación'
         ]);
         DB::table('tipo_ingresos')->insert([
-            'nombreTipoIngresos' => 'Regalias'
+            'nombreTipoIngresos' => 'Regalías'
         ]);
         DB::table('tipo_ingresos')->insert([
             'nombreTipoIngresos' => 'Viaticos'
