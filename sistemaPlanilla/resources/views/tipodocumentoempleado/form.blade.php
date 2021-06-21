@@ -11,7 +11,7 @@
     @if ($mode == 'create')
         <input type="text" hidden name="codigoEmpleado" id="codigoEmpleadoCreate" value="{{ $empleado -> codigoempleado }}">
         <div class="form-group">
-            <label for="idTipoDocumento">Tipo de ingreso</label>
+            <label for="idTipoDocumento">Tipo de documento</label>
             <select data-plugin-selectTwo class="form-control mt-1" name="idTipoDocumento" id="idTipoDocumento">
                 <option value="" selected disabled>Seleccione el tipo de documento</option>
                 @foreach ($tiposDocumentos as $tipoDocumento)

@@ -96,11 +96,11 @@
                 </div>
                 <div class="col-md-4">
                     <label class="control-label" for="codigoPuesto">{{ 'Puesto' }}</label>
-                    <select name="codigoPuesto" id="codigoPuesto" data-plugin-selectTwo class="form-control mt-1">
-                        @foreach ($puestos as $puesto)
-                        
-                        <option value="{{ $puesto -> codigopuesto }}">{{ $puesto -> nombrepuesto }}</option>
-                        
+                    <select onchange="rangoSalarial(this)" name="codigoPuesto" id="codigoPuesto" data-plugin-selectTwo class="form-control mt-1">
+                        @foreach ($puestos as $puesto)                        
+                        <option value="{{ $puesto -> codigopuesto }}">{{ $puesto -> nombrepuesto }}, 
+                            ({{$puesto->rangoSalario->salariominimo}}-{{$puesto->rangoSalario->salariomaximo}})
+                        </option>                        
                         @endforeach
                     </select>
                 </div>
@@ -115,7 +115,7 @@
                     <label class="control-label" for="correoEmpresarial">{{ 'Correo Empresarial' }}</label>
                     <input type="email" class="form-control" name="correoEmpresarial" id="correoEmpresarial" value="{{ isset($empleado -> correoempresarial) ? $empleado -> correoempresarial : old('correoEmpresarial') }}">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" hidden>
                     <label class="control-label" for="correoElectronico">{{ 'Correo Eléctronico' }}</label>
                     <input type="email" class="form-control" name="correoElectronico" id="correoElectronico" value="{{ isset($empleado -> correoelectronico) ? $empleado -> correoelectronico : old('correoElectronico') }}">
                 </div>
@@ -248,19 +248,21 @@
                 </div>
                 <div class="col-md-4">
                     <label class="control-label" for="codigoPuesto">{{ 'Puesto' }}</label>
-                    <select name="codigoPuesto" id="codigoPuesto" data-plugin-selectTwo class="form-control mt-1">
+                    <select onchange="rangoSalarial(this)" name="codigoPuesto" id="codigoPuesto" data-plugin-selectTwo class="form-control mt-1">
                         @foreach ($puestos as $puesto)
                         @if ($empleado -> codigopuesto == $puesto -> codigopuesto)
-                        <option value="{{ $puesto -> codigopuesto }}" selected>{{ $puesto -> nombrepuesto }}</option>
+                        <option value="{{ $puesto -> codigopuesto }}" selected>{{ $puesto -> nombrepuesto }}, 
+                            ({{$puesto->rangoSalario->salariominimo}}-{{$puesto->rangoSalario->salariomaximo}})</option>
                         @else
-                        <option value="{{ $puesto -> codigopuesto }}">{{ $puesto -> nombrepuesto }}</option>
+                        <option value="{{ $puesto -> codigopuesto }}">{{ $puesto -> nombrepuesto }}, 
+                            ({{$puesto->rangoSalario->salariominimo}}-{{$puesto->rangoSalario->salariomaximo}})</option>
                         @endif
                         @endforeach
-                    </select>
+                    </select>                    
                 </div>
                 <div class="col-md-4">
                     <label class="control-label" for="salario">{{ 'Salario' }}</label>
-                    <input type="number" class="form-control" step=".01" min="0" max="9999999" name="salario" id="salario" value="{{ isset($empleado -> salario) ? $empleado -> salario : old('salarioCreate') }}">
+                    <input type="number" class="form-control" step="5" min="0" max="9999999" name="salario" id="salario" value="{{ isset($empleado -> salario) ? $empleado -> salario : old('salarioCreate') }}">
                 </div>                
             </div>
 

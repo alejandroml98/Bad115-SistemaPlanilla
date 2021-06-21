@@ -35,7 +35,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $empleados = Empleado::all();
+        $empleados = Empleado::all();        
         $puestos = Puesto::all();
         return view('empleado.index', compact('empleados', 'puestos'));
     }
@@ -53,7 +53,7 @@ class EmpleadoController extends Controller
         $subRegiones = SubRegion::all();
         $generos = Genero::all();
         $estadosCiviles = EstadoCivil::all();
-        $puestos = Puesto::all();
+        $puestos = Puesto::all();        
         $empresas = Empresa::all();        
         $usuariosTabla = User::all();
         $empleado = Empleado::all();
@@ -78,7 +78,7 @@ class EmpleadoController extends Controller
         $subRegiones = SubRegion::all();
         $generos = Genero::all();
         $estadosCiviles = EstadoCivil::all();
-        $puestos = Puesto::all();
+        $puestos = Puesto::all();        
         $empresas = Empresa::all();        
         $usuarios = User::where('id',$user)->get();
                 
@@ -107,7 +107,7 @@ class EmpleadoController extends Controller
             'codigoPuesto' => ['string', 'required', 'regex:/[a-zA-Z]{2}[0-9]{5}$/'],
             'codigoEmpresa' => ['string', 'required', 'regex:/[a-zA-Z]{2}[0-9]{5}$/'],
             'salario' => ['min:0', 'max:999999', 'numeric'],
-            'correoElectronico' => ['required', 'string', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
+            //'correoElectronico' => ['required', 'string', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
             'correoEmpresarial' => ['required', 'string', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
             'idUser' => ['required', 'int']
         ];
@@ -121,13 +121,20 @@ class EmpleadoController extends Controller
         $codigoEmpleado = $request->input('codigoEmpleado');
         $puesto = Puesto::where('codigopuesto','=', $request['codigoPuesto'])->first();
         $rangoSalarial = RangoSalarial::where('idrangosalarial','=',$puesto -> idrangosalarial)->first();
-        if($request['salario'] >= $rangoSalarial -> salariominimo && $request['salario'] <= $rangoSalarial -> salariomaximo){
-            $empleado = request()->except('_token');
-            Empleado::insert($empleado);
+        if($request['salario'] >= $rangoSalarial -> salariominimo && $request['salario'] <= $rangoSalarial -> salariomaximo){            
+            $empleado = request()->except('_token');             
+            //dd($empleado["correoElectronico"]);
+            $user = User::find($empleado["idUser"]);
+            $user->name = $empleado["primerNombre"] . " " .$empleado["apellidoPaterno"];
+            //dd($user);  
+            $empleado["correoElectronico"]=$user->email;
+            //dd($empleado);  
+            Empleado::insert($empleado);                        
+            $user->save();
             return redirect('empleado/'.$codigoEmpleado.'/edit')->with('mensaje', 'Empleado Creado');
         } else {
             return redirect()->action('EmpleadoController@create')->with('mensaje', 'El salario no está en el rango correspondiente del puesto $'.$rangoSalarial -> salariominimo.' - $'.$rangoSalarial -> salariomaximo);
-        }
+        }        
     }
 
     /**

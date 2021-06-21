@@ -14,7 +14,7 @@ class SubRegionSeeder extends Seeder
     {
         DB::table('sub_regions')->insert([
             'idRegion' => 1,
-            'nombreSubRegion' => 'Salvador'
+            'nombreSubRegion' => 'San Salvador'
         ]);
         DB::table('sub_regions')->insert([
             'idRegion' => 1,
@@ -26,7 +26,7 @@ class SubRegionSeeder extends Seeder
         ]);
         DB::table('sub_regions')->insert([
             'idRegion' => 1,
-            'nombreSubRegion' => 'mexicanos'
+            'nombreSubRegion' => 'Mexicanos'
         ]);
         DB::table('sub_regions')->insert([
             'idRegion' => 1,

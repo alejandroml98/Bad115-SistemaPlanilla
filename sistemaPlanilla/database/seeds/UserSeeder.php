@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class UserSeeder extends Seeder
 {
@@ -13,111 +14,139 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Ernesto',
-            'email' => 'ernesto@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('ernesto1'),
-            'activo' => '1'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('Admin123'),
-            'activo' => '1'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'josue',
-            'email' => 'josue@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('josue123'),
-            'activo' => '1'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'juan',
-            'email' => 'juan@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('juan1234'),
-            'activo' => '1'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'pedro',
-            'email' => 'pedro@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('pedro123'),
-            'activo' => '1'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'maria',
-            'email' => 'maria@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('maria123'),
-            'activo' => '1'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Karla',
-            'email' => 'karla@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('aleman78'),
-            'activo' => '1'
-        ]);
+        $user = new User;
+        $user->name = 'Ernesto';
+        $user->email = 'Ernestoz@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('ernesto1');
+        $user->activo = '1';
+        $user->assignRole('empleado');
+        $user->save();
 
-        DB::table('users')->insert([
-            'name' => 'hugo',
-            'email' => 'hugo@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('hugodi10'),
-            'activo' => '1'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Daniel',
-            'email' => 'daniel234@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('daniel45'),
-            'activo' => '1'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Lucas',
-            'email' => 'lucas4Ortiz@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('Ortiz11As'),
-            'activo' => '1'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Adrian',
-            'email' => 'Adrian7Cortez@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('Hernan34Ui'),
-            'activo' => '1'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Martin',
-            'email' => 'Martin12Cortez@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('maRtin34Ui'),
-            'activo' => '1'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Francisco',
-            'email' => 'Francisco1Javier@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('Francisco34'),
-            'activo' => '1'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Diego',
-            'email' => 'Diego1Arce@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('DiegoAe34'),
-            'activo' => '1'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'JoseLuis',
-            'email' => 'Joseluis@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('Josueluis34'),
-            'activo' => '1'
-        ]);
+        $user = new User;
+        $user->name = 'admin';
+        $user->email = 'admin@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('Admin123');
+        $user->activo = '1';
+        $user->assignRole('admin');
+        $user->save();
+
+        $user = new User;
+        $user->name = 'josue';
+        $user->email = 'josue@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('josue123');
+        $user->activo = '1';
+        $user->assignRole('empleado');
+        $user->save();
+
+        $user = new User;
+        $user->name = 'juan';
+        $user->email = 'juan@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('juan123');
+        $user->activo = '1';
+        $user->assignRole('empleado');
+        $user->save();
+
+        $user = new User;
+        $user->name = 'pedro';
+        $user->email = 'pedro@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('pedro123');
+        $user->activo = '1';
+        $user->assignRole('empleado');
+        $user->save();
+
+        $user = new User;
+        $user->name = 'maria';
+        $user->email = 'maria@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('maria123');
+        $user->activo = '1';
+        $user->assignRole('empleado');
+        $user->save();
+
+        $user = new User;
+        $user->name = 'Karla';
+        $user->email = 'karla@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('aleman78');
+        $user->activo = '1';
+        $user->assignRole('empleado');
+        $user->save();
+
+        $user = new User;
+        $user->name = 'hugo';
+        $user->email = 'hugo@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('hugodi10');
+        $user->activo = '1';
+        $user->assignRole('Contador');
+        $user->save();
+
+        $user = new User;
+        $user->name = 'Daniel';
+        $user->email = 'daniel234@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('daniel45');
+        $user->activo = '1';
+        $user->assignRole('auxiliar de planilla');
+        $user->save();
+
+        $user = new User;
+        $user->name = 'Lucas';
+        $user->email = 'lucas4Ortiz@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('Ortiz11As');
+        $user->activo = '1';
+        $user->assignRole('empleado');
+        $user->save();
+
+        $user = new User;
+        $user->name = 'Adrian';
+        $user->email = 'Adrian7Cortez@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('Hernan34Ui');
+        $user->activo = '1';
+        $user->assignRole('empleado');
+        $user->save();
+
+        $user = new User;
+        $user->name = 'Martin';
+        $user->email = 'Martin12Cortez@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('maRtin34Ui');
+        $user->activo = '1';
+        $user->assignRole('empleado');
+        $user->save();
+
+        $user = new User;
+        $user->name = 'Francisco';
+        $user->email = 'Francisco1Javier@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('Francisco34');
+        $user->activo = '1';
+        $user->assignRole('empleado');
+        $user->save();
+
+        $user = new User;
+        $user->name = 'Diego';
+        $user->email = 'Diego1Arce@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('DiegoAe34');
+        $user->activo = '1';
+        $user->assignRole('empleado');
+        $user->save();
+        
+        $user = new User;
+        $user->name = 'JoseLuis';
+        $user->email = 'Joseluis@gmail.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('Josueluis34');
+        $user->activo = '1';
+        $user->assignRole('empleado');
+        $user->save();
     }
 }

@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-xs-12">
             <section class="panel">
-                <form action="{{ url('/unidadempleado/'.$unidadEmpleado -> idunidadempleado  }}" method="post">
+                <form action="{{ url('/unidadempleado/'.$unidadEmpleado -> idunidadempleado)  }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
                     @include('unidadempleado.form', ['mode' => 'edit'])

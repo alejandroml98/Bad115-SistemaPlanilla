@@ -129,15 +129,14 @@
 <script type="text/javascript">
     mostrarMensaje('{{ Session::get("mensaje") }}');
 </script>
+@endif
 <script>
     $(function() {                                    
-        var url = "{{ url('/info/empresa') }}";
+        var url = "{{ route('user.empresa') }}";
         $.get(url, function(data) {
             var span = $('strong[name=nomEmpresa]');            
-            span.append(data);
-            console.log(data);                                                       
+            span.append(data);                                                      
         });                                    
     });
 </script>
-@endif
 @endpush

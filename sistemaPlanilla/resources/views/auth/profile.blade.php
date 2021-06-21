@@ -145,14 +145,15 @@
                 @if ($unidad -> codigounidad == $j -> codigounidad && $j -> codigoempleado == $ej -> codigoempleado)
                     @if ($empleado -> codigoempleado == $ej -> codigoempleado)
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">{{ $unidad -> nombreunidad }} - Usted es el jefe</h6>
+                    <h4 class="mb-0">{{ $unidad -> nombreunidad }} - Usted es el jefe</h4>
                     <span class="text-secondary"><a href="{{ url('/profile/subordinados/'.$empleado -> codigoempleado) }}">Ver subordinados</a></span>
                   </li>
                      
                       
                     @else
-                    <h6 class="mb-0">{{ $unidad -> nombreunidad }} - {{ $ej -> primernombre }}{{ ' ' }}{{ $ej -> apellidopaterno }}</h6>
-                        <p></p>                        
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h4 class="mb-0">{{ $unidad -> nombreunidad }} - {{ $ej -> primernombre }}{{ ' ' }}{{ $ej -> apellidopaterno }}</h4>
+                    </li>                  
                     @endif
                     <hr>
                 @endif
@@ -203,11 +204,11 @@
                     </div>
                   </div>
                   <hr>
-                  <div class="row">
+                  <!--div class="row">
                     <div class="col-sm-12">
                       <a class="btn btn-info " target="__blank" href="{{ url('/empleado/'.$empleado -> codigoempleado.'/edit') }}" >Editar Información</a>
                     </div>
-                  </div>
+                  </div-->
                 </div>
               </div>
 
@@ -234,7 +235,7 @@
                         
                       </div>
                        <hr>
-                      <input  class="btn btn-info" type="submit" value="Cambiar Informacion del Usuario">
+                      <!--input  class="btn btn-info" type="submit" value="Cambiar Informacion del Usuario"-->
                     </div>
               </form>
             </div>

@@ -43,7 +43,7 @@
 @endpush
 @section('content')
 <a class=" btn btn-primary mb-3"  href="{{ url('/region/create') }}" id="btnCrear">
-    Agegar Región <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+    Agregar Región <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 <section class="panel">
     <header class="panel-heading">
         <h2 class="panel-title">Regiones Registradas</h2>

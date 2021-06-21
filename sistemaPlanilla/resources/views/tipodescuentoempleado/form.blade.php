@@ -105,10 +105,8 @@
 <label for="valorTipoDescuentoEmpleado">{{ 'Valor del descuento (%)' }}</label>
     <input class="form-control" type="number" step=".01" min="0" max="999999.99" name="valorTipoDescuentoEmpleado" id="valorTipoDescuentoEmpleadoCreate" value="{{ old('valorTipoDescuentoEmpleadoCreate') }}">
 </div>
-<div class="col-md-4 mb-3">
-<label for="contadorTipoDescuentoEmpleado">{{ 'Contador Tipo Descuento Empleado' }}</label>
-    <input  class="form-control" type="number" step="1" min="0" name="contadorTipoDescuentoEmpleado" id="contadorTipoDescuentoEmpleadoCreate" value="{{ old('contadorTipoDescuentoEmpleadoCreate') }}">
-</div>
+    <input hidden class="form-control" type="number" step="1" min="0" name="contadorTipoDescuentoEmpleado" id="contadorTipoDescuentoEmpleadoCreate" value="1">
+
 </div>
 @else 
 <div class="col-md-4 mb-3">
@@ -128,16 +126,12 @@
 <label for="valorTipoDescuentoEmpleado">{{ 'Valor del descuento (%)' }}</label>
     <input class="form-control" type="number" step=".01" min="0" max="999999.99" name="valorTipoDescuentoEmpleado" id="valorTipoDescuentoEmpleado" value="{{ isset($tipoDescuentoEmpleado -> valortipodescuentoempleado) ? $tipoDescuentoEmpleado -> valortipodescuentoempleado : old('valorTipoDescuentoEmpleado') }}">
 </div>
-<div class="col-md-4 mb-3">
-<label for="contadorTipoDescuentoEmpleado">{{ 'Contador Tipo Descuento Empleado' }}</label>
-    <input class="form-control" type="number" step="1" min="0" name="contadorTipoDescuentoEmpleado" id="contadorTipoDescuentoEmpleado" value="{{ isset($tipoDescuentoEmpleado -> contadortipodescuentoempleado) ? $tipoDescuentoEmpleado -> contadortipodescuentoempleado : old('contadorTipoDescuentoEmpleado') }}">
-</div>
+    <input hidden class="form-control" type="number" step="1" min="0" name="contadorTipoDescuentoEmpleado" id="contadorTipoDescuentoEmpleado" value="{{ isset($tipoDescuentoEmpleado -> contadortipodescuentoempleado) ? $tipoDescuentoEmpleado -> contadortipodescuentoempleado : old('contadorTipoDescuentoEmpleado') }}">
+
 @endif
-<div class="row">
 <div class="col-md-12 mb-3">
 <input  class="btn btn-primary" type="submit" value="{{ $mode == 'create' ? 'Agregar' : 'Modificar' }}">
 <a class="btn btn-danger" href="{{ url('/empleado/'.$empleado -> codigoempleado.'/edit') }}">Cancelar</a>
-</div>
 </div>
 </section>
 </div>

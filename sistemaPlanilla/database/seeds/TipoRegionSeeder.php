@@ -21,7 +21,7 @@ class TipoRegionSeeder extends Seeder
             'nombreTipoSubRegion' => 'Condado'
         ]);
         DB::table('tipo_regions')->insert([
-            'nombreTipoRegion' => 'región administrativa',
+            'nombreTipoRegion' => 'Región Administrativa',
             'nombreTipoSubRegion' => 'Distritos'
         ]);
         DB::table('tipo_regions')->insert([

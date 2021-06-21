@@ -1,4 +1,5 @@
-function presionar(id, profesion, tipo) { 
+function presionar(id, profesion, tipo, origen ) { 
+    origen = origen || "";
     event.preventDefault();
     Swal.fire({        
         title: '¿Está seguro de eliminar '+tipo+' "'+profesion+'" ?',
@@ -11,7 +12,7 @@ function presionar(id, profesion, tipo) {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {          
-          document.getElementById("formulario-prueba"+id).submit();          
+          document.getElementById("formulario-prueba"+origen+id).submit();          
         }
     })
 }
@@ -24,3 +25,5 @@ function mostrarMensaje(mensaje) {
         confirmButtonText: 'Entendido'
     })
 }
+
+
