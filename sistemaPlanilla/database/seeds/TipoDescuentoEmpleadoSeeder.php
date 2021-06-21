@@ -13,7 +13,7 @@ class TipoDescuentoEmpleadoSeeder extends Seeder
     public function run()
     {
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 100.52,
+            'valorTipoDescuentoEmpleado' => 00.52,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'ER45201',
             'idTipoDescuento' =>1
@@ -34,7 +34,7 @@ class TipoDescuentoEmpleadoSeeder extends Seeder
             ]);
         
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 148.52,
+            'valorTipoDescuentoEmpleado' => 48.52,
             'contadorTipoDescuentoEmpleado' => 4,
             'codigoEmpleado' => 'ER45201',
             'idTipoDescuento' =>4
@@ -48,168 +48,168 @@ class TipoDescuentoEmpleadoSeeder extends Seeder
             ]);
 
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 248.52,
+            'valorTipoDescuentoEmpleado' => 48.52,
             'contadorTipoDescuentoEmpleado' => 6,
             'codigoEmpleado' => 'ER45201',
             'idTipoDescuento' =>6
             ]);
 
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 210.52,
+            'valorTipoDescuentoEmpleado' => 10.52,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'ADMIN12',
             'idTipoDescuento' =>1
             ]);
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 231.52,
+            'valorTipoDescuentoEmpleado' => 31.52,
             'contadorTipoDescuentoEmpleado' => 2,
             'codigoEmpleado' => 'ADMIN12',
             'idTipoDescuento' =>2
             ]);
 
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 234.52,
+            'valorTipoDescuentoEmpleado' => 34.52,
             'contadorTipoDescuentoEmpleado' => 3,
             'codigoEmpleado' => 'ADMIN12',
             'idTipoDescuento' =>3
             ]);
 
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 174.52,
+            'valorTipoDescuentoEmpleado' => 74.52,
             'contadorTipoDescuentoEmpleado' => 3,
             'codigoEmpleado' => 'ADMIN12',
             'idTipoDescuento' =>4
             ]);
 
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 123.00,
+            'valorTipoDescuentoEmpleado' => 23.00,
             'contadorTipoDescuentoEmpleado' => 3,
             'codigoEmpleado' => 'ADMIN12',
             'idTipoDescuento' =>5
             ]);
         
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 221.02,
+            'valorTipoDescuentoEmpleado' => 21.02,
             'contadorTipoDescuentoEmpleado' => 3,
             'codigoEmpleado' => 'ADMIN12',
             'idTipoDescuento' =>6
             ]);
 
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 329.21,
+            'valorTipoDescuentoEmpleado' => 29.21,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'JU12374',
             'idTipoDescuento' =>1
             ]);
 
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 154.20,
+            'valorTipoDescuentoEmpleado' => 54.20,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'JU12374',
             'idTipoDescuento' =>2
             ]);
 
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 245.20,
+            'valorTipoDescuentoEmpleado' => 45.20,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'JU12374',
             'idTipoDescuento' =>3
             ]);
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 254.12,
+            'valorTipoDescuentoEmpleado' => 54.12,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'JU12374',
             'idTipoDescuento' =>4
             ]);
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 526.89,
+            'valorTipoDescuentoEmpleado' => 26.89,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'JU12374',
             'idTipoDescuento' =>5
             ]);
 
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 782.20,
+            'valorTipoDescuentoEmpleado' => 82.20,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'JU12374',
             'idTipoDescuento' =>6
             ]);
     
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 623.12,
+            'valorTipoDescuentoEmpleado' => 23.12,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'JN85234',
             'idTipoDescuento' =>1
             ]);
 
             DB::table('tipodescuento_empleados')->insert([
-                'valorTipoDescuentoEmpleado' => 172.39,
+                'valorTipoDescuentoEmpleado' => 72.39,
                 'contadorTipoDescuentoEmpleado' => 1,
                 'codigoEmpleado' => 'JN85234',
                 'idTipoDescuento' =>2
                 ]);
 
             DB::table('tipodescuento_empleados')->insert([
-                'valorTipoDescuentoEmpleado' => 186.88,
+                'valorTipoDescuentoEmpleado' => 86.88,
                 'contadorTipoDescuentoEmpleado' => 1,
                 'codigoEmpleado' => 'JN85234',
                 'idTipoDescuento' =>3
                 ]);
 
             DB::table('tipodescuento_empleados')->insert([
-                'valorTipoDescuentoEmpleado' => 188.99,
+                'valorTipoDescuentoEmpleado' => 88.99,
                 'contadorTipoDescuentoEmpleado' => 1,
                 'codigoEmpleado' => 'JN85234',
                 'idTipoDescuento' =>4
                 ]);
 
             DB::table('tipodescuento_empleados')->insert([
-                'valorTipoDescuentoEmpleado' => 188.65,
+                'valorTipoDescuentoEmpleado' => 88.65,
                 'contadorTipoDescuentoEmpleado' => 1,
                 'codigoEmpleado' => 'JN85234',
                 'idTipoDescuento' =>5
                 ]);
 
             DB::table('tipodescuento_empleados')->insert([
-                'valorTipoDescuentoEmpleado' => 179.35,
+                'valorTipoDescuentoEmpleado' => 79.35,
                 'contadorTipoDescuentoEmpleado' => 1,
                 'codigoEmpleado' => 'JN85234',
                 'idTipoDescuento' =>6
                 ]);
 
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 162.52,
+            'valorTipoDescuentoEmpleado' => 62.52,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'MA78951',
             'idTipoDescuento' =>1
             ]);
 
             DB::table('tipodescuento_empleados')->insert([
-                'valorTipoDescuentoEmpleado' => 183.98,
+                'valorTipoDescuentoEmpleado' => 83.98,
                 'contadorTipoDescuentoEmpleado' => 1,
                 'codigoEmpleado' => 'MA78951',
                 'idTipoDescuento' =>2
                 ]);
                 DB::table('tipodescuento_empleados')->insert([
-                    'valorTipoDescuentoEmpleado' => 179.21,
+                    'valorTipoDescuentoEmpleado' => 79.21,
                     'contadorTipoDescuentoEmpleado' => 1,
                     'codigoEmpleado' => 'MA78951',
                     'idTipoDescuento' =>3
                     ]);
                     DB::table('tipodescuento_empleados')->insert([
-                        'valorTipoDescuentoEmpleado' => 189.66,
+                        'valorTipoDescuentoEmpleado' => 89.66,
                         'contadorTipoDescuentoEmpleado' => 1,
                         'codigoEmpleado' => 'MA78951',
                         'idTipoDescuento' =>4
                         ]);
                         DB::table('tipodescuento_empleados')->insert([
-                            'valorTipoDescuentoEmpleado' => 197.14,
+                            'valorTipoDescuentoEmpleado' => 97.14,
                             'contadorTipoDescuentoEmpleado' => 1,
                             'codigoEmpleado' => 'MA78951',
                             'idTipoDescuento' =>5
                             ]);
                             DB::table('tipodescuento_empleados')->insert([
-                                'valorTipoDescuentoEmpleado' => 164.89,
+                                'valorTipoDescuentoEmpleado' => 64.89,
                                 'contadorTipoDescuentoEmpleado' => 1,
                                 'codigoEmpleado' => 'MA78951',
                                 'idTipoDescuento' =>6
@@ -228,62 +228,62 @@ class TipoDescuentoEmpleadoSeeder extends Seeder
                 'idTipoDescuento' =>2
                 ]); 
                 DB::table('tipodescuento_empleados')->insert([
-                    'valorTipoDescuentoEmpleado' => 798.12,
+                    'valorTipoDescuentoEmpleado' => 98.12,
                     'contadorTipoDescuentoEmpleado' => 1,
                     'codigoEmpleado' => 'KA78951',
                     'idTipoDescuento' =>3
                     ]); 
                     DB::table('tipodescuento_empleados')->insert([
-                        'valorTipoDescuentoEmpleado' => 198.20,
+                        'valorTipoDescuentoEmpleado' => 98.20,
                         'contadorTipoDescuentoEmpleado' => 1,
                         'codigoEmpleado' => 'KA78951',
                         'idTipoDescuento' =>4
                         ]); 
                         DB::table('tipodescuento_empleados')->insert([
-                            'valorTipoDescuentoEmpleado' => 165.32,
+                            'valorTipoDescuentoEmpleado' => 65.32,
                             'contadorTipoDescuentoEmpleado' => 1,
                             'codigoEmpleado' => 'KA78951',
                             'idTipoDescuento' =>5
                             ]); 
                             DB::table('tipodescuento_empleados')->insert([
-                                'valorTipoDescuentoEmpleado' => 145.78,
+                                'valorTipoDescuentoEmpleado' => 45.78,
                                 'contadorTipoDescuentoEmpleado' => 1,
                                 'codigoEmpleado' => 'KA78951',
                                 'idTipoDescuento' =>6
                                 ]); 
 
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 114.52,
+            'valorTipoDescuentoEmpleado' => 14.52,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'HU32758',
             'idTipoDescuento' =>1
             ]); 
             DB::table('tipodescuento_empleados')->insert([
-                'valorTipoDescuentoEmpleado' => 164.10,
+                'valorTipoDescuentoEmpleado' => 64.10,
                 'contadorTipoDescuentoEmpleado' => 1,
                 'codigoEmpleado' => 'HU32758',
                 'idTipoDescuento' =>2
                 ]); 
                 DB::table('tipodescuento_empleados')->insert([
-                    'valorTipoDescuentoEmpleado' => 130.99,
+                    'valorTipoDescuentoEmpleado' => 30.99,
                     'contadorTipoDescuentoEmpleado' => 1,
                     'codigoEmpleado' => 'HU32758',
                     'idTipoDescuento' =>3
                     ]);
                     DB::table('tipodescuento_empleados')->insert([
-                        'valorTipoDescuentoEmpleado' => 185.63,
+                        'valorTipoDescuentoEmpleado' => 85.63,
                         'contadorTipoDescuentoEmpleado' => 1,
                         'codigoEmpleado' => 'HU32758',
                         'idTipoDescuento' =>4
                         ]);
                         DB::table('tipodescuento_empleados')->insert([
-                            'valorTipoDescuentoEmpleado' => 198.08,
+                            'valorTipoDescuentoEmpleado' => 98.08,
                             'contadorTipoDescuentoEmpleado' => 1,
                             'codigoEmpleado' => 'HU32758',
                             'idTipoDescuento' =>5
                             ]); 
                             DB::table('tipodescuento_empleados')->insert([
-                                'valorTipoDescuentoEmpleado' => 178.65,
+                                'valorTipoDescuentoEmpleado' => 78.65,
                                 'contadorTipoDescuentoEmpleado' => 1,
                                 'codigoEmpleado' => 'HU32758',
                                 'idTipoDescuento' =>6
@@ -291,92 +291,92 @@ class TipoDescuentoEmpleadoSeeder extends Seeder
 
 
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 122.02,
+            'valorTipoDescuentoEmpleado' => 22.02,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'DN75315',
             'idTipoDescuento' =>1
             ]);
             DB::table('tipodescuento_empleados')->insert([
-                'valorTipoDescuentoEmpleado' => 159.52,
+                'valorTipoDescuentoEmpleado' => 59.52,
                 'contadorTipoDescuentoEmpleado' => 1,
                 'codigoEmpleado' => 'DN75315',
                 'idTipoDescuento' =>2
                 ]);
                 DB::table('tipodescuento_empleados')->insert([
-                    'valorTipoDescuentoEmpleado' => 169.52,
+                    'valorTipoDescuentoEmpleado' => 69.52,
                     'contadorTipoDescuentoEmpleado' => 1,
                     'codigoEmpleado' => 'DN75315',
                     'idTipoDescuento' =>3
                     ]);
                     DB::table('tipodescuento_empleados')->insert([
-                        'valorTipoDescuentoEmpleado' => 124.52,
+                        'valorTipoDescuentoEmpleado' => 24.52,
                         'contadorTipoDescuentoEmpleado' => 1,
                         'codigoEmpleado' => 'DN75315',
                         'idTipoDescuento' =>4
                         ]);
                         DB::table('tipodescuento_empleados')->insert([
-                            'valorTipoDescuentoEmpleado' => 198.52,
+                            'valorTipoDescuentoEmpleado' => 98.52,
                             'contadorTipoDescuentoEmpleado' => 1,
                             'codigoEmpleado' => 'DN75315',
                             'idTipoDescuento' =>5
                             ]);
                             DB::table('tipodescuento_empleados')->insert([
-                                'valorTipoDescuentoEmpleado' => 189.52,
+                                'valorTipoDescuentoEmpleado' => 89.52,
                                 'contadorTipoDescuentoEmpleado' => 1,
                                 'codigoEmpleado' => 'DN75315',
                                 'idTipoDescuento' =>6
                                 ]);
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 184.52,
+            'valorTipoDescuentoEmpleado' => 84.52,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'LC64820',
             'idTipoDescuento' =>1
             ]); 
             DB::table('tipodescuento_empleados')->insert([
-                'valorTipoDescuentoEmpleado' => 197.52,
+                'valorTipoDescuentoEmpleado' => 97.52,
                 'contadorTipoDescuentoEmpleado' => 1,
                 'codigoEmpleado' => 'LC64820',
                 'idTipoDescuento' =>2
                 ]);
                 DB::table('tipodescuento_empleados')->insert([
-                    'valorTipoDescuentoEmpleado' => 128.52,
+                    'valorTipoDescuentoEmpleado' => 28.52,
                     'contadorTipoDescuentoEmpleado' => 1,
                     'codigoEmpleado' => 'LC64820',
                     'idTipoDescuento' =>3
                     ]);
                     DB::table('tipodescuento_empleados')->insert([
-                        'valorTipoDescuentoEmpleado' => 135.52,
+                        'valorTipoDescuentoEmpleado' => 35.52,
                         'contadorTipoDescuentoEmpleado' => 1,
                         'codigoEmpleado' => 'LC64820',
                         'idTipoDescuento' =>4
                         ]);
                         DB::table('tipodescuento_empleados')->insert([
-                            'valorTipoDescuentoEmpleado' => 135.87,
+                            'valorTipoDescuentoEmpleado' => 35.87,
                             'contadorTipoDescuentoEmpleado' => 1,
                             'codigoEmpleado' => 'LC64820',
                             'idTipoDescuento' =>5
                             ]);
                             DB::table('tipodescuento_empleados')->insert([
-                                'valorTipoDescuentoEmpleado' => 198.67,
+                                'valorTipoDescuentoEmpleado' => 98.67,
                                 'contadorTipoDescuentoEmpleado' => 1,
                                 'codigoEmpleado' => 'LC64820',
                                 'idTipoDescuento' =>6
                                 ]);
             
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 187.52,
+            'valorTipoDescuentoEmpleado' => 87.52,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'AR93146',
             'idTipoDescuento' =>1
             ]);    
             DB::table('tipodescuento_empleados')->insert([
-                'valorTipoDescuentoEmpleado' => 106.47,
+                'valorTipoDescuentoEmpleado' => 06.47,
                 'contadorTipoDescuentoEmpleado' => 1,
                 'codigoEmpleado' => 'AR93146',
                 'idTipoDescuento' =>2
                 ]); 
                 DB::table('tipodescuento_empleados')->insert([
-                    'valorTipoDescuentoEmpleado' => 149.08,
+                    'valorTipoDescuentoEmpleado' => 49.08,
                     'contadorTipoDescuentoEmpleado' => 1,
                     'codigoEmpleado' => 'AR93146',
                     'idTipoDescuento' =>3
@@ -465,19 +465,19 @@ class TipoDescuentoEmpleadoSeeder extends Seeder
                         'idTipoDescuento' =>4
                         ]); 
                         DB::table('tipodescuento_empleados')->insert([
-                            'valorTipoDescuentoEmpleado' => 113.34,
+                            'valorTipoDescuentoEmpleado' => 13.34,
                             'contadorTipoDescuentoEmpleado' => 1,
                             'codigoEmpleado' => 'FR78562',
                             'idTipoDescuento' =>5
                             ]); 
                             DB::table('tipodescuento_empleados')->insert([
-                                'valorTipoDescuentoEmpleado' => 181.63,
+                                'valorTipoDescuentoEmpleado' => 81.63,
                                 'contadorTipoDescuentoEmpleado' => 1,
                                 'codigoEmpleado' => 'FR78562',
                                 'idTipoDescuento' =>6
                                 ]); 
         DB::table('tipodescuento_empleados')->insert([
-            'valorTipoDescuentoEmpleado' => 161.30,
+            'valorTipoDescuentoEmpleado' => 61.30,
             'contadorTipoDescuentoEmpleado' => 1,
             'codigoEmpleado' => 'DG86421',
             'idTipoDescuento' =>1
@@ -489,19 +489,19 @@ class TipoDescuentoEmpleadoSeeder extends Seeder
                 'idTipoDescuento' =>2
                 ]); 
                 DB::table('tipodescuento_empleados')->insert([
-                    'valorTipoDescuentoEmpleado' => 124.52,
+                    'valorTipoDescuentoEmpleado' => 24.52,
                     'contadorTipoDescuentoEmpleado' => 1,
                     'codigoEmpleado' => 'DG86421',
                     'idTipoDescuento' =>3
                     ]); 
                     DB::table('tipodescuento_empleados')->insert([
-                        'valorTipoDescuentoEmpleado' => 157.52,
+                        'valorTipoDescuentoEmpleado' => 57.52,
                         'contadorTipoDescuentoEmpleado' => 1,
                         'codigoEmpleado' => 'DG86421',
                         'idTipoDescuento' =>4
                         ]); 
                         DB::table('tipodescuento_empleados')->insert([
-                            'valorTipoDescuentoEmpleado' => 191.52,
+                            'valorTipoDescuentoEmpleado' => 91.52,
                             'contadorTipoDescuentoEmpleado' => 1,
                             'codigoEmpleado' => 'DG86421',
                             'idTipoDescuento' =>5
