@@ -301,4 +301,7 @@ class EmpleadoController extends Controller
         return $user;       
     }
 
+    public function obtenerCantidadEmpleados(){
+        return Empleado::all()->count();
+    }
 }

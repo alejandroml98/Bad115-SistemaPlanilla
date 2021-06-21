@@ -100,3 +100,4 @@ Route::get('info/empresa', 'EmpresaController@obtenerInfoEmpresa');
 Route::get('/planilla/unidades', 'PlanillaController@listaUnidadesPrincipales')->middleware('auth')->name('planilla.unidades');
 Route::get('/planilla/{codigounidad}/generarplanilla', 'PlanillaController@generarPlanilla')->middleware('auth')->name('planilla.generarplanilla');
 Route::get('/planilla/{codigoempleado}/boletapago', 'PlanillaController@boletaPago')->middleware('auth')->name('planilla.boletapago');
+Route::get('/numempleados', 'EmpleadoController@obtenerCantidadEmpleados')->name('empresa.numeroempleados');
