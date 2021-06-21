@@ -135,7 +135,7 @@ class EmpleadoSeeder extends Seeder
             'idEstadoCivil' => 1,
             'codigoEmpresa' => 'JA78125',
             'codigoPuesto'=> 'OG78784',
-            'salario' => 1500.52,
+            'salario' => 1500.00,
             'correoElectronico' => 'Karla7Cruz@gmail.com',
             'correoEmpresarial' => 'karlaEmpleado@gmail.com'
         ]);
