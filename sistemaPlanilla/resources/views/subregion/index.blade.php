@@ -8,7 +8,7 @@
 @endpush
 @section('content')
 <a class=" btn btn-primary mb-3"  href="{{ url('/subregion/create') }}" id="btnCrear">
-    Agegar Subregión <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+    Agregar Subregión <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 <section class="panel">
     <header class="panel-heading">
         <h2 class="panel-title">Subregiones Registradas</h2>

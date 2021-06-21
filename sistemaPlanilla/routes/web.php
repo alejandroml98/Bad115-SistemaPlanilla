@@ -94,7 +94,8 @@ Route::put('/profile/update', 'UserController@update')->middleware('auth')->name
 Route::put('/profile/changePassword', 'UserController@changePassword')->middleware('auth')->name('profile.changePassword');  
 Route::get('/profile/subordinados/{idjefe}', 'UserController@obtenerSubordinados')->middleware('auth')->name('profile.obtenerSubordinados');  
 Route::get('/user/unidad', 'UserController@obtenerUnidadEmpleado')->middleware('auth')->name('user.obtenerUnidad');
-Route::get('info/empresa', 'EmpresaController@obtenerInfoEmpresa');
+Route::get('/user/codigo', 'UserController@obtenerCodigoEmpleado')->middleware('auth')->name('user.codigoUnidad');
+Route::get('/info/empresa', 'EmpresaController@obtenerInfoEmpresa')->middleware('auth')->name('user.empresa');
 
 //Planilla Routes
 Route::get('/planilla/unidades', 'PlanillaController@listaUnidadesPrincipales')->middleware('auth')->name('planilla.unidades');
