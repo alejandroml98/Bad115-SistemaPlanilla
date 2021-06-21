@@ -309,6 +309,14 @@ class EmpleadoController extends Controller
     }
 
     public function obtenerCantidadEmpleados(){
-        return Empleado::all()->count();
+        $empleados = Empleado::all();
+        $empleadosActivos = 0;
+        foreach ($empleados as $e){
+            $user = User::where('id', '=', $e -> iduser)->first();
+            if($user -> activo == '1') {
+                $empleadosActivos++;
+            }
+        }
+        return $empleadosActivos;
     }
 }
