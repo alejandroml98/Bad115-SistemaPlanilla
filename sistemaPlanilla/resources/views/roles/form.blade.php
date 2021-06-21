@@ -1,13 +1,8 @@
 @extends('layouts.app')
 @push('vendorcss')
-<!-- Specific Page Vendor CSS -->
-<link rel="stylesheet" href="{{ asset('assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css') }}" />
+
 <link rel="stylesheet" href="{{ asset('assets/vendor/select2/select2.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/select2/select2.css')}}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/jquery-datatables-bs3/assets/css/datatables.css')}}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/pnotify/pnotify.custom.css')}}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/jquery-datatables-bs3/assets/css/datatables.css') }}" />
 @endpush
 @section('content')
 @if (count($errors) > 0)
@@ -40,7 +35,9 @@
    
 @endif
 </div>
-
+</div>
+<div class="row">
+<div class="col-12">
 <table class="table table-bordered table-striped mb-none" id="datatable-default">
             <thead>
                 <tr>
@@ -72,7 +69,7 @@
                 
                 <label for="esAdministrativo" class="form-check-label pr-3">Seleccionar</label>
                 <input type="checkbox" name="rutas[]" id="esAdministrativoCreate"  value="{{$permiso->name}}" class="form-check-input">
-                <td class="text-center">
+               
           
             @else
                 <div class="form-check p-0">
@@ -92,6 +89,7 @@
             @endif
            
         </div>
+                </td>
       
         
        
@@ -131,53 +129,13 @@
 <script src="{{ asset('assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js') }}"></script>
    
     <script src="{{ asset('assets/vendor/nanoscroller/nanoscroller.js') }}"></script>
-<script src="{{ asset('assets/vendor/jquery-placeholder/jquery.placeholder.js')}}"></script>
-<script src="{{ asset('assets/vendor/select2/select2.js')}}"></script>
- <script src="{{ asset('assets/vendor/select2/select2_locale_es.js')}}"></script>
-<script src="{{ asset('assets/vendor/jquery-datatables/media/js/jquery.dataTables.js')}}"></script>
- <script src="{{ asset('assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js')}}"></script>
-<script src="{{ asset('assets/vendor/jquery-datatables-bs3/assets/js/datatables.js')}}"></script>
-<script src="{{ asset('assets/javascripts/tables/examples.datatables.default.js')}}"></script>
-<script src="{{ asset('assets/vendor/pnotify/pnotify.custom.js')}}"></script>
+<script src="{{asset('assets/vendor/jquery-placeholder/jquery.placeholder.js')}}"></script>
+<script src="{{asset('assets/vendor/select2/select2.js')}}"></script>
+<script src="{{asset('assets/vendor/select2/select2_locale_es.js')}}"></script>
+<script src="{{asset('assets/vendor/jquery-datatables/media/js/jquery.dataTables.js')}}"></script>
+<script src="{{asset('assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js')}}"></script>
+<script src="{{asset('assets/vendor/jquery-datatables-bs3/assets/js/datatables.js')}}"></script>
+<script src="{{asset('assets/javascripts/tables/examples.datatables.default.js')}}"></script>
 
-<script src="js/profesion.js"></script>
-@if (Session::has('mensaje'))
-<script type="text/javascript">
-    mostrarMensaje('{{ Session::get("mensaje") }}');
-</script>
-@endif
-@if (count($errors) > 0 && Session::get('peticion') == 'crear')
-<script>
-    document.getElementById('btnCrear').click();
-</script>
-@elseif (count($errors) > 0 && Session::get('peticion') != 'crear')
-<script>
-    document.getElementById("{{Session::get('peticion')}}").click();
-</script>
-@endif
-<script type="text/javascript">
-    $(document).ready(function() {
-        var table = $('#datatable-default').DataTable();
-        var id = 1;
-        table.on('click', '.editar', function() {
-            $tr = $(this).closest('tr');
-            id = $(this).data("id");
-            if ($($tr).hasClass('child')) {
-                $tr = $tr.prev('parent');
-            }
-            var data = table.row($tr).data();
-            $('#nombrePais').val(data[1]);
-            $('#valMax').val(data[2]);
-           
-
-            $('#editar-form').attr('action', '/pais/' + id);
-            if (('editar'.$id) == "{{Session::get('peticion')}}") {
-                document.getElementById("{{'error'.Session::get('peticion')}}").style.display = 'block';
-            } else {
-                document.getElementById("{{'error'.Session::get('peticion')}}").style.display = 'none';
-            }
-        });
-    });
-</script>
-
+<script src="{{asset('js/profesion.js')}}"></script>
 @endpush
