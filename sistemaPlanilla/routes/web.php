@@ -78,13 +78,22 @@ Route::get('inactivo', 'EmpleadoController@inactivo');
 
 //Rutas de direccion
 Route::resource('direccion', 'DireccionController');
+Route::get('auth/role/create', 'UserController@rolcreate');
 Route::get('pais/{pais}/region', 'PaisController@obtenerRegiones');
+Route::post('auth/role/store', 'UserController@rolstore');
 Route::get('region/{region}/subregion', 'RegionController@obtenerSubRegiones');
 
 
 /**           Rutas de pruebas de formulario y sweet alert                            */
-Route::get('/casita','PruebaController@index')->middleware('auth');
+Route::get('/roles/index','UserController@rolindex');
+Route::get('/roles/{id}/edit','UserController@roledit');
+Route::put('/roles/{id}','UserController@roldestroy');
+Route::patch('/roles/{id}','UserController@rolupdate');
+Route::get('/user/index','UserController@index');
+Route::get('/roles/create','PruebaController@create');
+
 Route::get('/casita2','PruebaController@index2');
+
 //Route::get('/Prueba/Confirmacion','PruebaController@Confirmacion');
 Route::delete('/Prueba/eliminar','PruebaController@Confirmacion')->name('confirmacion-prueba');
 

@@ -33,11 +33,11 @@
                     <td class="text-center">
                         <a href="{{ url('/cuentabancaria/'.$cuentaBancaria -> idcuentabancaria.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                        <form id="{{ 'formulario-prueba'.$cuentaBancaria -> idcuentabancaria }}" class="btn btn-danger p-0" method="post" action="{{ url('/cuentabancaria/'.$cuentaBancaria -> idcuentabancaria) }}">
+                        <form id="{{ 'formulario-prueba-cuentaBan'.$cuentaBancaria -> idcuentabancaria }}" class="btn btn-danger p-0" method="post" action="{{ url('/cuentabancaria/'.$cuentaBancaria -> idcuentabancaria) }}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <input type="text" name="codigoEmpleado" hidden value="{{ $cuentaBancaria -> codigoempleado }}">
-                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $cuentaBancaria -> idcuentabancaria }}', '{{ $cuentaBancaria -> cuentabancaria }}','la cuenta bancaria')">
+                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $cuentaBancaria -> idcuentabancaria }}', '{{ $cuentaBancaria -> cuentabancaria }}','la cuenta bancaria', '-cuentaBan')">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </form>
