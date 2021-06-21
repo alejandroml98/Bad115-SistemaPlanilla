@@ -5,8 +5,9 @@
 <link rel="stylesheet" href="assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
 <link rel="stylesheet" href="assets/vendor/pnotify/pnotify.custom.css" />
 @endpush
+@role('admin')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6">        
         <div class="panel-group" id="accordion2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -53,6 +54,7 @@
                 </div>
             </div>            
         </div>
+        
     </div>
     <div class="col-md-6">
 		<div class="row">
@@ -112,7 +114,12 @@
         @include('empleado.frontindex')
     </div>
 </div>
-</div>
+</div>    
+@else
+    <h1>¡Bienvenido!</h1>    
+
+@endrole
+
 @endsection
 @push('vendorjs')
 <script src="assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
