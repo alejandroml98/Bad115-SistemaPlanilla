@@ -22,7 +22,7 @@
                 @if ($mode == 'create')           
                     <div class="col-md-4 mb-3">
                         <label for="validationDefault01">País</label>
-                        <select data-plugin-selectTwo class="form-control populate"  name="pais" id="pais" required>
+                        <select onchange="tipoRegion(this)" data-plugin-selectTwo class="form-control populate"  name="pais" id="pais" required>
                                 <option value="" selected disabled>Seleccione un País</option>
                                 @foreach ($paises as $pais)
                                 <option value="{{ $pais -> idpais }}">{{ $pais -> nombrepais }}</option>
@@ -30,13 +30,13 @@
                         </select>
                     </div>
                     <div  class="col-md-4 mb-3">
-                        <label for="validationDefault01">Región</label>
+                        <label id="labelRegion" for="validationDefault01">Región</label>
                         <select data-plugin-selectTwo name="region" class="form-control populate"  id="region" required>
                             <option value="" selected disabled>Seleccione Primero un País</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationDefault01">Sub Región</label>
+                        <label id="labelSubregion" for="validationDefault01">Sub Región</label>
                         <select data-plugin-selectTwo class="form-control populate"  name="idSubRegion" id="idSubRegionCreate" required>
                             <option value="" selected disabled>Seleccione primero una Región</option>    
                         </select>
@@ -146,5 +146,25 @@
             });
         });
     });
+
+     
+    //{{$pais->tipoRegion->nombretiporegion}}
 </script>
 @endpush 
+<script>
+    function tipoRegion(pais){
+        console.log(pais.value);
+        var paises= @json($paises);
+        var tipoRegiones= @json($tipoRegiones);
+        paises.forEach(element => {
+            if(element.idpais==pais.value){
+                tipoRegiones.forEach(element2 => {
+                    if(element.idtiporegion==element2.idtiporegion){
+                        document.getElementById('labelSubregion').innerHTML=element2.nombretiposubregion
+                        document.getElementById('labelRegion').innerHTML=element2.nombretiporegion                        
+                    }
+                });
+            }
+        });
+    }   
+</script>

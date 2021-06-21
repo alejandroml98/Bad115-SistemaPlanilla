@@ -16,15 +16,15 @@ class TipoUnidadSeeder extends Seeder
             'nombreTipoUnidad' => 'Departamento',
         ]);
         DB::table('tipo_unidads')->insert([
-            'nombreTipoUnidad' => 'Area',
+            'nombreTipoUnidad' => 'Área',
             'idTipoUnidadPadre' => 1
         ]);
         DB::table('tipo_unidads')->insert([
-            'nombreTipoUnidad' => 'Seccion',
+            'nombreTipoUnidad' => 'Sección',
             'idTipoUnidadPadre' => 2
         ]);
         DB::table('tipo_unidads')->insert([
-            'nombreTipoUnidad' => 'SubSeccion',
+            'nombreTipoUnidad' => 'SubSección',
             'idTipoUnidadPadre' => 3
         ]);
 

@@ -22,7 +22,16 @@
 				</li>  
                 <li>
 					<a href="#informacion" data-toggle="tab">Información Empresarial</a>
+				</li>
+                @if ($empleado->usuario->activo==true)
+                <li>
+					<a id="desactivarUsuario" onclick="desactivar({{$empleado->usuario->id}})" class="bg-success text-dark" data-toggle="tab">Activo</a>
 				</li>				              
+                @else
+                <li>
+					<a id="activarUsuario" onclick="activar({{$empleado->usuario->id}})" class="bg-danger text-dark" data-toggle="tab">Inactivo</a>
+				</li>				              
+                @endif                
 			</ul>
 			<div class="tab-content">
 				<div id="informacion" class="tab-pane">
@@ -86,5 +95,7 @@
         });        
         //console.log( codigopuesto.value);          
     }
+
+    
     
 </script>

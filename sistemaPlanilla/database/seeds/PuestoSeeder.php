@@ -40,7 +40,7 @@ class PuestoSeeder extends Seeder
         DB::table('puestos')->insert([
             'codigoPuesto' => 'GM89570',
             'idRangoSalarial' => 2,
-            'nombrePuesto' => 'Gerente de marketing',
+            'nombrePuesto' => 'Gerente de Marketing',
             'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
@@ -52,7 +52,7 @@ class PuestoSeeder extends Seeder
         DB::table('puestos')->insert([
             'codigoPuesto' => 'OG78784',
             'idRangoSalarial' => 3,
-            'nombrePuesto' => 'Operador  de Garatias',
+            'nombrePuesto' => 'Operador de Garantias',
             'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
@@ -70,7 +70,7 @@ class PuestoSeeder extends Seeder
         DB::table('puestos')->insert([
             'codigoPuesto' => 'GF00742',
             'idRangoSalarial' => 1,
-            'nombrePuesto' => 'Gerente Área de Informatica',
+            'nombrePuesto' => 'Gerente del Área de Informatica',
             'esAdministrativo' => '0'
         ]);
         DB::table('puestos')->insert([
