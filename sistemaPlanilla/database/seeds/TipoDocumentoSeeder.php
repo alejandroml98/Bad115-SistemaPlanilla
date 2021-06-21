@@ -14,23 +14,23 @@ class TipoDocumentoSeeder extends Seeder
     {
         DB::table('tipo_documentos')->insert([
             'nombreTipoDocumento' => 'DUI',
-            'cadenaRegex' => 'xxxxxxxxx-x'
+            'cadenaRegex' => '/^[0-9]{8}-[0-9]{1}$/'
         ]);
         DB::table('tipo_documentos')->insert([
             'nombreTipoDocumento' => 'NIT',
-            'cadenaRegex' => 'xxxxxxxxxxxxx'
+            'cadenaRegex' => '/^[0-9]{4}-[0-9]{6}[0-9]{3}-[0-9]{1}$/'
         ]);
         DB::table('tipo_documentos')->insert([
             'nombreTipoDocumento' => 'Pasaporte',
-            'cadenaRegex' => 'xxxxxxxxxxxxx'
+            'cadenaRegex' => '/^[0-9]{9}$/'
         ]);
         DB::table('tipo_documentos')->insert([
             'nombreTipoDocumento' => 'NUP',
-            'cadenaRegex' => 'xxxxxxxxxxxxx'
+            'cadenaRegex' => '/^[0-9]{9}$/'
         ]);
         DB::table('tipo_documentos')->insert([
             'nombreTipoDocumento' => 'ISSS',
-            'cadenaRegex' => 'xxxxxxxxxxxxx'
+            'cadenaRegex' => '/^[0-9]{9}$/'
         ]);
     }
 }
