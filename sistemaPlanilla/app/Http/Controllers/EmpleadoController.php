@@ -35,7 +35,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $empleados = Empleado::all();
+        $empleados = Empleado::all();        
         $puestos = Puesto::all();
         return view('empleado.index', compact('empleados', 'puestos'));
     }

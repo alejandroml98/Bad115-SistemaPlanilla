@@ -19,12 +19,13 @@
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Puesto</th>
+                    <th>estado</th>
                     <th>Correo Empresarial</th>
                     <th style="width: 1%;">Acciones</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach ($empleados as $empleado)
+            <tbody>                
+                @foreach ($empleados as $empleado)                                
                 <tr class="gradeX">
                     <td>{{ $empleado -> codigoempleado }}</td>
                     <td>{{ $empleado -> primernombre }}{{ ' ' }}{{ $empleado -> segundonombre }}</td>
@@ -34,6 +35,12 @@
                     <td>{{ $puesto -> nombrepuesto }}</td>
                     @endif
                     @endforeach
+                    @if ($empleado->usuario->activo==true)
+                    <td class="success">Activo</td>    
+                    @else
+                    <td class="danger">Inactivo</td>    
+                    @endif
+                    
                     <td>{{ $empleado -> correoempresarial }}</td>
                     <td class="text-center">
                         <a href="{{ url('/empleado/'.$empleado -> codigoempleado.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i>
@@ -46,7 +53,7 @@
                             </button>
                         </form>
                     </td>
-                </tr>
+                </tr>                               
                 @endforeach
             </tbody>
         </table>
