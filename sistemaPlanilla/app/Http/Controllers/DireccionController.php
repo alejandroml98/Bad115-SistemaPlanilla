@@ -6,6 +6,7 @@ use App\Direccion;
 use App\Pais;
 use App\Region;
 use App\SubRegion;
+use App\TipoRegion;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use SebastianBergmann\Environment\Console;
@@ -34,9 +35,10 @@ class DireccionController extends Controller
     public function create()
     {
         $subRegiones = SubRegion::all();
+        $tipoRegiones= TipoRegion::all();
         $regiones = Region::all();
-        $paises = Pais::all();
-        return view('direccion.create', compact('paises', 'regiones', 'subRegiones'));
+        $paises = Pais::with('tipoRegion')->get();
+        return view('direccion.create', compact('paises', 'regiones', 'subRegiones','tipoRegiones'));
     }
 
     /**

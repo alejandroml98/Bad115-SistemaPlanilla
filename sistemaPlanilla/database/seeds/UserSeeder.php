@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
 
         $user = new User;
         $user->name = 'admin';
-        $user->email = 'admin@gmail.com';
+        $user->email = 'gestor@mailinator.com';
         $user->email_verified_at = now();
         $user->password = Hash::make('Admin123');
         $user->activo = '1';
