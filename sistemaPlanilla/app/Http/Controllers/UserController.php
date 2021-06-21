@@ -138,6 +138,7 @@ class UserController extends Controller
         return $unidad -> nombreunidad;
     }
 
+
     public  function rolindex()
     {
         $roles = Role::all();
@@ -190,5 +191,12 @@ class UserController extends Controller
     {
         Role::where('id', '=', $id)->delete();
         return redirect('roles/index')->with('mensaje', 'Rol Eliminado');
+    }
+
+    public function obtenerCodigoEmpleado(){
+        $user = Auth::user();
+        $empleado = Empleado::where('iduser', '=', $user -> id)->first();       
+        return $empleado -> codigoempleado;
+
     }
 }

@@ -132,19 +132,99 @@
                                         <i class="fa fa-home" aria-hidden="true"></i>
                                         <span>Inicio</span>
                                     </a>
+                                </li>                                
+                                <li class="nav-parent">
+                                    <a>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <span>Planilla</span>
+                                    </a>
+                                    <ul class="nav nav-children">
+                                        @can('Generar Planilla')
+                                        <li>
+                                            <a href="{{ route('planilla.unidades') }}">                                        
+                                            Unidades</a>
+                                        </li>
+                                        @endcan
+                                        @can('Generar Boleta de Pago')
+                                        <li>
+                                            <a id="linkBoleta">                                        
+                                            Boleta de Pago</a>
+                                        </li>
+                                        @endcan
+                                    </ul>
                                 </li>
+                                @can('Listar Unidad')                                
                                 <li>
                                     <a href="{{ route('unidad.index') }}">
                                         <i class="fa fa-sitemap" aria-hidden="true"></i>
                                         <span>Unidad Organizacional</span>
                                     </a>
                                 </li>
-                                {{-- <!-- @role('admin') --> --}}
+                                @endcan                                
+                                @role('admin')
                                 <li>
                                     <a href="{{ route('empresa.index') }}">
                                         <i class="fa fa-building" aria-hidden="true"></i>
                                         <span>Empresa</span>
                                     </a>
+                                </li>
+                                <li class="nav-parent">
+                                    <a>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <span>Informacion General</span>
+                                    </a>
+                                    <ul class="nav nav-children">
+                                        <li>
+                                            <a href="{{ route('estadocivil.index') }}">Estado Civil</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('genero.index') }}">Genero</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('tipodocumento.index') }}">Tipos de documento</a>
+                                        </li>                                        
+                                    </ul>
+                                </li>
+                                <li class="nav-parent">
+                                    <a>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <span>Informacion Financiera</span>
+                                    </a>
+                                    <ul class="nav nav-children">
+                                        <li>
+                                            <a href="{{ route('tipodescuento.index') }}">Tipos de descuento</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('rangosalarial.index') }}">Rango Salarial</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('tipoingresos.index') }}">Tipo Ingreso</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('banco.index') }}">Bancos</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('renta.index') }}">Renta</a>
+                                        </li>                                          
+                                    </ul>
+                                </li>
+                                <li class="nav-parent">
+                                    <a>
+                                        <i class="fa fa-dollar" aria-hidden="true"></i>
+                                        <span>Ventas</span>
+                                    </a>
+                                    <ul class="nav nav-children">
+                                        <li>
+                                            <a href="{{ route('catalogocomision.index') }}">
+                                                Comisiones
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('ventasempleado.index') }}">
+                                                Ventas por empleado
+                                            </a>
+                                        </li>                                            
+                                    </ul>
                                 </li>
                                 <li class="nav-parent">
                                     <a>
@@ -163,10 +243,10 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('catalogocomision.index') }}">
-                                                Comisiones
+                                            <a href="{{ route('tipounidad.index') }}">
+                                                Tipos de Unidad Organizacional
                                             </a>
-                                        </li>                                        
+                                        </li>                                                                               
                                     </ul>
                                 </li>
                                     <li>
@@ -174,13 +254,7 @@
                                             <i class="fa fa-users" aria-hidden="true"></i>
                                             <span>Empleados</span>
                                         </a>    
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('ventasempleado.index') }}">
-                                            <i class="fa fa-dollar" aria-hidden="true"></i>
-                                            <span>Ventas</span>
-                                        </a>
-                                    </li>
+                                    </li>                                   
                                     
                                     <li class="nav-parent">
                                         <a>
@@ -188,29 +262,6 @@
                                             <span>Configuraciones</span>
                                         </a>
                                         <ul class="nav nav-children">
-                                            <li class="nav-parent">
-                                                <a>Generales</a>
-                                                <ul class="nav nav-children">
-                                                    <li>
-                                                        <a href="{{ route('estadocivil.index') }}">Estado Civil</a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="{{ route('genero.index') }}">Genero</a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="{{ route('tipodocumento.index') }}">Tipos de documento</a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="{{ route('tipodescuento.index') }}">Tipos de descuento</a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="{{ route('rangosalarial.index') }}">Rango Salarial</a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="{{ route('tipoingresos.index') }}">Tipo Ingreso</a>
-                                                    </li>                                               
-                                                </ul>
-                                            </li>
                                             <li class="nav-parent">
                                                 <a>Ubicación</a>
                                                 <ul class="nav nav-children">
@@ -230,7 +281,7 @@
                                             </li>                                
                                         </ul>
                                     </li>
-                                {{-- <!--@endrole--> --}}
+                                @endrole
                             </ul>
                         </nav>
                     </div>
@@ -294,6 +345,16 @@
             $.get(url, function(data) {
                 var span = $('span[name=unidad]');            
                 span.append(data);                                                       
+            });                                    
+        });        
+    </script>
+
+    <script>
+        $(function() {                                    
+            var url = "{{ url('/user/codigo') }}";            
+            $.get(url, function(data) {
+                var link = $('#linkBoleta');
+                link.attr('href', '/planilla/'+data+'/boletapago');                                                  
             });                                    
         });
     </script>

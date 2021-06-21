@@ -17,138 +17,139 @@ class RoleSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // create permissions
-        Permission::create(['name' => 'edit bancos']);
-        Permission::create(['name' => 'delete bancos']);
-        Permission::create(['name' => 'publish bancos']);
-        Permission::create(['name' => 'unpublish bancos']);
+        Permission::create(['name' => 'Editar Bancos']);
+        Permission::create(['name' => 'Eliminar Bancos']);
+        Permission::create(['name' => 'Crear Bancos']);
+        Permission::create(['name' => 'Listar Bancos']);
 
-        Permission::create(['name' => 'edit catalogo_comisions']);
-        Permission::create(['name' => 'delete catalogo_comisions']);
-        Permission::create(['name' => 'publish catalogo_comisions']);
-        Permission::create(['name' => 'unpublish catalogo_comisions']);
+        Permission::create(['name' => 'Editar Comisiones']);
+        Permission::create(['name' => 'Eliminar Comisiones']);
+        Permission::create(['name' => 'Crear Comisiones']);
+        Permission::create(['name' => 'Listar Comisiones']);
 
-        Permission::create(['name' => 'edit centro_costos']);
-        Permission::create(['name' => 'delete centro_costos']);
-        Permission::create(['name' => 'publish centro_costos']);
-        Permission::create(['name' => 'unpublish centro_costos']);
+        Permission::create(['name' => 'Editar Centro de Costos']);
+        Permission::create(['name' => 'Eliminar Centro de Costos']);
+        Permission::create(['name' => 'Crear Centro de Costos']);
+        Permission::create(['name' => 'Listar Centro de Costos']);
 
-        Permission::create(['name' => 'edit cuenta_bancarias']);
-        Permission::create(['name' => 'delete cuenta_bancarias']);
-        Permission::create(['name' => 'publish cuenta_bancarias']);
-        Permission::create(['name' => 'unpublish cuenta_bancarias']);
+        Permission::create(['name' => 'Editar Cuenta Bancaria']);
+        Permission::create(['name' => 'Eliminar Cuenta Bancaria']);
+        Permission::create(['name' => 'Crear Cuenta Bancaria']);
+        Permission::create(['name' => 'Listar Cuenta Bancaria']);
 
-        Permission::create(['name' => 'edit direccions']);
-        Permission::create(['name' => 'delete direccions']);
-        Permission::create(['name' => 'publish direccions']);
-        Permission::create(['name' => 'unpublish direccions']);
+        Permission::create(['name' => 'Editar Direcciones']);
+        Permission::create(['name' => 'Eliminar Direcciones']);
+        Permission::create(['name' => 'Crear Direcciones']);
+        Permission::create(['name' => 'Listar Direcciones']);
 
-        Permission::create(['name' => 'edit empleados']);
-        Permission::create(['name' => 'delete empleados']);
-        Permission::create(['name' => 'publish empleados']);
-        Permission::create(['name' => 'unpublish empleados']);
+        Permission::create(['name' => 'Editar Empleados']);
+        Permission::create(['name' => 'Eliminar Empleados']);
+        Permission::create(['name' => 'Crear Empleados']);
+        Permission::create(['name' => 'Listar Empleados']);
 
-        Permission::create(['name' => 'edit empresas']);
-        Permission::create(['name' => 'delete empresas']);
-        Permission::create(['name' => 'publish empresas']);
-        Permission::create(['name' => 'unpublish empresas']);
+        Permission::create(['name' => 'Editar Empresa']);
+        Permission::create(['name' => 'Eliminar Empresa']);
+        Permission::create(['name' => 'Crear Empresa']);
+        Permission::create(['name' => 'Listar Empresa']);
 
-        Permission::create(['name' => 'edit estado_civils']);
-        Permission::create(['name' => 'delete estado_civils']);
-        Permission::create(['name' => 'publish estado_civils']);
-        Permission::create(['name' => 'unpublish estado_civils']);
+        Permission::create(['name' => 'Editar Estado Civil']);
+        Permission::create(['name' => 'Eliminar Estado Civil']);
+        Permission::create(['name' => 'Crear Estado Civil']);
+        Permission::create(['name' => 'Listar Estado Civil']);
         
-        Permission::create(['name' => 'edit generos']);
-        Permission::create(['name' => 'delete generos']);
-        Permission::create(['name' => 'publish generos']);
-        Permission::create(['name' => 'unpublish generos']);
+        Permission::create(['name' => 'Editar Generos']);
+        Permission::create(['name' => 'Eliminar Generos']);
+        Permission::create(['name' => 'Crear Generos']);
+        Permission::create(['name' => 'Listar Generos']);
 
-        Permission::create(['name' => 'edit pais']);
-        Permission::create(['name' => 'delete pais']);
-        Permission::create(['name' => 'publish pais']);
-        Permission::create(['name' => 'unpublish pais']);
+        Permission::create(['name' => 'Editar Pais']);
+        Permission::create(['name' => 'Eliminar Pais']);
+        Permission::create(['name' => 'Crear Pais']);
+        Permission::create(['name' => 'Listar Pais']);
 
-        Permission::create(['name' => 'edit profesions']);
-        Permission::create(['name' => 'delete profesions']);
-        Permission::create(['name' => 'publish profesions']);
-        Permission::create(['name' => 'unpublish profesions']);
+        Permission::create(['name' => 'Editar Profesiones']);
+        Permission::create(['name' => 'Eliminar Profesiones']);
+        Permission::create(['name' => 'Crear Profesiones']);
+        Permission::create(['name' => 'Listar Profesiones']);
 
-        Permission::create(['name' => 'edit puestos']);
-        Permission::create(['name' => 'delete puestos']);
-        Permission::create(['name' => 'publish puestos']);
-        Permission::create(['name' => 'unpublish puestos']);
+        Permission::create(['name' => 'Editar Puestos']);
+        Permission::create(['name' => 'Eliminar Puestos']);
+        Permission::create(['name' => 'Crear Puestos']);
+        Permission::create(['name' => 'Listar Puestos']);
 
-        Permission::create(['name' => 'edit rango_salarials']);
-        Permission::create(['name' => 'delete rango_salarials']);
-        Permission::create(['name' => 'publish rango_salarials']);
-        Permission::create(['name' => 'unpublish rango_salarials']);
+        Permission::create(['name' => 'Editar Rango Salarial']);
+        Permission::create(['name' => 'Eliminar Rango Salarial']);
+        Permission::create(['name' => 'Crear Rango Salarial']);
+        Permission::create(['name' => 'Listar Rango Salarial']);
 
-        Permission::create(['name' => 'edit regions']);
-        Permission::create(['name' => 'delete regions']);
-        Permission::create(['name' => 'publish regions']);
-        Permission::create(['name' => 'unpublish regions']);
+        Permission::create(['name' => 'Editar Regiones']);
+        Permission::create(['name' => 'Eliminar Regiones']);
+        Permission::create(['name' => 'Crear Regiones']);
+        Permission::create(['name' => 'Listar Regiones']);
 
-        Permission::create(['name' => 'edit rentas']);
-        Permission::create(['name' => 'delete rentas']);
-        Permission::create(['name' => 'publish rentas']);
-        Permission::create(['name' => 'unpublish rentas']);
+        Permission::create(['name' => 'Editar Renta']);
+        Permission::create(['name' => 'Eliminar Renta']);
+        Permission::create(['name' => 'Crear Renta']);
+        Permission::create(['name' => 'Listar Renta']);
 
-        Permission::create(['name' => 'edit sub_regions']);
-        Permission::create(['name' => 'delete sub_regions']);
-        Permission::create(['name' => 'publish sub_regions']);
-        Permission::create(['name' => 'unpublish sub_regions']);
+        Permission::create(['name' => 'Editar SubRegiones']);
+        Permission::create(['name' => 'Eliminar SubRegiones']);
+        Permission::create(['name' => 'Crear SubRegiones']);
+        Permission::create(['name' => 'Listar SubRegiones']);
         
-        Permission::create(['name' => 'edit tipo_descuentos']);
-        Permission::create(['name' => 'delete tipo_descuentos']);
-        Permission::create(['name' => 'publish tipo_descuentos']);
-        Permission::create(['name' => 'unpublish tipo_descuentos']);
+        Permission::create(['name' => 'Editar Tipos de descuento']);
+        Permission::create(['name' => 'Eliminar Tipos de descuento']);
+        Permission::create(['name' => 'Crear Tipos de descuento']);
+        Permission::create(['name' => 'Listar Tipos de descuento']);
 
-        Permission::create(['name' => 'edit tipo_documentos']);
-        Permission::create(['name' => 'delete tipo_documentos']);
-        Permission::create(['name' => 'publish tipo_documentos']);
-        Permission::create(['name' => 'unpublish tipo_documentos']);
+        Permission::create(['name' => 'Editar Tipo de documentos']);
+        Permission::create(['name' => 'Eliminar Tipo de documentos']);
+        Permission::create(['name' => 'Crear Tipo de documentos']);
+        Permission::create(['name' => 'Listar Tipo de documentos']);
 
-        Permission::create(['name' => 'edit tipo_ingresos']);
-        Permission::create(['name' => 'delete tipo_ingresos']);
-        Permission::create(['name' => 'publish tipo_ingresos']);
-        Permission::create(['name' => 'unpublish tipo_ingresos']);
+        Permission::create(['name' => 'Editar Tipo de ingresos']);
+        Permission::create(['name' => 'Eliminar Tipo de ingresos']);
+        Permission::create(['name' => 'Crear Tipo de ingresos']);
+        Permission::create(['name' => 'Listar Tipo de ingresos']);
 
-        Permission::create(['name' => 'edit tipo_regions']);
-        Permission::create(['name' => 'delete tipo_regions']);
-        Permission::create(['name' => 'publish tipo_regions']);
-        Permission::create(['name' => 'unpublish tipo_regions']);
+        Permission::create(['name' => 'Editar Tipo de region']);
+        Permission::create(['name' => 'Eliminar Tipo de region']);
+        Permission::create(['name' => 'Crear Tipo de region']);
+        Permission::create(['name' => 'Listar Tipo de region']);
 
-        Permission::create(['name' => 'edit tipo_unidads']);
-        Permission::create(['name' => 'delete tipo_unidads']);
-        Permission::create(['name' => 'publish tipo_unidads']);
-        Permission::create(['name' => 'unpublish tipo_unidads']);
+        Permission::create(['name' => 'Editar Tipo de unidad']);
+        Permission::create(['name' => 'Eliminar Tipo de unidad']);
+        Permission::create(['name' => 'Crear Tipo de unidad']);
+        Permission::create(['name' => 'Listar Tipo de unidad']);
 
-        Permission::create(['name' => 'edit unidads']);
-        Permission::create(['name' => 'delete unidads']);
-        Permission::create(['name' => 'publish unidads']);
-        Permission::create(['name' => 'unpublish unidads']);
+        Permission::create(['name' => 'Editar Unidad']);
+        Permission::create(['name' => 'Eliminar Unidad']);
+        Permission::create(['name' => 'Crear Unidad']);
+        Permission::create(['name' => 'Listar Unidad']);
 
 
-        Permission::create(['name' => 'edit unidad_centrocostos']);
-        Permission::create(['name' => 'delete unidad_centrocostos']);
-        Permission::create(['name' => 'publish unidad_centrocostos']);
-        Permission::create(['name' => 'unpublish unidad_centrocostos']);
+        Permission::create(['name' => 'Editar Centro de costos de una unidad']);
+        Permission::create(['name' => 'Eliminar Centro de costos de una unidad']);
+        Permission::create(['name' => 'Crear Centro de costos de una unidad']);
+        Permission::create(['name' => 'Listar Centro de costos de una unidad']);
 
-        Permission::create(['name' => 'edit users']);
-        Permission::create(['name' => 'delete users']);
-        Permission::create(['name' => 'publish users']);
-        Permission::create(['name' => 'unpublish users']);
+        Permission::create(['name' => 'Editar Usuarios']);
+        Permission::create(['name' => 'Eliminar Usuarios']);
+        Permission::create(['name' => 'Crear Usuarios']);
+        Permission::create(['name' => 'Listar Usuarios']);
         
-        Permission::create(['name' => 'edit ventas_empleados']);
-        Permission::create(['name' => 'delete ventas_empleados']);
-        Permission::create(['name' => 'publish ventas_empleados']);
-        Permission::create(['name' => 'unpublish ventas_empleados']);
+        Permission::create(['name' => 'Editar Ventas']);
+        Permission::create(['name' => 'Eliminar Ventas']);
+        Permission::create(['name' => 'Crear Ventas']);
+        Permission::create(['name' => 'Listar Ventas']);
 
-        Permission::create(['name' => 'GenerarPlanilla']);
-        Permission::create(['name' => 'GenerarBoletaPago']);
+        Permission::create(['name' => 'Generar Planilla']);
+        Permission::create(['name' => 'Generar Boleta de Pago']);
         // create roles and assign created permissions
 
         // this can be done as separate statements
         $role = Role::create(['name' => 'empleado']);
+        $role->givePermissionTo(['Generar Boleta de Pago']);
        // $role->givePermissionTo('edit articles');
 
         $role = Role::create(['name' => 'Contador']);
@@ -157,6 +158,9 @@ class RoleSeeder extends Seeder
         // or may be done by chaining
         $role = Role::create(['name' => 'auxiliar de planilla']);
         //    ->givePermissionTo(['publish articles', 'unpublish articles']);
+        $role->givePermissionTo(['Generar Boleta de Pago', 'Generar Planilla', 'Listar Unidad', 'Editar Unidad', 'Editar Centro de costos de una unidad',
+        'Eliminar Centro de costos de una unidad', 'Crear Centro de costos de una unidad', 'Listar Centro de costos de una unidad']);
+
 
         $role = Role::create(['name' => 'admin']);
         $role->givePermissionTo(Permission::all());

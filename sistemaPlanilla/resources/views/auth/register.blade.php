@@ -42,10 +42,13 @@
                         <div class="col-md-12">
                             <div class="btn-group">
                                 <select name="roles[]" class="form-control" multiple="multiple" data-plugin-multiselect data-multiselect-toggle-all="true" id="ms_example7">
-                                    <option value="empleado">Empleado</option>
-                                    <option value="Contador">Contador</option>
-                                    <option value="auxiliar de planilla">Auxiliar de planilla</option>
-                                    <option value="admin">Administrador</option>
+                                    @foreach ($roles as $rol)
+                                    @if ($rol->name=="empleado")
+                                    <option selected value="{{$rol->name}}">{{$rol->name}}</option>    
+                                    @else
+                                    <option value="{{$rol->name}}">{{$rol->name}}</option>    
+                                    @endif                                    
+                                    @endforeach                                    
                                 </select>
                                 <button id="ms_example7-toggle" class="btn btn-primary">Seleccionar todo</button>
                             </div>

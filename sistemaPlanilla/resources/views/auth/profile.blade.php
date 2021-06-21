@@ -204,11 +204,11 @@
                     </div>
                   </div>
                   <hr>
-                  <div class="row">
+                  <!--div class="row">
                     <div class="col-sm-12">
                       <a class="btn btn-info " target="__blank" href="{{ url('/empleado/'.$empleado -> codigoempleado.'/edit') }}" >Editar Información</a>
                     </div>
-                  </div>
+                  </div-->
                 </div>
               </div>
 
@@ -235,7 +235,7 @@
                         
                       </div>
                        <hr>
-                      <input  class="btn btn-info" type="submit" value="Cambiar Informacion del Usuario">
+                      <!--input  class="btn btn-info" type="submit" value="Cambiar Informacion del Usuario"-->
                     </div>
               </form>
             </div>

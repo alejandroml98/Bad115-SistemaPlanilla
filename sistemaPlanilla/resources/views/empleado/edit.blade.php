@@ -71,3 +71,20 @@
 </script>
 @endif
 @endpush
+<script>
+    function rangoSalarial(codigopuesto){
+        //console.log(codigopuesto.value); 
+        var puestos = @json($puestos);
+        puestos.forEach(element => {
+            if (element.codigopuesto === codigopuesto.value){
+                document.getElementById('salario').value= element.rango_salario.salariominimo
+                document.getElementById('salario').min=element.rango_salario.salariominimo
+                document.getElementById('salario').max=element.rango_salario.salariomaximo
+                
+            };
+            
+        });        
+        //console.log( codigopuesto.value);          
+    }
+    
+</script>

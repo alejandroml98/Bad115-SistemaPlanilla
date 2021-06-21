@@ -39,7 +39,7 @@
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <input type="text" name="codigoEmpleado" hidden value="{{ $tipoIngresoEmpleado -> codigoempleado }}">
-                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $tipoIngresoEmpleado -> idtipoingresoempleado }}', '{{ $nombreIngreso }} del empleado','el ingreso')">
+                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $tipoIngresoEmpleado -> idtipoingresoempleado }}', '{{ $nombreIngreso }} del empleado','el ingreso', '-ingresos')">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </form>
