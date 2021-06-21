@@ -44,14 +44,7 @@
                     <td>{{ $empleado -> correoempresarial }}</td>
                     <td class="text-center">
                         <a href="{{ url('/empleado/'.$empleado -> codigoempleado.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i>
-                        </a>
-                        <form id="{{ 'formulario-prueba'.$empleado -> codigoempleado }}" class="btn btn-danger p-0" method="post" action="{{ url('/empleado/'.$empleado -> codigoempleado) }}">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $empleado -> codigoempleado }}', '{{ $empleado -> primernombre }} {{ $empleado -> segundonombre }}','al empleado')">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            </button>
-                        </form>
+                        </a>                        
                     </td>
                 </tr>                               
                 @endforeach
