@@ -93,7 +93,7 @@
 								<div class="summary">
 									<h4 class="title">Empleados</h4>
 								    <div class="info">
-								        <strong class="amount">15</strong>
+								        <strong name="cantEmpleados" class="amount"></strong>
 							        </div>
 						        </div>
 						        <div class="summary-footer">
@@ -135,6 +135,14 @@
         var url = "{{ route('user.empresa') }}";
         $.get(url, function(data) {
             var span = $('strong[name=nomEmpresa]');            
+            span.append(data);                                                      
+        });                                    
+    });
+
+    $(function() {                                    
+        var url = "{{ url('/numempleados') }}";
+        $.get(url, function(data) {
+            var span = $('strong[name=cantEmpleados]');            
             span.append(data);                                                      
         });                                    
     });
