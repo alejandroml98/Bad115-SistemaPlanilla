@@ -26,7 +26,7 @@ class DireccionController extends Controller
         $direcciones = Direccion::all();
         return view('direccion.index', compact('direcciones', 'paises', 'regiones', 'subRegiones'));
     }
-
+  
     /**
      * Show the form for creating a new resource.
      *

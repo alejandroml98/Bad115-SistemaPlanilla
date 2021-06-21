@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Pais;
+use App\Region;
+use App\SubRegion;
 use App\Prueba;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -19,9 +22,13 @@ class PruebaController extends Controller
     public function index()
     {
         //
-        $user= Auth::user();
-        $user->assignRole('writer');
-        return view ('prueba/form');
+       
+        $subRegiones = SubRegion::all();
+        $regiones = Region::all();
+        $paises = Pais::all();
+        return view('roles.index', compact('paises', 'regiones', 'subRegiones'));
+       // $user->assignRole('writer');
+        
     }
 
     public function index2()
@@ -56,6 +63,7 @@ class PruebaController extends Controller
     public function create()
     {
         //
+        return view ('roles/create');
     }
 
     /**
