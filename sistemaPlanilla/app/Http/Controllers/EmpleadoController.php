@@ -262,7 +262,7 @@ class EmpleadoController extends Controller
             $message->to($data['email'], $data['name']);
             $message->subject('Activación de su cuenta');            
         });
-        return redirect('/casita3');        
+        return back()->with('mensaje', 'Empleado Activado');       
     }
 
     public function desactivar(User $user)
@@ -274,8 +274,9 @@ class EmpleadoController extends Controller
         Mail::send('Mail.desactivar', $data, function ($message) use ($data){
             $message->to($data['email'], $data['name']);
             $message->subject('Desactivación de su cuenta');            
-        });       
-        dd($user->name);
+        });
+        return back()->with('mensaje', 'Empleado Desactivado');    
+        
     }
 
     public function pedirActivacion()
