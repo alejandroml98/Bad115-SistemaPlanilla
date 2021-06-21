@@ -41,15 +41,15 @@
             @foreach ($subordinados as $subordinado)
                 <tr class="gradeX">
                     <td>{{ $loop -> iteration }}</td>
-                <td>{{ $unidad -> nombreunidad }}</td>
-                @foreach ($puestos as $puesto)
-            @if ($puesto -> codigopuesto == $subordinado -> codigopuesto)
-                <td>{{ $subordinado -> codigoempleado }}<td>
-                <td>{{ $subordinado -> primernombre }}{{ ' ' }}{{ $subordinado -> apellidopaterno }}-{{ $puesto -> nombrepuesto }}</td>
-            @endif
-        @endforeach  
-                  
-                @endforeach
+                    <td>{{ $unidad -> nombreunidad }}</td>
+                    @foreach ($puestos as $puesto)
+                    @if ($puesto -> codigopuesto == $subordinado -> codigopuesto)
+                    <td>{{ $subordinado -> codigoempleado }}</td>
+                    <td>{{ $subordinado -> primernombre }}{{ ' ' }}{{ $subordinado -> apellidopaterno }}-{{ $puesto -> nombrepuesto }}</td>
+                    @endif
+                    @endforeach  
+                </tr>  
+            @endforeach
             </tbody>
         </table>
     </div>
