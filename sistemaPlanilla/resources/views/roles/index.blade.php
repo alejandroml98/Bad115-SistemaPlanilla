@@ -1,12 +1,13 @@
 <!----si---->
 @extends('layouts.app')
 @push('vendorcss')
-<link rel="stylesheet" href="assets/vendor/select2/select2.css" />
-<link rel="stylesheet" href="assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
-<link rel="stylesheet" href="assets/vendor/pnotify/pnotify.custom.css" />
+
+<link rel="stylesheet" href="{{ asset('assets/vendor/select2/select2.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/jquery-datatables-bs3/assets/css/datatables.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/pnotify/pnotify.custom.css') }}" />
 @endpush
 @section('content')
-<a class=" btn btn-primary mb-3"  href="{{ url('/roles/create') }}" id="btnCrear">
+<a class=" btn btn-primary mb-3"  href="{{ url('/auth/role/create') }}" id="btnCrear">
     Agegar Rol <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 <section class="panel">
     <header class="panel-heading">
@@ -26,41 +27,42 @@
                     
               
               
-                <!--foreach ($subRegiones as $subRegion)-->
+            @foreach ($roles as $rol)
                 <tr class="gradeX">
-                <td>1</td>
-                <td>Admin</td>
+                <td>{{$loop -> iteration }}</td>
+                <td>{{$rol -> name}}</td>
             
                 <td class="text-center">
-                        <a class=" btn btn-primary editar"   href=# class="btn btn-warning">
+                        <a class=" btn btn-primary editar" id="{{'editar'. $rol -> id }}"  href="{{ url('/roles/'.$rol -> id.'/edit') }}" data-id="{{ $rol -> id}}" class="btn btn-warning">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                        <form id="x" class="btn btn-danger p-0" method="post" action="">
+                        <form id="{{ 'formulario-prueba'.$rol -> id }}" class="btn btn-danger p-0" method="post" action="{{ url('/roles/'.$rol -> id) }}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button class="btn btn-danger border-0" type="submit" >
+                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $rol -> id}}', '{{ $rol -> name}} ',' El rol ')">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </form>
                     </td>
                 </tr>
-            <!--endforeach-->
+            @endforeach
             </tbody>
         </table>
     </div>
 </section>
 @endsection
 @push('vendorjs')
-<script src="assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
-<script src="assets/vendor/select2/select2.js"></script>
-<script src="assets/vendor/select2/select2_locale_es.js"></script>
-<script src="assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
-<script src="assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
-<script src="assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
-<script src="assets/javascripts/tables/examples.datatables.default.js"></script>
-<script src="assets/vendor/pnotify/pnotify.custom.js"></script>
-<script src="assets/javascripts/ui-elements/examples.modals.js"></script>
-<script src="js/profesion.js"></script>
+<script src="{{asset('assets/vendor/jquery-placeholder/jquery.placeholder.js')}}"></script>
+<script src="{{asset('assets/vendor/select2/select2.js')}}"></script>
+<script src="{{asset('assets/vendor/select2/select2_locale_es.js')}}"></script>
+<script src="{{asset('assets/vendor/jquery-datatables/media/js/jquery.dataTables.js')}}"></script>
+<script src="{{asset('assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js')}}"></script>
+<script src="{{asset('assets/vendor/jquery-datatables-bs3/assets/js/datatables.js')}}"></script>
+<script src="{{asset('assets/javascripts/tables/examples.datatables.default.js')}}"></script>
+<script src="{{asset('assets/vendor/pnotify/pnotify.custom.js')}}"></script>
+<script src="{{asset('assets/javascripts/ui-elements/examples.modals.js')}}"></script>
+<script src="{{asset('js/profesion.js')}}"></script>
+
 @if (Session::has('mensaje'))
 <script type="text/javascript">
     mostrarMensaje('{{ Session::get("mensaje") }}');
@@ -86,8 +88,8 @@
                 $tr = $tr.prev('parent');
             }
             var data = table.row($tr).data();
-            $('#nombrePais').val(data[1]);
-            $('#valMax').val(data[2]);
+            $('#name').val(data[1]);
+            
            
 
             $('#editar-form').attr('action', '/pais/' + id);

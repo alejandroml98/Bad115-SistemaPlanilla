@@ -22,6 +22,26 @@ use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
+
+//funciones crud usuario 
+
+    public function index()
+    {
+        $users = User::all();
+        return view('user/index',compact('users'));
+
+
+    }
+
+
+
+
+
+
+
+
+
+
     public function profile(){
         $user = Auth::user();
         $empleado = Empleado::where('iduser', '=', $user->id)->get()->first();
@@ -117,9 +137,58 @@ class UserController extends Controller
         $unidad = Unidad::where('codigounidad', '=', $unidadEmpleado -> codigounidad)->first();        
         return $unidad -> nombreunidad;
     }
+
+    public  function rolindex()
+    {
+        $roles = Role::all();
+        return view('roles/index',compact('roles'));
+    }
+
+
     public function rolcreate()
     {
         $permisos = Permission::all();
         return view ('roles.create',compact('permisos'));
+    }
+    public function rolstore(Request $request)
+    {
+        $roleX = request()->input('name');
+        $permissions = request()->except(['name','_token']);
+       
+        $role = Role::create(['name' =>$roleX]);
+        $role->syncPermissions($permissions);   
+        return redirect('roles/index');
+    }
+
+    public function rolupdate(Request $request, $id)
+    
+    {   
+         $permissions = request()->except(['name','_token','_method']);
+        
+        $rol= Role::findOrFail($id);
+        $rol->name = request()->input('name');
+        $rol->save();
+        // $rolname = request()->input('name');
+        // $ajio = Role::where('id', '=', $id)->update($rolname); 
+        
+        $rol->syncPermissions($permissions);
+       
+        return redirect('roles/index');
+
+    }
+
+
+    public function roledit( $id)
+    { 
+        $rol= Role::findOrFail($id);
+        $permissions = $rol->permissions()->get();
+        $permisos = Permission::all();
+        return view('roles.edit',compact('permissions','rol','permisos'));
+    }
+
+    public function roldestroy($id)
+    {
+        Role::where('id', '=', $id)->delete();
+        return redirect('roles/index')->with('mensaje', 'Rol Eliminado');
     }
 }

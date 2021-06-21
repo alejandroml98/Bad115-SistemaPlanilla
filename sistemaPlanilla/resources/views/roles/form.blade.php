@@ -33,30 +33,76 @@
     <div class="col-md-4 mb-3">
 <label for="validationCustom01">Nombre Rol</label>
 @if ($mode == 'create')
-<input type="text" class="form-control" id="validationCustom01" placeholder="Administrador" name="nombreSubRegion" id="nombreSubRegionCreate" value="{{ old('nombreSubRegionCreate') }}" required>    
+<input type="text" class="form-control" id="validationCustom01" placeholder="Administrador" name="name" id="nombreSubRegionCreate" value="" required>    
 
     @else 
-<input type="text" class="form-control" id="validationCustom01" placeholder="First name" name="nombreSubRegion" id="nombreSubRegion" value="{{ isset($subRegion -> nombresubregion) ? $subRegion -> nombresubregion : old('nombreSubRegion') }}" required>    
+<input type="text" class="form-control" id="validationCustom01" placeholder="First name" name="name" id="" value="{{ isset($rol -> name) ? $rol -> name : old('name') }}" required>    
    
 @endif
 </div>
 
+<table class="table table-bordered table-striped mb-none" id="datatable-default">
+            <thead>
+                <tr>
+                <th>ID</th>
+            <th>Dirección</th>
+            
+            <th>Agregar Permiso de acceso</th>
+                </tr>
+            </thead>
+            <tbody>
            
                     
               
               
-                @foreach ($permisos as $permiso)
+        @foreach ($permisos as $permiso)
+                <?php
+                $cont = 0;
+                ?>
+                <tr class="gradeX">
+                <td>{{ $loop -> iteration }}</td>
+                <td class="text-center">{{$permiso->name}}</td>
+                
               
-                <h1>{{ $loop -> iteration }}</h1>
-                <h1 class="text-center">{{$permiso->name}}</h1>
-               
-               
+                <td class="text-center">
+                <div class="form-check p-0">
                        
-    
+                <!--endforeach-->
+            @if ($mode == 'create')
+                
+                <label for="esAdministrativo" class="form-check-label pr-3">Seleccionar</label>
+                <input type="checkbox" name="rutas[]" id="esAdministrativoCreate"  value="{{$permiso->name}}" class="form-check-input">
+                <td class="text-center">
+          
+            @else
+                <div class="form-check p-0">
+                <label for="esAdministrativo" class="form-check-label pr-3">Seleccionar</label>
+         
+            @foreach($permissions as $permisosrol)
+                @if($permisosrol->name == $permiso->name)
+                    <?php
+                    $cont = $cont+1;
+                    ?>
+                @endif
+            @endforeach
+            @if($cont == 1)
+            <input type="checkbox" name="rutas[]" id="esAdministrativoCreate"  checked value="{{$permiso->name}}" class="form-check-input">
+            @else
+            <input type="checkbox" name="rutas[]" id="esAdministrativoCreate"  value="{{$permiso->name}}" class="form-check-input">
+            @endif
+           
+        </div>
+      
+        
+       
+        @endif
+                    
+                 
 
                 
-                @endforeach
-               
+        @endforeach
+            </tbody>
+        </table> 
 </div>
 <div class="row ml-1 pt-4">
             <div class="form-group">
