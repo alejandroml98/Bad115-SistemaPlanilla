@@ -31,11 +31,11 @@
                     <td class="text-center">
                         <a href="{{ url('/profesionempleado/'.$profesionEmpleado -> idprofesionempleado.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                        <form id="{{ 'formulario-prueba'.$profesionEmpleado -> idprofesionempleado }}" class="btn btn-danger p-0" method="post" action="{{ url('/profesionempleado/'.$profesionEmpleado -> idprofesionempleado) }}">
+                        <form id="{{ 'formulario-prueba-profesion'.$profesionEmpleado -> idprofesionempleado }}" class="btn btn-danger p-0" method="post" action="{{ url('/profesionempleado/'.$profesionEmpleado -> idprofesionempleado) }}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <input type="text" name="codigoEmpleado" hidden value="{{ $profesionEmpleado -> codigoempleado }}">
-                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $profesionEmpleado -> idprofesionempleado }}', '{{ $nombreProfesion }} del empleado','la profesion')">
+                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $profesionEmpleado -> idprofesionempleado }}', '{{ $nombreProfesion }} del empleado','la profesion', '-profesion')">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </form>

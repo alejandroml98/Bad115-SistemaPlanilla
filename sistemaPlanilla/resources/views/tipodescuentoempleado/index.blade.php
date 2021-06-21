@@ -14,7 +14,6 @@
                     <th>#</th>
                     <th>Tipo Descuento</th>            
                     <th>Valor Descuento (%)</th>
-                    <th>Contador Descuento</th>  
                     <th style="width: 1%;">Acciones</th>
                 </tr>
             </thead>
@@ -33,7 +32,6 @@
                     @endif
                     @endforeach
                     <td>{{ $tipoDescuentoEmpleado -> valortipodescuentoempleado }}</td>
-                    <td>{{ $tipoDescuentoEmpleado -> contadortipodescuentoempleado }}</td> 
                     <td class="text-center">
                         <a href="{{ url('/tipodescuentoempleado/'.$tipoDescuentoEmpleado -> idtipodescuentoempleado.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
@@ -41,7 +39,7 @@
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <input type="text" name="codigoEmpleado" hidden value="{{ $tipoDescuentoEmpleado -> codigoempleado }}">
-                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $tipoDescuentoEmpleado -> idtipodescuentoempleado }}', '{{ $nombreDescuento }}','el descuento')">
+                            <button class="btn btn-danger border-0" type="submit" onclick="presionar('{{ $tipoDescuentoEmpleado -> idtipodescuentoempleado }}', '{{ $nombreDescuento }}','el descuento', '-descuento')">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </form>
